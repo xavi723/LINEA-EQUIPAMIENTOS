@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es-AR" class="sin-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto · Altobello Victorio</title>
+  <meta name="description" content="Pedí tu presupuesto. Showroom y taller en Bv. Rondeau 3042, Rosario.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Fira+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="btn btn--solido" href="#principal"
+     style="position:absolute;left:-9999px;top:0;z-index:100"
+     onfocus="this.style.left='1rem';this.style.top='1rem'"
+     onblur="this.style.left='-9999px'">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="env cabecera__barra">
+      <a href="index.html" aria-label="Altobello Victorio, inicio"><span class="marca">
+      <svg class="marca__iso" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+        <path d="M30 0 L8 11.2 L30 11.2 Z M8 11.2 L30 22.4 L30 30 L8 30 Z" fill="var(--tinta)" transform="translate(-4 0)"/>
+      </svg>
+      <span class="marca__texto">
+        <span class="marca__nombre">Altobello Victorio</span>
+        <span class="marca__bajada">Muebles para oficina</span>
+      </span>
+    </span></a>
+
+      <nav class="nav nav--principal" aria-label="Principal"><a class="nav__enlace" href="index.html">Inicio</a><a class="nav__enlace" href="catalogo.html">Catálogo</a><a class="nav__enlace" href="servicios.html">Servicios</a><a class="nav__enlace" href="proyectos.html">Proyectos</a><a class="nav__enlace" href="contacto.html" aria-current="page">Contacto</a></nav>
+
+      <div class="cabecera__acciones">
+        <a class="tel" href="tel:+543414530004">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 2h3l1.4 3.5-1.8 1.2a10 10 0 0 0 3.7 3.7l1.2-1.8L14 10v3a1 1 0 0 1-1.1 1A11.5 11.5 0 0 1 2 3.1 1 1 0 0 1 3 2Z"
+                  stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          </svg>
+          (0341) 453-0004
+        </a>
+        <button class="btn btn--linea btn--presupuesto" type="button" data-abrir-panel
+                aria-label="Abrir la lista de presupuesto">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M5.5 1.5h5v2h-5zM3.5 3.5h9v11h-9z" stroke="currentColor"
+                  stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M6 7.5h4M6 10.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <span class="btn__palabra">Presupuesto</span>
+          <span class="contador" data-contador data-vacio="si">0</span>
+        </button>
+        <button class="hamburguesa" type="button" aria-expanded="false"
+                aria-controls="menu-movil" aria-label="Abrir el menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="menu-movil" id="menu-movil" data-abierto="no" aria-label="Menú móvil">
+      <div class="env"><ul><li><a href="index.html">Inicio</a></li><li><a href="catalogo.html">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="proyectos.html">Proyectos</a></li><li><a href="contacto.html" aria-current="page">Contacto</a></li></ul></div>
+    </nav>
+  </header>
+
+  <main id="principal">
+    <div class="env">
+      <nav class="migas" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Contacto</span>
+      </nav>
+    </div>
+
+    <section class="seccion--ajustada env">
+      <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:4rem;align-items:start"
+           class="contacto-layout">
+
+        <!-- Formulario -->
+        <div>
+          <div class="etiqueta">Pedido de presupuesto</div>
+          <h1 style="font-size:var(--t-2xl)">Contanos qué<br>necesitás equipar</h1>
+          <p style="margin-top:1rem;color:var(--humo)">
+            Cuanto más nos digas, más preciso sale el presupuesto. Si tenés el
+            plano, mejor todavía.
+          </p>
+
+          <div style="margin:2rem 0;padding:1rem 1.25rem;background:var(--naranja-cl);border-left:3px solid var(--naranja)">
+            <div class="etiqueta" style="margin-bottom:0.4rem;color:var(--naranja)">Tu lista</div>
+            <p class="dato" data-resumen-lista style="font-size:var(--t-sm);color:var(--tinta)"></p>
+          </div>
+
+          <form data-form-presupuesto novalidate>
+            <div class="rejilla-form">
+              <div class="campo">
+                <label for="nombre">Nombre y apellido</label>
+                <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+              </div>
+              <div class="campo">
+                <label for="empresa">Empresa</label>
+                <input id="empresa" name="empresa" type="text" autocomplete="organization">
+              </div>
+              <div class="campo">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="campo">
+                <label for="telefono">Teléfono</label>
+                <input id="telefono" name="telefono" type="tel" autocomplete="tel">
+              </div>
+              <div class="campo">
+                <label for="familia">Qué necesitás</label>
+                <select id="familia" name="familia">
+                  <option value="">Elegí una familia</option>
+                  <option value="escritorios">Escritorios</option><option value="sillas">Sillas</option><option value="reunion">Salas de reunión</option><option value="espera">Recepción y espera</option><option value="guardado">Guardado</option>
+                  <option value="proyecto">Una oficina completa</option>
+                </select>
+              </div>
+              <div class="campo">
+                <label for="puestos">Cantidad de puestos</label>
+                <input id="puestos" name="puestos" type="number" min="1" inputmode="numeric" placeholder="Ej: 12">
+              </div>
+              <div class="campo ancho-total">
+                <label for="mensaje">Contanos un poco más</label>
+                <textarea id="mensaje" name="mensaje"
+                          placeholder="Metros del espacio, plazos, si ya tenés muebles que querés conservar…"></textarea>
+                <span class="campo__ayuda">Si tenés plano en PDF o DWG, mencionalo y te lo pedimos por mail.</span>
+              </div>
+            </div>
+
+            <button class="btn btn--acento" type="submit" style="margin-top:2rem">
+              Enviar el pedido <svg class="btn__flecha" width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+
+            <p data-estado-form hidden tabindex="-1"
+               style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--papel-puro);border:var(--borde);font-size:var(--t-sm)"></p>
+          </form>
+        </div>
+
+        <!-- Datos -->
+        <aside style="background:var(--papel-puro);border:var(--borde);padding:2rem">
+          <div class="etiqueta">Dónde estamos</div>
+          <h2 style="font-size:var(--t-lg)">Showroom y taller</h2>
+          <p style="margin-top:0.75rem;color:var(--humo)">
+            Es el mismo lugar: podés ver cómo se fabrica y sentarte en las
+            sillas el mismo día.
+          </p>
+
+          <dl style="margin:2rem 0 0;display:grid;gap:1.35rem">
+            <div>
+              <dt class="etiqueta" style="margin-bottom:0.3rem">Dirección</dt>
+              <dd style="margin:0">Bv. Rondeau 3042<br>Rosario, Santa Fe</dd>
+            </div>
+            <div>
+              <dt class="etiqueta" style="margin-bottom:0.3rem">Teléfonos</dt>
+              <dd style="margin:0">
+                <a class="dato" href="tel:+543414530004">(0341) 453-0004</a><br>
+                <a class="dato" href="tel:+543414555606">(0341) 455-5606</a>
+              </dd>
+            </div>
+            <div>
+              <dt class="etiqueta" style="margin-bottom:0.3rem">Email</dt>
+              <dd style="margin:0"><a href="mailto:ventas@altobellovictorio.com.ar">ventas@altobellovictorio.com.ar</a></dd>
+            </div>
+            <div>
+              <dt class="etiqueta" style="margin-bottom:0.3rem">Horarios</dt>
+              <dd style="margin:0" class="dato">
+                Lun a vie · 8 a 17 h<br>
+                Sábados · 9 a 13 h
+              </dd>
+            </div>
+          </dl>
+
+          <div class="foto foto--roble" data-img="assets/img/frente-local.jpg" style="aspect-ratio:4/3;margin-top:2rem">
+              <div class="foto__marca-agua">assets/img/<br>frente-local.jpg</div>
+            </div>
+        </aside>
+      </div>
+    </section>
+
+    <style>
+      @media (max-width: 900px) {
+        .contacto-layout { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+      }
+    </style>
+
+  </main>
+
+  <footer class="pie">
+    <div class="env">
+      <div class="pie__cols">
+        <div>
+          <span class="marca">
+      <svg class="marca__iso" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+        <path d="M30 0 L8 11.2 L30 11.2 Z M8 11.2 L30 22.4 L30 30 L8 30 Z" fill="var(--papel-puro)" transform="translate(-4 0)"/>
+      </svg>
+      <span class="marca__texto">
+        <span class="marca__nombre">Altobello Victorio</span>
+        <span class="marca__bajada">Muebles para oficina</span>
+      </span>
+    </span>
+          <p style="margin-top:1rem;font-size:var(--t-sm)">
+            Empresa familiar rosarina. Fabricamos muebles y equipamiento
+            para oficinas y locales comerciales desde 1959.
+          </p>
+        </div>
+        <div>
+          <div class="pie__titulo">Catálogo</div>
+          <ul>
+            <li><a href="catalogo.html#escritorios">Escritorios</a></li>
+            <li><a href="catalogo.html#sillas">Sillas</a></li>
+            <li><a href="catalogo.html#reunion">Salas de reunión</a></li>
+            <li><a href="catalogo.html#espera">Recepción y espera</a></li>
+            <li><a href="catalogo.html#guardado">Guardado</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pie__titulo">Empresa</div>
+          <ul>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pie__titulo">Dónde estamos</div>
+          <ul>
+            <li>Bv. Rondeau 3042</li>
+            <li>Rosario, Santa Fe</li>
+            <li><a href="tel:+543414530004">(0341) 453-0004</a></li>
+            <li><a href="tel:+543414555606">(0341) 455-5606</a></li>
+            <li><a href="mailto:ventas@altobellovictorio.com.ar">ventas@altobellovictorio.com.ar</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie__legal">
+        <span>© 2026 Altobello Victorio · Desde 1959</span>
+        <span>Lunes a viernes de 8 a 17 h · Sábados de 9 a 13 h</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="panel-fondo" data-abierto="no" data-cerrar-panel></div>
+
+  <aside class="panel" data-abierto="no" aria-hidden="true"
+         aria-label="Lista de presupuesto">
+    <div class="panel__enc">
+      <div>
+        <div class="etiqueta" style="margin:0">Tu lista</div>
+        <strong style="font-family:var(--display);font-size:var(--t-md)">Pedido de presupuesto</strong>
+      </div>
+      <button class="cerrar" type="button" data-cerrar-panel aria-label="Cerrar la lista">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </button>
+    </div>
+    <div class="panel__lista"></div>
+    <div class="panel__pie">
+      <p style="font-size:var(--t-sm);color:var(--humo);margin-bottom:1rem">
+        Armamos el presupuesto sobre el conjunto: a mayor volumen, mejor precio
+        por pieza. Te respondemos dentro de las 24 h hábiles.
+      </p>
+      <a class="btn btn--acento" href="contacto.html" style="width:100%">
+        Pedir presupuesto
+        <svg class="btn__flecha" width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+          <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <div class="aviso" role="status" aria-live="polite" data-visible="no"></div>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

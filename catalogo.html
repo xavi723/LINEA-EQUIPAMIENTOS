@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es-AR" class="sin-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo · Altobello Victorio</title>
+  <meta name="description" content="Escritorios, sillas, salas de reunión, recepción y guardado. Medidas de serie y fabricación a medida.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Fira+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="btn btn--solido" href="#principal"
+     style="position:absolute;left:-9999px;top:0;z-index:100"
+     onfocus="this.style.left='1rem';this.style.top='1rem'"
+     onblur="this.style.left='-9999px'">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="env cabecera__barra">
+      <a href="index.html" aria-label="Altobello Victorio, inicio"><span class="marca">
+      <svg class="marca__iso" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+        <path d="M30 0 L8 11.2 L30 11.2 Z M8 11.2 L30 22.4 L30 30 L8 30 Z" fill="var(--tinta)" transform="translate(-4 0)"/>
+      </svg>
+      <span class="marca__texto">
+        <span class="marca__nombre">Altobello Victorio</span>
+        <span class="marca__bajada">Muebles para oficina</span>
+      </span>
+    </span></a>
+
+      <nav class="nav nav--principal" aria-label="Principal"><a class="nav__enlace" href="index.html">Inicio</a><a class="nav__enlace" href="catalogo.html" aria-current="page">Catálogo</a><a class="nav__enlace" href="servicios.html">Servicios</a><a class="nav__enlace" href="proyectos.html">Proyectos</a><a class="nav__enlace" href="contacto.html">Contacto</a></nav>
+
+      <div class="cabecera__acciones">
+        <a class="tel" href="tel:+543414530004">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 2h3l1.4 3.5-1.8 1.2a10 10 0 0 0 3.7 3.7l1.2-1.8L14 10v3a1 1 0 0 1-1.1 1A11.5 11.5 0 0 1 2 3.1 1 1 0 0 1 3 2Z"
+                  stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          </svg>
+          (0341) 453-0004
+        </a>
+        <button class="btn btn--linea btn--presupuesto" type="button" data-abrir-panel
+                aria-label="Abrir la lista de presupuesto">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M5.5 1.5h5v2h-5zM3.5 3.5h9v11h-9z" stroke="currentColor"
+                  stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M6 7.5h4M6 10.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <span class="btn__palabra">Presupuesto</span>
+          <span class="contador" data-contador data-vacio="si">0</span>
+        </button>
+        <button class="hamburguesa" type="button" aria-expanded="false"
+                aria-controls="menu-movil" aria-label="Abrir el menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="menu-movil" id="menu-movil" data-abierto="no" aria-label="Menú móvil">
+      <div class="env"><ul><li><a href="index.html">Inicio</a></li><li><a href="catalogo.html" aria-current="page">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="proyectos.html">Proyectos</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    </nav>
+  </header>
+
+  <main id="principal">
+    <div class="env">
+      <nav class="migas" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Catálogo</span>
+      </nav>
+    </div>
+
+    <section class="env" style="padding-bottom:3rem">
+      <div class="enc-seccion" style="margin-bottom:0">
+        <div>
+          <div class="etiqueta">15 piezas · 5 familias</div>
+          <h1 style="font-size:var(--t-2xl)">Catálogo</h1>
+        </div>
+        <p>Las medidas están en milímetros y son las de serie. Casi todo se
+           fabrica también a medida — si necesitás otra, preguntanos.</p>
+      </div>
+    </section>
+
+    <hr class="regla">
+
+    <section class="seccion--ajustada env">
+      <div style="display:grid;grid-template-columns:240px 1fr;gap:3.5rem;align-items:start"
+           class="cat-layout">
+
+        <!-- Filtros -->
+        <aside style="position:sticky;top:100px" aria-label="Filtros">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem">
+            <strong style="font-family:var(--display);font-size:var(--t-md)">Filtros</strong>
+            <button type="button" data-limpiar
+                    style="background:none;border:0;cursor:pointer;font-family:var(--dato);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em;color:var(--humo);padding:0.5rem 0">
+              Limpiar
+            </button>
+          </div>
+
+          <fieldset style="border:0;padding:0;margin:0 0 2rem">
+            <legend class="etiqueta" style="margin-bottom:0.75rem">Familia</legend>
+            <label style="display:flex;align-items:center;gap:0.6rem;min-height:44px;cursor:pointer">
+              <input type="checkbox" data-filtro value="escritorios" style="width:17px;height:17px;accent-color:var(--naranja)">
+              <span style="flex:1">Escritorios</span>
+              <span class="dato" style="font-size:var(--t-xs);color:var(--humo)">4</span>
+            </label><label style="display:flex;align-items:center;gap:0.6rem;min-height:44px;cursor:pointer">
+              <input type="checkbox" data-filtro value="sillas" style="width:17px;height:17px;accent-color:var(--naranja)">
+              <span style="flex:1">Sillas</span>
+              <span class="dato" style="font-size:var(--t-xs);color:var(--humo)">4</span>
+            </label><label style="display:flex;align-items:center;gap:0.6rem;min-height:44px;cursor:pointer">
+              <input type="checkbox" data-filtro value="reunion" style="width:17px;height:17px;accent-color:var(--naranja)">
+              <span style="flex:1">Salas de reunión</span>
+              <span class="dato" style="font-size:var(--t-xs);color:var(--humo)">2</span>
+            </label><label style="display:flex;align-items:center;gap:0.6rem;min-height:44px;cursor:pointer">
+              <input type="checkbox" data-filtro value="espera" style="width:17px;height:17px;accent-color:var(--naranja)">
+              <span style="flex:1">Recepción y espera</span>
+              <span class="dato" style="font-size:var(--t-xs);color:var(--humo)">2</span>
+            </label><label style="display:flex;align-items:center;gap:0.6rem;min-height:44px;cursor:pointer">
+              <input type="checkbox" data-filtro value="guardado" style="width:17px;height:17px;accent-color:var(--naranja)">
+              <span style="flex:1">Guardado</span>
+              <span class="dato" style="font-size:var(--t-xs);color:var(--humo)">3</span>
+            </label>
+          </fieldset>
+
+          <div style="border-top:var(--borde);padding-top:1.5rem">
+            <div class="etiqueta">¿No lo encontrás?</div>
+            <p style="font-size:var(--t-sm);color:var(--humo)">
+              Fabricamos a medida. Contanos qué necesitás y te cotizamos.
+            </p>
+            <a class="enlace-flecha" href="contacto.html" style="margin-top:1rem">Consultar <svg class="" width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          </div>
+        </aside>
+
+        <!-- Piezas -->
+        <div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;padding-bottom:1.5rem;border-bottom:var(--borde);margin-bottom:2.5rem">
+            <span class="dato" data-conteo style="font-size:var(--t-sm);color:var(--humo)">
+              Mostrando las 15 piezas
+            </span>
+            <span class="dato" style="font-size:var(--t-xs);color:var(--humo)">
+              Medidas: ancho × profundidad × alto (mm)
+            </span>
+          </div>
+
+          <div class="rejilla-prod" data-escalonar>
+            <article class="prod revelar" data-categoria="escritorios">
+              <div class="foto prod__foto foto--roble" data-img="assets/img/escritorio-strada.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>escritorio-strada.jpg</div>
+            </div>
+              <div class="prod__codigo">ST-140</div>
+              <h3 class="prod__nombre">Escritorio Strada 1400</h3>
+              <div class="prod__linea">Línea Strada</div>
+              <div class="prod__medidas">1400 × 700 × 750 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#E4E0D6"></span><span class="muestra" style="background:#C9A57A"></span><span class="muestra" style="background:#0C1F1A"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="ST-140" data-nombre="Escritorio Strada 1400"
+                        data-tono="foto--roble" data-img="assets/img/escritorio-strada.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="escritorios">
+              <div class="foto prod__foto foto--roble" data-img="assets/img/bench-strada.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>bench-strada.jpg</div>
+            </div>
+              <div class="prod__codigo">ST-BEN</div>
+              <h3 class="prod__nombre">Bench Strada 4 puestos</h3>
+              <div class="prod__linea">Línea Strada</div>
+              <div class="prod__medidas">2800 × 1400 × 750 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#E4E0D6"></span><span class="muestra" style="background:#C9A57A"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="ST-BEN" data-nombre="Bench Strada 4 puestos"
+                        data-tono="foto--roble" data-img="assets/img/bench-strada.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="escritorios">
+              <div class="foto prod__foto foto--tinta" data-img="assets/img/escritorio-rondeau.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>escritorio-rondeau.jpg</div>
+            </div>
+              <div class="prod__codigo">RD-180</div>
+              <h3 class="prod__nombre">Escritorio Rondeau</h3>
+              <div class="prod__linea">Línea Dirección</div>
+              <div class="prod__medidas">1800 × 900 × 750 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#0C1F1A"></span><span class="muestra" style="background:#C9A57A"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="RD-180" data-nombre="Escritorio Rondeau"
+                        data-tono="foto--tinta" data-img="assets/img/escritorio-rondeau.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="escritorios">
+              <div class="foto prod__foto foto--menta" data-img="assets/img/escritorio-litoral.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>escritorio-litoral.jpg</div>
+            </div>
+              <div class="prod__codigo">LT-120</div>
+              <h3 class="prod__nombre">Escritorio Litoral</h3>
+              <div class="prod__linea">Línea Operativa</div>
+              <div class="prod__medidas">1200 × 600 × 750 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#E4E0D6"></span><span class="muestra" style="background:#8FBFAC"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="LT-120" data-nombre="Escritorio Litoral"
+                        data-tono="foto--menta" data-img="assets/img/escritorio-litoral.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="sillas">
+              <div class="foto prod__foto foto--tinta" data-img="assets/img/silla-aire.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>silla-aire.jpg</div>
+            </div>
+              <div class="prod__codigo">SE-AIR</div>
+              <h3 class="prod__nombre">Silla Aire</h3>
+              <div class="prod__linea">Ergonómicas</div>
+              <div class="prod__medidas">660 × 640 × 1250 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#0C1F1A"></span><span class="muestra" style="background:#D2571C"></span><span class="muestra" style="background:#8FBFAC"></span><span class="muestra" style="background:#E4E0D6"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="SE-AIR" data-nombre="Silla Aire"
+                        data-tono="foto--tinta" data-img="assets/img/silla-aire.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="sillas">
+              <div class="foto prod__foto foto--verde" data-img="assets/img/silla-mesh.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>silla-mesh.jpg</div>
+            </div>
+              <div class="prod__codigo">SE-MSH</div>
+              <h3 class="prod__nombre">Silla Mesh Alta</h3>
+              <div class="prod__linea">Ergonómicas</div>
+              <div class="prod__medidas">680 × 660 × 1300 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#0C1F1A"></span><span class="muestra" style="background:#D2571C"></span><span class="muestra" style="background:#8FBFAC"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="SE-MSH" data-nombre="Silla Mesh Alta"
+                        data-tono="foto--verde" data-img="assets/img/silla-mesh.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="sillas">
+              <div class="foto prod__foto foto--menta" data-img="assets/img/silla-nodo.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>silla-nodo.jpg</div>
+            </div>
+              <div class="prod__codigo">SO-NDO</div>
+              <h3 class="prod__nombre">Silla Nodo</h3>
+              <div class="prod__linea">Operativas</div>
+              <div class="prod__medidas">600 × 580 × 950 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#0C1F1A"></span><span class="muestra" style="background:#8FBFAC"></span><span class="muestra" style="background:#E4E0D6"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="SO-NDO" data-nombre="Silla Nodo"
+                        data-tono="foto--menta" data-img="assets/img/silla-nodo.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="sillas">
+              <div class="foto prod__foto foto--tinta" data-img="assets/img/sillon-direccion.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>sillon-direccion.jpg</div>
+            </div>
+              <div class="prod__codigo">SD-DIR</div>
+              <h3 class="prod__nombre">Sillón Dirección</h3>
+              <div class="prod__linea">Línea Dirección</div>
+              <div class="prod__medidas">720 × 720 × 1220 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#0C1F1A"></span><span class="muestra" style="background:#5A4632"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="SD-DIR" data-nombre="Sillón Dirección"
+                        data-tono="foto--tinta" data-img="assets/img/sillon-direccion.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="reunion">
+              <div class="foto prod__foto foto--roble" data-img="assets/img/mesa-consejo.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>mesa-consejo.jpg</div>
+            </div>
+              <div class="prod__codigo">MR-320</div>
+              <h3 class="prod__nombre">Mesa Consejo 3200</h3>
+              <div class="prod__linea">Salas de reunión</div>
+              <div class="prod__medidas">3200 × 1200 × 750 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#C9A57A"></span><span class="muestra" style="background:#E4E0D6"></span><span class="muestra" style="background:#0C1F1A"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="MR-320" data-nombre="Mesa Consejo 3200"
+                        data-tono="foto--roble" data-img="assets/img/mesa-consejo.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="reunion">
+              <div class="foto prod__foto foto--roble" data-img="assets/img/mesa-agora.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>mesa-agora.jpg</div>
+            </div>
+              <div class="prod__codigo">MR-ARG</div>
+              <h3 class="prod__nombre">Mesa Ágora redonda</h3>
+              <div class="prod__linea">Colaborativas</div>
+              <div class="prod__medidas">1400 × 1400 × 750 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#C9A57A"></span><span class="muestra" style="background:#E4E0D6"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="MR-ARG" data-nombre="Mesa Ágora redonda"
+                        data-tono="foto--roble" data-img="assets/img/mesa-agora.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="espera">
+              <div class="foto prod__foto foto--roble" data-img="assets/img/mostrador-arco.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>mostrador-arco.jpg</div>
+            </div>
+              <div class="prod__codigo">MO-ARC</div>
+              <h3 class="prod__nombre">Mostrador Arco</h3>
+              <div class="prod__linea">Recepción</div>
+              <div class="prod__medidas">2400 × 800 × 1100 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#C9A57A"></span><span class="muestra" style="background:#0C1F1A"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="MO-ARC" data-nombre="Mostrador Arco"
+                        data-tono="foto--roble" data-img="assets/img/mostrador-arco.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="espera">
+              <div class="foto prod__foto foto--menta" data-img="assets/img/sofa-espera.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>sofa-espera.jpg</div>
+            </div>
+              <div class="prod__codigo">SF-E2C</div>
+              <h3 class="prod__nombre">Sofá Espera 2 cuerpos</h3>
+              <div class="prod__linea">Recepción</div>
+              <div class="prod__medidas">1400 × 750 × 800 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#8FBFAC"></span><span class="muestra" style="background:#D2571C"></span><span class="muestra" style="background:#0C1F1A"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="SF-E2C" data-nombre="Sofá Espera 2 cuerpos"
+                        data-tono="foto--menta" data-img="assets/img/sofa-espera.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="guardado">
+              <div class="foto prod__foto foto--roble" data-img="assets/img/biblioteca-modular.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>biblioteca-modular.jpg</div>
+            </div>
+              <div class="prod__codigo">BM-MOD</div>
+              <h3 class="prod__nombre">Biblioteca Modular</h3>
+              <div class="prod__linea">Guardado</div>
+              <div class="prod__medidas">900 × 400 × 1800 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#E4E0D6"></span><span class="muestra" style="background:#C9A57A"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="BM-MOD" data-nombre="Biblioteca Modular"
+                        data-tono="foto--roble" data-img="assets/img/biblioteca-modular.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="guardado">
+              <div class="foto prod__foto foto--verde" data-img="assets/img/armario-metalico.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>armario-metalico.jpg</div>
+            </div>
+              <div class="prod__codigo">AM-2PT</div>
+              <h3 class="prod__nombre">Armario metálico 2 puertas</h3>
+              <div class="prod__linea">Metálicos</div>
+              <div class="prod__medidas">900 × 450 × 1950 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#E4E0D6"></span><span class="muestra" style="background:#0C1F1A"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="AM-2PT" data-nombre="Armario metálico 2 puertas"
+                        data-tono="foto--verde" data-img="assets/img/armario-metalico.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article><article class="prod revelar" data-categoria="guardado">
+              <div class="foto prod__foto foto--verde" data-img="assets/img/archivo-4cajones.jpg" style="">
+              <div class="foto__marca-agua">assets/img/<br>archivo-4cajones.jpg</div>
+            </div>
+              <div class="prod__codigo">AR-4CJ</div>
+              <h3 class="prod__nombre">Archivo 4 cajones</h3>
+              <div class="prod__linea">Metálicos</div>
+              <div class="prod__medidas">470 × 620 × 1320 mm</div>
+              <div class="prod__pie">
+                <div class="muestras" title="Terminaciones disponibles"><span class="muestra" style="background:#E4E0D6"></span><span class="muestra" style="background:#0C1F1A"></span></div>
+                <button class="btn-sumar" type="button" data-sumar
+                        data-codigo="AR-4CJ" data-nombre="Archivo 4 cajones"
+                        data-tono="foto--verde" data-img="assets/img/archivo-4cajones.jpg">
+                  <span data-etiqueta>Presupuestar</span>
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <div style="margin-top:4rem;padding:2.5rem;background:var(--papel-puro);border:var(--borde);text-align:center">
+            <h3>¿Estás equipando una oficina entera?</h3>
+            <p style="margin:0.75rem auto 0;color:var(--humo)">
+              Sumá las piezas que te interesen a la lista y pedí un presupuesto
+              por el conjunto. A mayor volumen, mejor precio por pieza.
+            </p>
+            <a class="btn btn--solido" href="contacto.html" style="margin-top:1.75rem">
+              Pedir presupuesto <svg class="btn__flecha" width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      @media (max-width: 900px) {
+        .cat-layout { grid-template-columns: 1fr !important; gap: 2rem !important; }
+        .cat-layout > aside { position: static !important; }
+      }
+    </style>
+
+  </main>
+
+  <footer class="pie">
+    <div class="env">
+      <div class="pie__cols">
+        <div>
+          <span class="marca">
+      <svg class="marca__iso" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+        <path d="M30 0 L8 11.2 L30 11.2 Z M8 11.2 L30 22.4 L30 30 L8 30 Z" fill="var(--papel-puro)" transform="translate(-4 0)"/>
+      </svg>
+      <span class="marca__texto">
+        <span class="marca__nombre">Altobello Victorio</span>
+        <span class="marca__bajada">Muebles para oficina</span>
+      </span>
+    </span>
+          <p style="margin-top:1rem;font-size:var(--t-sm)">
+            Empresa familiar rosarina. Fabricamos muebles y equipamiento
+            para oficinas y locales comerciales desde 1959.
+          </p>
+        </div>
+        <div>
+          <div class="pie__titulo">Catálogo</div>
+          <ul>
+            <li><a href="catalogo.html#escritorios">Escritorios</a></li>
+            <li><a href="catalogo.html#sillas">Sillas</a></li>
+            <li><a href="catalogo.html#reunion">Salas de reunión</a></li>
+            <li><a href="catalogo.html#espera">Recepción y espera</a></li>
+            <li><a href="catalogo.html#guardado">Guardado</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pie__titulo">Empresa</div>
+          <ul>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pie__titulo">Dónde estamos</div>
+          <ul>
+            <li>Bv. Rondeau 3042</li>
+            <li>Rosario, Santa Fe</li>
+            <li><a href="tel:+543414530004">(0341) 453-0004</a></li>
+            <li><a href="tel:+543414555606">(0341) 455-5606</a></li>
+            <li><a href="mailto:ventas@altobellovictorio.com.ar">ventas@altobellovictorio.com.ar</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie__legal">
+        <span>© 2026 Altobello Victorio · Desde 1959</span>
+        <span>Lunes a viernes de 8 a 17 h · Sábados de 9 a 13 h</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="panel-fondo" data-abierto="no" data-cerrar-panel></div>
+
+  <aside class="panel" data-abierto="no" aria-hidden="true"
+         aria-label="Lista de presupuesto">
+    <div class="panel__enc">
+      <div>
+        <div class="etiqueta" style="margin:0">Tu lista</div>
+        <strong style="font-family:var(--display);font-size:var(--t-md)">Pedido de presupuesto</strong>
+      </div>
+      <button class="cerrar" type="button" data-cerrar-panel aria-label="Cerrar la lista">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </button>
+    </div>
+    <div class="panel__lista"></div>
+    <div class="panel__pie">
+      <p style="font-size:var(--t-sm);color:var(--humo);margin-bottom:1rem">
+        Armamos el presupuesto sobre el conjunto: a mayor volumen, mejor precio
+        por pieza. Te respondemos dentro de las 24 h hábiles.
+      </p>
+      <a class="btn btn--acento" href="contacto.html" style="width:100%">
+        Pedir presupuesto
+        <svg class="btn__flecha" width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+          <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <div class="aviso" role="status" aria-live="polite" data-visible="no"></div>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
