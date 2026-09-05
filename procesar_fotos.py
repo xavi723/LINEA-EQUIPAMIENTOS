@@ -169,3 +169,35 @@ if __name__ == "__main__":
 
     for origen, salida, an, al, fondo, esc, dx in ANCHAS:
         print("ancha    ", encuadrar(origen, salida, an, al, marca, fondo, esc, dx))
+
+
+# --------------------------------------------------------------------
+# Logo
+# --------------------------------------------------------------------
+# El original es el lockup completo (isotipo + nombre + bajada) en un
+# solo color sobre transparencia. De ahí salen las dos versiones que usa
+# el sitio: la oscura para la cabecera y la clara para el pie, que va
+# sobre el verde de la marca. Recolorear conserva el alfa, así que los
+# bordes suavizados siguen limpios sobre cualquier fondo.
+LOGO = "logo-altobello-victorio.webp"
+
+
+def recolorear_logo(origen, salida, color, alto=120):
+    im = Image.open(os.path.join(SRC, origen)).convert("RGBA")
+
+    caja = im.getbbox()          # recorta el aire alrededor del lockup
+    if caja:
+        im = im.crop(caja)
+
+    ancho = max(int(im.width * alto / im.height), 1)
+    im = im.resize((ancho, alto), Image.LANCZOS)
+
+    tenido = Image.new("RGBA", im.size, color + (255,))
+    tenido.putalpha(im.getchannel("A"))
+    tenido.save(os.path.join(DST, salida), "WEBP", quality=92, method=6, lossless=True)
+    return salida
+
+
+if __name__ == "__main__":
+    print("logo     ", recolorear_logo(LOGO, "logo.webp", TINTA))
+    print("logo     ", recolorear_logo(LOGO, "logo-blanco.webp", PAPEL))

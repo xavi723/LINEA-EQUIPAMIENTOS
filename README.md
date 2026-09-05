@@ -93,17 +93,19 @@ desplazamientos.
 
 ## El logo
 
-El isotipo que se ve hoy está dibujado en SVG a ojo, mirando una imagen
-del logo: **es una aproximación, no la marca real.**
+Es el logo real de la empresa. El original está en
+`fotos-originales/logo-altobello-victorio.webp`: el lockup completo
+(isotipo, nombre y bajada) en un solo color sobre transparencia.
 
-Para reemplazarlo no hay que tocar código. Dejá los archivos en
-`assets/img/` con estos nombres y el sitio los toma solo:
+`procesar_fotos.py` genera las dos versiones que usa el sitio:
 
-- `logo.svg` — versión oscura, para la cabecera
-- `logo-blanco.svg` — versión clara, para el pie (va sobre fondo verde)
+- `assets/img/logo.webp` — verde oscuro, para la cabecera
+- `assets/img/logo-blanco.webp` — claro, para el pie
 
-Acepta `.png` si no hay `.svg`. Mientras no existan, se sigue viendo el
-dibujo.
+La versión clara se deriva recoloreando y conservando el canal alfa, así
+los bordes suavizados siguen limpios sobre el verde. Si algún día hay un
+`.svg`, dejalo en `assets/img/` con el mismo nombre: el sitio lo prefiere
+por ser vectorial, sin tocar código.
 
 ## Datos de contacto
 
@@ -120,7 +122,6 @@ Verificados contra la página de contacto de la empresa:
 
 ## Pendiente de confirmar con la empresa
 
-- El **logo** es una aproximación dibujada. Ver arriba cómo reemplazarlo.
 - Los nombres de producto y las familias salen de los nombres de archivo
   de las fotos, así que son reales. Las **medidas no están**: las fichas
   dicen «Medidas y terminaciones a consultar» en vez de inventar

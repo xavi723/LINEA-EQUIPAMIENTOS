@@ -159,9 +159,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- 4. Marca ---------- */
 .marca { display: flex; align-items: center; gap: 0.65rem; }
-/* Cuando existe el archivo de marca real, reemplaza al dibujo. */
-.marca__logo { height: 42px; width: auto; }
-@media (max-width: 620px) { .marca__logo { height: 32px; } }
+/* Cuando existe el archivo de marca real, reemplaza al dibujo entero
+   (isotipo, nombre y bajada vienen en la misma imagen). */
+.marca__logo { height: 40px; width: auto; }
+@media (max-width: 900px) { .marca__logo { height: 34px; } }
+@media (max-width: 620px) { .marca__logo { height: 30px; } }
+@media (max-width: 380px) { .marca__logo { height: 26px; } }
 .marca__iso { flex: none; display: block; }
 .marca__texto { display: flex; flex-direction: column; line-height: 1; }
 .marca__nombre {

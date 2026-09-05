@@ -248,13 +248,13 @@
   /* ---------- Logo real ----------
      El isotipo dibujado en SVG es una aproximación hecha a ojo desde una
      imagen. Si alguien deja el archivo de marca en assets/img/, el sitio
-     lo usa en lugar del dibujo: logo.svg para la cabecera y
-     logo-blanco.svg para el pie, que va sobre fondo oscuro.
-     Acepta .svg o .png, en ese orden. */
+     lo usa en lugar del dibujo: logo para la cabecera y logo-blanco
+     para el pie, que va sobre fondo oscuro. Prueba .svg primero porque
+     es vectorial, después .webp y .png. */
   (function () {
     document.querySelectorAll("[data-marca]").forEach(function (marca) {
       var base = marca.dataset.marca === "claro" ? "logo-blanco" : "logo";
-      var formatos = ["svg", "png"];
+      var formatos = ["svg", "webp", "png"];
 
       (function probar(i) {
         if (i >= formatos.length) return;
