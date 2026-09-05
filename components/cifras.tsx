@@ -8,6 +8,9 @@ import { EMPRESA } from "@/lib/datos";
  * de miles, porque 1959 no se escribe "1.959".
  */
 export function Cifras() {
+  // Se calcula al compilar, no en cada visita: la página es estática y
+  // se sirve entera desde el CDN, sin invocar ninguna función. El número
+  // cambia una vez por año, así que se actualiza en el próximo deploy.
   const anios = new Date().getFullYear() - EMPRESA.desde;
 
   return (

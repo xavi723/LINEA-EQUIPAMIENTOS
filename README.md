@@ -27,12 +27,34 @@ No hace falta configurar nada: Vercel detecta Next.js solo.
 2. Elegí la rama.
 3. Deploy.
 
-No hay variables de entorno ni base de datos. Las cinco páginas se
-prerrenderizan como estáticas, así que el sitio se sirve desde el CDN.
+No hay variables de entorno ni base de datos.
 
-Si vas a usar un dominio propio, cambiá `metadataBase` en
-`app/layout.tsx`: de ahí salen las URL absolutas de las etiquetas de
-Open Graph.
+### Sobre el costo
+
+El sitio está armado para no gastar cuota. Las siete rutas se
+prerrenderizan como HTML estático y se sirven desde el CDN: **no hay
+funciones de servidor, ni revalidación, ni optimización de imágenes en
+tiempo de ejecución**. Eso deja fuera de juego los tres límites que
+suelen consumirse en el plan gratuito (invocaciones, CPU activa y
+transformaciones de imagen).
+
+Lo único que se consume es tráfico: la portada pesa unos 0,6 MB la
+primera vez y después queda en caché. Con el tope de 100 GB del plan
+Hobby eso da del orden de 150 mil visitas por mes.
+
+El plan Hobby **no cobra**: si llegaras a un tope, el sitio deja de
+servir hasta el mes siguiente en vez de facturarte.
+
+**La letra chica que importa:** el plan Hobby no permite uso comercial.
+Para mostrar el boceto está bien. Si la empresa lo adopta como su web
+real, corresponde el plan Pro (20 USD por asiento al mes). Alternativa
+sin ese impedimento: Cloudflare Pages, cuyo plan gratuito sí permite uso
+comercial y también despliega Next.
+
+### Un detalle del build estático
+
+«Años fabricando acá» se calcula con la fecha de compilación, no en cada
+visita. Cambia una vez por año y se actualiza en el próximo deploy.
 
 ## Estructura
 

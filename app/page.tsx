@@ -7,11 +7,6 @@ import { Flecha } from "@/components/flecha";
 import { Foto } from "@/components/foto";
 import { Revelar } from "@/components/revelar";
 
-// Los años de fabricación se calculan con la fecha del build. Se
-// revalida a diario para que el número no quede viejo si pasan meses
-// sin volver a desplegar.
-export const revalidate = 86400;
-
 const DESTACADOS = ["silla-cool", "escritorio-prisma", "mesa-bote", "silla-cool-jazz"];
 
 export default function Inicio() {
