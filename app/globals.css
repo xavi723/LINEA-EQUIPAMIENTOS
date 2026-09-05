@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* ============================================================
    Altobello Victorio — sistema de diseño
    Muebles para oficina · Rosario · desde 1959
@@ -22,9 +24,11 @@
   --menta:      #8FBFAC;  /* segundo tapizado real */
 
   /* Tipografía */
-  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --texto:   "Fira Sans", "Segoe UI", system-ui, sans-serif;
-  --dato:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* Las sirve next/font desde el propio dominio; las de reserva cubren
+     el caso de que la fuente no llegue. */
+  --display: var(--fuente-display), "Helvetica Neue", Arial, sans-serif;
+  --texto:   var(--fuente-texto), "Segoe UI", system-ui, sans-serif;
+  --dato:    var(--fuente-dato), ui-monospace, "SF Mono", Menlo, monospace;
 
   /* Escala tipográfica — razón 1.25, base 17px */
   --t-xs:   0.7500rem;
@@ -947,3 +951,107 @@ button, input, select, textarea { font: inherit; color: inherit; }
     transform: none;
   }
 }
+
+/* ---------- 27. Piezas propias de la versión React ----------
+   Reemplazan estilos que en la versión estática iban en línea dentro del
+   generador de Python. */
+.saltar {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.saltar:focus { left: 1rem; top: 1rem; }
+
+.cat-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+.cat-layout > aside { position: sticky; top: 100px; }
+
+.filtros__enc {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.filtros__limpiar {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--humo);
+  padding: 0.5rem 0;
+  transition: color var(--d-hover) var(--curva-hover);
+}
+.filtros__limpiar:hover { color: var(--naranja); }
+
+.filtro__fila {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+.filtro__fila input { width: 17px; height: 17px; accent-color: var(--naranja); }
+
+.catalogo__barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: var(--borde);
+  margin-bottom: 2.5rem;
+}
+
+.catalogo__cierre {
+  margin-top: 4rem;
+  padding: 2.5rem;
+  background: var(--papel-puro);
+  border: var(--borde);
+  text-align: center;
+}
+
+.contacto-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.contacto__datos {
+  background: var(--papel-puro);
+  border: var(--borde);
+  padding: 2rem;
+}
+.contacto__resumen {
+  margin: 2rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--naranja-cl);
+  border-left: 3px solid var(--naranja);
+}
+
+.form__estado {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--papel-puro);
+  border: var(--borde);
+  font-size: var(--t-sm);
+}
+
+@media (max-width: 900px) {
+  .cat-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .cat-layout > aside { position: static; }
+  .contacto-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* next/image envuelve la foto en un contenedor propio: la ficha necesita
+   que ese contenedor herede el tamaño del hueco. */
+.prod__foto { position: relative; }
+.prod__foto img { object-fit: cover; }

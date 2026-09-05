@@ -1,5 +1,29 @@
 {
+  "name": "altobello-victorio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio de Altobello Victorio, muebles para oficina en Rosario",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "fotos": "python3 procesar_fotos.py"
+  },
   "dependencies": {
-    "playwright": "^1.62.1"
+    "clsx": "^2.1.1",
+    "framer-motion": "^13.2.0",
+    "next": "^16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2"
   }
 }

@@ -33,7 +33,7 @@ import numpy as np
 from PIL import Image, ImageFilter
 
 SRC = "fotos-originales"
-DST = "assets/img"
+DST = "public/img"   # lo sirve Next desde /img
 
 PAPEL = (252, 251, 248)   # --papel-puro
 TINTA = (12, 31, 26)      # --tinta
