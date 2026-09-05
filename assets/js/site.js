@@ -141,6 +141,7 @@
         guardar(lista);
         pintarContador();
         pintarPanel();
+        pintarResumen();
         sincronizarBotones();
         mostrarAviso("Se quitó " + pieza.nombre + ".");
       });
@@ -150,6 +151,15 @@
       fila.appendChild(quitar);
       panelLista.appendChild(fila);
     });
+  }
+
+  function pintarResumen() {
+    var resumen = document.querySelector("[data-resumen-lista]");
+    if (!resumen) return;
+    resumen.textContent = lista.length === 0
+      ? "No sumaste piezas todavía — contanos abajo qué necesitás."
+      : lista.length + " pieza" + (lista.length === 1 ? "" : "s") + " en tu lista: " +
+        lista.map(function (p) { return p.nombre; }).join(", ") + ".";
   }
 
   function sincronizarBotones() {
@@ -183,6 +193,7 @@
       guardar(lista);
       pintarContador(true);
       pintarPanel();
+      pintarResumen();
       sincronizarBotones();
     });
   });
@@ -220,6 +231,7 @@
 
   pintarContador();
   pintarPanel();
+  pintarResumen();
   sincronizarBotones();
 
   /* ---------- Slots de imagen ----------
@@ -303,14 +315,6 @@
   /* ---------- Formulario de presupuesto ---------- */
   var form = document.querySelector("[data-form-presupuesto]");
   if (form) {
-    var resumen = form.querySelector("[data-resumen-lista]");
-    if (resumen) {
-      resumen.textContent = lista.length === 0
-        ? "No sumaste piezas todavía — contanos abajo qué necesitás."
-        : lista.length + " pieza" + (lista.length === 1 ? "" : "s") + " en tu lista: " +
-          lista.map(function (p) { return p.nombre; }).join(", ") + ".";
-    }
-
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var estado = form.querySelector("[data-estado-form]");
