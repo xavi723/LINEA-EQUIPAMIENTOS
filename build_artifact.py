@@ -55,6 +55,32 @@ def data_uri(ruta):
 # atributo, así el hueco degrada a bloque de color sin pedir un 404.
 FOTOS = {p.name: data_uri(p) for p in sorted((RAIZ / "assets/img").glob("*.webp"))}
 
+# El logo no entra por data-img sino por una sonda que arma la ruta en
+# JavaScript. En un archivo único esa ruta no existe y el logo se caía al
+# dibujo de reserva, así que acá se le pasa la imagen ya incrustada.
+LOGOS = "var LOGOS = {%s};\n" % ", ".join(
+    '"%s": "%s"' % (n, FOTOS[n + ".webp"])
+    for n in ("logo", "logo-blanco") if n + ".webp" in FOTOS
+)
+
+
+def logo_incrustado(codigo):
+    """Hace que la sonda del logo lea del mapa incrustado.
+
+    En el sitio de la carpeta la sonda prueba assets/img/logo.svg, .webp
+    y .png por ruta relativa. En el archivo único esa carpeta no existe:
+    los tres intentos daban 404 y el logo se caía al dibujo de reserva.
+    Acá se apunta al data URI y se deja un solo intento."""
+    pares = [
+        ('"assets/img/" + base + "." + formatos[i]', "LOGOS[base]"),
+        ('["svg", "webp", "png"]', '["webp"]'),
+    ]
+    for viejo, nuevo in pares:
+        if viejo not in codigo:
+            raise SystemExit("la sonda del logo cambió; revisar: " + viejo)
+        codigo = codigo.replace(viejo, nuevo)
+    return codigo
+
 
 def incrustar_fotos(texto):
     def cambiar(m):
@@ -216,7 +242,8 @@ doc = f"""<meta charset="utf-8">
 
 <script>
 document.documentElement.classList.remove("sin-js");
-{js_ascii(js)}
+{LOGOS}
+{js_ascii(logo_incrustado(js))}
 {js_ascii(NAVEGACION)}
 </script>
 """

@@ -214,9 +214,12 @@ AMBIENTE = [
     # La foto de Línea Strada solo sirve por su derecha: el titular
     # quemado cruza el centro y bajar el recorte para esquivarlo cortaba
     # los escritorios, que son lo que había que mostrar.
+    # La portada usa la foto entera, no una mitad: recortada a la mitad
+    # quedaban 955 px estirados a todo el ancho de la pantalla y se veía
+    # blanda. Completa son 1920 y es la única sin texto quemado.
     ("doble foto.webp", "amb-portada.webp",
-     (0.503, 0.10, 1.0, 0.60), 1000,
-     "Portada. Mitad derecha de la única foto sin texto, recortada a 2:1."),
+     (0.0, 0.0, 1.0, 1.0), 1920,
+     "Portada. Foto completa, sin recorte, a resolución original."),
 
     ("Linea strada.webp", "amb-lounge.webp",
      (0.63, 0.0, 1.0, 0.88), 900,
@@ -255,7 +258,7 @@ def recortar(origen, salida, caja, ancho):
     if im.width > ancho:
         im = im.resize((ancho, max(int(im.height * ancho / im.width), 1)), Image.LANCZOS)
 
-    im.save(os.path.join(DST, salida), "WEBP", quality=82, method=6)
+    im.save(os.path.join(DST, salida), "WEBP", quality=88, method=6)
     return salida, im.width, im.height
 
 

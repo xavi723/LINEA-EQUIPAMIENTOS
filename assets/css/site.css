@@ -419,10 +419,19 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background-size: cover;
   background-position: center;
 }
+/* El chaleco tiene que sostener texto blanco sobre una foto clara y con
+   color propio: la silla naranja caía justo debajo de la volanta. Se
+   refuerza del lado del texto y se afloja hacia la derecha, donde no hay
+   nada que leer. */
 .portada__velo {
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(12,31,26,0.90) 0%, rgba(12,31,26,0.72) 42%, rgba(12,31,26,0.30) 100%);
+  background:
+    linear-gradient(100deg,
+      rgba(12,31,26,0.95) 0%,
+      rgba(12,31,26,0.88) 34%,
+      rgba(12,31,26,0.62) 62%,
+      rgba(12,31,26,0.38) 100%);
 }
 /* El bloque conserva el ancho de .env para alinearse al canal
    izquierdo; el límite de lectura se aplica a los hijos. Si se le baja
