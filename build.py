@@ -334,7 +334,7 @@ tarjetas_destacadas = "".join(tarjeta_producto(p) for p in destacados)
 
 INICIO = f"""    <!-- Portada -->
     <section class="portada">
-      {slot_foto("portada__foto", "hero-portada.webp", "Silla Cool")}
+      {slot_foto("portada__foto", "amb-portada.webp", "Sala de reunión equipada")}
       <div class="portada__velo"></div>
       <div class="env portada__contenido">
         <div class="etiqueta entra">Rosario · desde {EMPRESA["desde"]}</div>
@@ -387,8 +387,8 @@ INICIO = f"""    <!-- Portada -->
 
     <!-- Banda: el taller -->
     <section class="banda banda--oscura">
-      {slot_foto("banda__foto", "banda-escritorios.webp", "Escritorio Tetra",
-                 pie="Escritorio Tetra con rack · fabricación propia en Pedro Goyena 1023")}
+      {slot_foto("banda__foto", "amb-lounge.webp", "Oficina equipada",
+                 pie="Oficinas BEI Desarrollos, Rosario")}
       <div class="banda__texto">
         <div class="etiqueta">El taller</div>
         <h2>Una familia, dos generaciones,<br>el mismo taller.</h2>
@@ -460,8 +460,8 @@ INICIO = f"""    <!-- Portada -->
 
     <!-- Banda: sillas -->
     <section class="banda banda--invertida">
-      {slot_foto("banda__foto foto--tinta", "banda-sillas.webp", "Silla Cool Jazz",
-                 pie="Silla Cool Jazz · línea de dirección")}
+      {slot_foto("banda__foto", "amb-sillas-color.webp", "Sillas ergonómicas",
+                 pie="Sillas ergonómicas · tapizados a elección")}
       <div class="banda__texto">
         <div class="etiqueta">Ergonomía</div>
         <h2>La silla es<br>la decisión que más<br>se nota.</h2>
@@ -619,8 +619,8 @@ SERVICIOS = f"""    <div class="env">
     </section>
 
     <section class="banda">
-      {slot_foto("banda__foto", "banda-reunion.webp", "Mesa Redonda",
-                 pie="Proyecto 3D · texturas, pisos y terminaciones reales")}
+      {slot_foto("banda__foto", "amb-biblioteca.webp", "Biblioteca y sala de trabajo",
+                 pie="Colegio de Arquitectos, Rosario")}
       <div class="banda__texto">
         <div class="etiqueta">Servicio 01</div>
         <h2>Diseño 3D</h2>
@@ -638,8 +638,8 @@ SERVICIOS = f"""    <div class="env">
     </section>
 
     <section class="banda banda--invertida banda--oscura">
-      {slot_foto("banda__foto foto--tinta", "banda-sillas.webp", "Fabricación",
-                 pie="Producción propia · Bv. Rondeau 3042")}
+      {slot_foto("banda__foto foto--tinta", "amb-silla-negro.webp", "Silla ergonómica",
+                 pie="Producción propia · Pedro Goyena 1023")}
       <div class="banda__texto">
         <div class="etiqueta">Servicio 02</div>
         <h2>Fabricación a medida</h2>
@@ -657,7 +657,7 @@ SERVICIOS = f"""    <div class="env">
     </section>
 
     <section class="banda">
-      {slot_foto("banda__foto", "banda-escritorios.webp", "Instalación",
+      {slot_foto("banda__foto", "amb-atrio.webp", "Oficinas instaladas",
                  pie="Entrega y armado con equipo propio")}
       <div class="banda__texto">
         <div class="etiqueta">Servicio 03</div>
@@ -717,17 +717,17 @@ SERVICIOS = f"""    <div class="env">
 # la empresa. El resto son ejemplos de muestra hasta que nos pasen la
 # lista definitiva.
 PROYECTOS = [
-    ("Colegio de Arquitectos", "Rosario, Santa Fe", "Biblioteca, sala de reunión y puestos de trabajo",
-     "colegio-arquitectos.jpg", "foto--roble", True),
-    ("BEI Desarrollos", "Rosario, Santa Fe", "Oficinas con Línea Strada",
-     "bei-desarrollos.jpg", "foto--menta", False),
-    ("Estudio contable", "Rosario, Santa Fe", "12 puestos operativos y sala de reunión",
-     "estudio-contable.jpg", "foto--verde", False),
-    ("Planta industrial", "Pérez, Santa Fe", "Oficinas administrativas y comedor",
-     "planta-industrial.jpg", "foto--tinta", False),
-    ("Consultorios", "Rosario, Santa Fe", "Recepción, espera y guardado",
-     "consultorios.jpg", "foto--menta", False),
+    # Solo proyectos reales y con foto. Antes había tres más, de muestra;
+    # ponerles una foto real habría convertido un hueco evidente en una
+    # atribución falsa, que es peor de cara a la empresa.
+    ("Colegio de Arquitectos", "Rosario, Santa Fe",
+     "Biblioteca, sala de reunión y puestos de trabajo",
+     "amb-atrio.webp", "foto--roble", False),
+    ("BEI Desarrollos", "Rosario, Santa Fe",
+     "Oficinas con Línea Strada",
+     "amb-lounge.webp", "foto--menta", False),
 ]
+
 
 tarjetas_proy = "".join(
     f"""<article class="proy revelar{' proy--ancho' if ancho else ''}">
@@ -757,8 +757,8 @@ PROYECTOS_HTML = f"""    <div class="env">
           <div class="etiqueta">Proyectos entregados</div>
           <h1 style="font-size:var(--t-2xl)">Oficinas donde<br>ya se está trabajando</h1>
         </div>
-        <p>Estudios, plantas industriales, consultorios e instituciones.
-           La mayoría en Rosario y alrededores.</p>
+        <p>Instituciones, estudios y desarrolladoras. Estos son dos de
+           los que tenemos documentados en Rosario.</p>
       </div>
     </section>
 
@@ -769,7 +769,7 @@ PROYECTOS_HTML = f"""    <div class="env">
     </section>
 
     <section class="banda banda--oscura">
-      {slot_foto("banda__foto foto--roble", "colegio-arquitectos-detalle.jpg", "Detalle",
+      {slot_foto("banda__foto", "amb-biblioteca.webp", "Biblioteca",
                  pie="Colegio de Arquitectos, Rosario")}
       <div class="banda__texto">
         <div class="etiqueta">Un caso</div>
@@ -917,7 +917,7 @@ CONTACTO = f"""    <div class="env">
             WhatsApp {EMPRESA["whatsapp"]}
           </a>
 
-          {slot_foto("foto--roble", "frente-local.webp", "Frente del showroom",
+          {slot_foto("", "amb-sala-reunion.webp", "Sala de reunión equipada",
                      estilo="aspect-ratio:4/3;margin-top:1.5rem")}
         </aside>
       </div>

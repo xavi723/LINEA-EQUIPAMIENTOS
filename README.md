@@ -40,22 +40,20 @@ aviso que lo aclara. Conectarlo a un mail o a un CRM es un paso posterior.
 
 ## Las fotos
 
-Los 12 productos del catálogo tienen su foto real, procesada desde los
-originales que mandó la empresa (`fotos-originales/`). El script
-`procesar_fotos.py` les borra la marca de agua, cambia el fondo blanco
-por el del sitio, recorta el aire sobrante y encuadra cada una:
+Todas las imágenes del sitio son reales: los 12 productos, las cuatro
+familias, las oficinas de la portada y las bandas, y los dos proyectos.
+No queda ningún bloque de reemplazo.
+
+Se generan desde `fotos-originales/` con:
 
 ```bash
 python3 procesar_fotos.py
 ```
 
-El detalle está en [`assets/img/README.md`](assets/img/README.md).
-
-**Faltan 7 fotos de ambiente** — oficinas terminadas, el taller y el
-frente del local — que no son de producto y no tenemos. Esos huecos se
-muestran como bloques de color sobrios con el nombre del archivo que
-falta, nunca como imágenes rotas, así que el sitio se puede presentar
-igual. Están listados en `assets/img/README.md`.
+Tres de las cuatro fotos de ambiente traen el texto del banner quemado en
+la imagen (son piezas de la web actual). El script recorta las zonas
+limpias en vez de taparlo, para no superponer dos titulares. El detalle
+está en [`assets/img/README.md`](assets/img/README.md).
 
 ## Editar el sitio
 
@@ -129,7 +127,10 @@ Verificados contra la página de contacto de la empresa:
   dentro de `build.py`.
 - El catálogo son 12 piezas, las que tienen foto. El catálogo real de la
   empresa es más grande.
-- De los proyectos, solo el Colegio de Arquitectos y BEI Desarrollos
-  están acreditados; los otros tres son de muestra y no tienen foto.
+- La sección de Proyectos tiene dos, los que están documentados con
+  foto: Colegio de Arquitectos y BEI Desarrollos. Había tres más,
+  inventados por mí como muestra; los saqué al llegar las fotos reales,
+  porque atribuirle una foto verdadera a un proyecto que no existe es
+  peor que dejar el hueco a la vista.
 - Los teléfonos figuran en el sitio de la empresa sin característica;
   asumí (0341), que es la de Rosario.

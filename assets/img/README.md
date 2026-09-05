@@ -1,55 +1,46 @@
 # Imágenes del sitio
 
-Los archivos `.webp` de esta carpeta **se generan solos**. No los edites a
-mano: se sobrescriben.
+Los `.webp` de esta carpeta **se generan solos**. No los edites a mano:
+se sobrescriben en cada build.
 
 ## De dónde salen
 
-Los originales que mandó la empresa están en `fotos-originales/`. El
-script `procesar_fotos.py` (en la raíz) los convierte en las versiones que
-usa el sitio:
+Los originales que mandó la empresa están en `fotos-originales/`.
+`procesar_fotos.py` (en la raíz) los convierte:
 
 ```bash
 python3 procesar_fotos.py
 ```
 
-Por cada foto hace tres cosas:
+**Fotos de producto** — recorte sobre fondo blanco. El script les borra
+la marca de agua (el chevron gris de la esquina, que sobre fondo oscuro
+se ve como una mancha), cambia el blanco por el color del sitio con una
+franja de mezcla, y recorta el aire sobrante para que un escritorio ancho
+y un perchero angosto ocupen una porción pareja de su tarjeta.
 
-1. **Borra la marca de agua.** Los originales tienen el chevron de la
-   marca impreso en gris claro abajo a la derecha. Sobre fondo blanco no
-   se ve, pero al recortar el producto sobre el verde de la marca queda
-   como una mancha. El script la detecta sola: son los píxeles oscuros en
-   las 17 fotos a la vez, cosa que ningún producto cumple.
-2. **Cambia el fondo blanco** por el color de destino, con una franja de
-   mezcla para que el recorte no quede dentado.
-3. **Recorta el aire sobrante y encuadra** sin deformar, para que un
-   escritorio ancho y un perchero angosto ocupen una porción pareja de su
-   tarjeta.
+**Fotos de ambiente** — se recortan por región. Tres de las cuatro
+originales traen el texto del banner quemado en la imagen, porque son
+piezas de la web actual y no fotos limpias. No se puede poner un titular
+del sitio encima de otro titular, así que el script recorta las zonas
+sin texto en vez de taparlo. Los recortes están declarados en la lista
+`AMBIENTE`, en fracciones de la imagen.
 
-## Para agregar o cambiar una foto
+**Logo** — el original es el lockup completo en un solo color sobre
+transparencia. De ahí salen `logo.webp` (oscuro, cabecera) y
+`logo-blanco.webp` (claro, pie), recoloreando y conservando el alfa.
 
-1. Poné el archivo nuevo en `fotos-originales/`.
-2. Agregalo al diccionario que corresponda dentro de `procesar_fotos.py`
-   (`FICHAS`, `CATEGORIAS` o `ANCHAS`).
-3. Si es un producto nuevo, sumalo también a `PRODUCTOS` en `build.py`.
-4. Corré `python3 procesar_fotos.py && python3 build.py`.
+## Estado
 
-## Lo que todavía falta
+Los 23 huecos de imagen del sitio tienen foto real. No queda ningún
+bloque de reemplazo.
 
-Estas son fotos de **ambiente**, no de producto, y no las tenemos. Cada
-hueco se muestra mientras tanto como un bloque de color sobrio con el
-nombre del archivo que falta — nunca como una imagen rota — así que el
-sitio se puede presentar igual.
+Si igual falta un archivo, ese hueco se muestra como un bloque de color
+sobrio con el nombre del archivo que falta, nunca como una imagen rota.
 
-- `bei-desarrollos.jpg`
-- `colegio-arquitectos-detalle.jpg`
-- `colegio-arquitectos.jpg`
-- `consultorios.jpg`
-- `estudio-contable.jpg`
-- `frente-local.jpg`
-- `planta-industrial.jpg`
+## Para agregar una foto
 
-Son fotos de oficinas terminadas, del taller y del frente del local. Las
-cuatro que circularon al principio (la del Colegio de Arquitectos, las
-tres sillas de colores, la Línea Strada y las sillas sobre fondo negro)
-sirven para varios de estos huecos si se suben como archivo.
+1. Poné el original en `fotos-originales/`.
+2. Sumalo al diccionario o lista que corresponda en `procesar_fotos.py`
+   (`FICHAS`, `CATEGORIAS` o `AMBIENTE`).
+3. Si es un producto nuevo, agregalo también a `PRODUCTOS` en `build.py`.
+4. `python3 procesar_fotos.py && python3 build.py`

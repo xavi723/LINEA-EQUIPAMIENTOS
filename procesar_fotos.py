@@ -149,13 +149,11 @@ CATEGORIAS = {
     "Percheros.webp":         "cat-accesorios.webp",
 }
 
-# Portada y bandas: apaisadas, el producto recortado sobre el verde.
-ANCHAS = [
-    ("Cool 2.webp",                    "hero-portada.webp",      2400, 1200, TINTA, 0.90, 0.76),
-    ("Cool Jazz 2.webp",               "banda-sillas.webp",      1600, 1200, TINTA, 0.86, 0.50),
-    ("Escritorio tetra con rack.webp", "banda-escritorios.webp", 1600, 1200, PAPEL, 0.86, 0.50),
-    ("Mesa Redonda.webp",              "banda-reunion.webp",     1600, 1200, PAPEL, 0.84, 0.50),
-]
+# Antes había aquí composiciones de producto recortado sobre el verde
+# de la marca, que hacían de portada y de bandas mientras no hubo fotos
+# de ambiente. Las reemplazaron las fotos reales de oficinas.
+ANCHAS = []
+
 
 if __name__ == "__main__":
     os.makedirs(DST, exist_ok=True)
@@ -201,3 +199,67 @@ def recolorear_logo(origen, salida, color, alto=120):
 if __name__ == "__main__":
     print("logo     ", recolorear_logo(LOGO, "logo.webp", TINTA))
     print("logo     ", recolorear_logo(LOGO, "logo-blanco.webp", PAPEL))
+
+
+# --------------------------------------------------------------------
+# Fotos de ambiente
+# --------------------------------------------------------------------
+# Tres de las cuatro vienen con el texto del banner quemado en la imagen
+# (son piezas de la web actual, no fotos limpias). No se puede poner un
+# titular del sitio encima de otro titular, así que en vez de taparlo se
+# recortan las zonas limpias. Los recortes están en fracciones de la
+# imagen: x1, y1, x2, y2.
+AMBIENTE = [
+    # (origen, salida, recorte, ancho de salida, qué muestra)
+    # La foto de Línea Strada solo sirve por su derecha: el titular
+    # quemado cruza el centro y bajar el recorte para esquivarlo cortaba
+    # los escritorios, que son lo que había que mostrar.
+    ("doble foto.webp", "amb-portada.webp",
+     (0.503, 0.10, 1.0, 0.60), 1000,
+     "Portada. Mitad derecha de la única foto sin texto, recortada a 2:1."),
+
+    ("Linea strada.webp", "amb-lounge.webp",
+     (0.63, 0.0, 1.0, 0.88), 900,
+     "Zona de estar de la misma oficina, a la derecha del titular."),
+
+    ("doble foto.webp", "amb-sillas-color.webp",
+     (0.0, 0.0, 0.497, 1.0), 1100,
+     "Tres sillas ergonómicas en blanco, naranja y verde. Sin texto."),
+
+    ("doble foto.webp", "amb-sala-reunion.webp",
+     (0.503, 0.0, 1.0, 1.0), 1100,
+     "Sala de reunión con ventanal. Sin texto."),
+
+    ("Muebles que ordenan y potencian tu espacio.webp", "amb-biblioteca.webp",
+     (0.0, 0.0, 0.497, 0.66), 1100,
+     "Biblioteca del Colegio de Arquitectos. Corta por encima del titular."),
+
+    ("Muebles que ordenan y potencian tu espacio.webp", "amb-atrio.webp",
+     (0.503, 0.0, 1.0, 1.0), 1100,
+     "Atrio vidriado del Colegio de Arquitectos. Mitad limpia."),
+
+    ("Sillas ergonomicas diseñadas para tu comodidad.webp", "amb-silla-negro.webp",
+     (0.0, 0.0, 0.32, 1.0), 700,
+     "Silla ergonómica sobre negro, a la izquierda del titular."),
+]
+
+
+def recortar(origen, salida, caja, ancho):
+    """Recorta una región y la reescala. Sin lienzo ni relleno: son
+    fotos de ambiente, se usan a sangre con background-size: cover."""
+    im = Image.open(os.path.join(SRC, origen)).convert("RGB")
+    x1, y1, x2, y2 = caja
+    im = im.crop((int(x1 * im.width), int(y1 * im.height),
+                  int(x2 * im.width), int(y2 * im.height)))
+
+    if im.width > ancho:
+        im = im.resize((ancho, max(int(im.height * ancho / im.width), 1)), Image.LANCZOS)
+
+    im.save(os.path.join(DST, salida), "WEBP", quality=82, method=6)
+    return salida, im.width, im.height
+
+
+if __name__ == "__main__":
+    for origen, salida, caja, ancho, _ in AMBIENTE:
+        nombre, an, al = recortar(origen, salida, caja, ancho)
+        print(f"ambiente  {nombre:28s} {an}x{al}")
