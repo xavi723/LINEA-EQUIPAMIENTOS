@@ -20,11 +20,25 @@ EMPRESA = {
     "nombre": "Altobello Victorio",
     "bajada": "Muebles para oficina",
     "desde": "1959",
-    "calle": "Bv. Rondeau 3042",
+
+    # Dos direcciones, no una. Datos tomados de la página de contacto
+    # de la empresa.
+    "showroom": "Bv. Rondeau 3042",
+    "showroom_hs": "Lunes a viernes de 9 a 18 h",
+    "showroom_tel": "(0341) 455-5606",
+    "showroom_tel_href": "+543414555606",
+    "showroom_cel": "(0341) 15-532-1776",
+    "showroom_mail": "presupuestos@altobellovictorio.com.ar",
+
+    "fabrica": "Pedro Goyena 1023",
+    "fabrica_hs": "Lunes a jueves de 8 a 12 y de 13 a 17 h · Viernes hasta las 16 h",
+    "fabrica_tel": "(0341) 453-0775",
+    "fabrica_tel_href": "+543414530775",
+    "fabrica_mail": "administracion@altobellovictorio.com.ar",
+
+    "whatsapp": "(0341) 15-601-6491",
+    "whatsapp_href": "5493416016491",
     "ciudad": "Rosario, Santa Fe",
-    "tel1": "(0341) 453-0004",
-    "tel2": "(0341) 455-5606",
-    "mail": "ventas@altobellovictorio.com.ar",
 }
 
 PAGINAS = [
@@ -76,9 +90,9 @@ ISOTIPO = """<svg class="marca__iso" width="30" height="30" viewBox="0 0 30 30" 
       </svg>"""
 
 
-def marca(color="var(--tinta)", etiqueta=True):
+def marca(color="var(--tinta)", etiqueta=True, variante="oscuro"):
     bajada = f'<span class="marca__bajada">{EMPRESA["bajada"]}</span>' if etiqueta else ""
-    return f"""<span class="marca">
+    return f"""<span class="marca" data-marca="{variante}">
       {ISOTIPO.format(color=color)}
       <span class="marca__texto">
         <span class="marca__nombre">{EMPRESA["nombre"]}</span>
@@ -113,12 +127,12 @@ def cabecera(activa):
       <nav class="nav nav--principal" aria-label="Principal">{enlaces}</nav>
 
       <div class="cabecera__acciones">
-        <a class="tel" href="tel:+543414530004">
+        <a class="tel" href="tel:{EMPRESA["showroom_tel_href"]}">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 2h3l1.4 3.5-1.8 1.2a10 10 0 0 0 3.7 3.7l1.2-1.8L14 10v3a1 1 0 0 1-1.1 1A11.5 11.5 0 0 1 2 3.1 1 1 0 0 1 3 2Z"
                   stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
           </svg>
-          {EMPRESA["tel1"]}
+          {EMPRESA["showroom_tel"]}
         </a>
         <button class="btn btn--linea btn--presupuesto" type="button" data-abrir-panel
                 aria-label="Abrir la lista de presupuesto">
@@ -147,7 +161,7 @@ PIE = f"""<footer class="pie">
     <div class="env">
       <div class="pie__cols">
         <div>
-          {marca(color="var(--papel-puro)")}
+          {marca(color="var(--papel-puro)", variante="claro")}
           <p style="margin-top:1rem;font-size:var(--t-sm)">
             Empresa familiar rosarina. Fabricamos muebles y equipamiento
             para oficinas y locales comerciales desde {EMPRESA["desde"]}.
@@ -171,20 +185,25 @@ PIE = f"""<footer class="pie">
           </ul>
         </div>
         <div>
-          <div class="pie__titulo">Dónde estamos</div>
+          <div class="pie__titulo">Showroom</div>
           <ul>
-            <li>{EMPRESA["calle"]}</li>
-            <li>{EMPRESA["ciudad"]}</li>
-            <li><a href="tel:+543414530004">{EMPRESA["tel1"]}</a></li>
-            <li><a href="tel:+543414555606">{EMPRESA["tel2"]}</a></li>
-            <li><a href="mailto:{EMPRESA["mail"]}">{EMPRESA["mail"]}</a></li>
+            <li>{EMPRESA["showroom"]}, {EMPRESA["ciudad"]}</li>
+            <li><a href="tel:{EMPRESA["showroom_tel_href"]}">{EMPRESA["showroom_tel"]}</a></li>
+            <li><a href="mailto:{EMPRESA["showroom_mail"]}">{EMPRESA["showroom_mail"]}</a></li>
+          </ul>
+
+          <div class="pie__titulo" style="margin-top:1.75rem">Fábrica</div>
+          <ul>
+            <li>{EMPRESA["fabrica"]}, {EMPRESA["ciudad"]}</li>
+            <li><a href="tel:{EMPRESA["fabrica_tel_href"]}">{EMPRESA["fabrica_tel"]}</a></li>
+            <li><a href="mailto:{EMPRESA["fabrica_mail"]}">{EMPRESA["fabrica_mail"]}</a></li>
           </ul>
         </div>
       </div>
 
       <div class="pie__legal">
         <span>© 2026 {EMPRESA["nombre"]} · Desde {EMPRESA["desde"]}</span>
-        <span>Lunes a viernes de 8 a 17 h · Sábados de 9 a 13 h</span>
+        <span>Showroom: {EMPRESA["showroom_hs"]}</span>
       </div>
     </div>
   </footer>
@@ -208,7 +227,7 @@ PIE = f"""<footer class="pie">
     <div class="panel__pie">
       <p style="font-size:var(--t-sm);color:var(--humo);margin-bottom:1rem">
         Armamos el presupuesto sobre el conjunto: a mayor volumen, mejor precio
-        por pieza. Te respondemos dentro de las 24 h hábiles.
+        por pieza.
       </p>
       <a class="btn btn--acento" href="contacto.html" style="width:100%">
         Pedir presupuesto
@@ -344,8 +363,8 @@ INICIO = f"""    <!-- Portada -->
             <span class="cifras__p">Tu oficina antes de comprarla</span>
           </div>
           <div class="cifras__item">
-            <span class="cifras__n">24 h</span>
-            <span class="cifras__p">Respuesta a tu presupuesto</span>
+            <span class="cifras__n">2</span>
+            <span class="cifras__p">Showroom y fábrica propios</span>
           </div>
         </div>
       </div>
@@ -369,15 +388,16 @@ INICIO = f"""    <!-- Portada -->
     <!-- Banda: el taller -->
     <section class="banda banda--oscura">
       {slot_foto("banda__foto", "banda-escritorios.webp", "Escritorio Tetra",
-                 pie="Escritorio Tetra con rack · fabricación propia")}
+                 pie="Escritorio Tetra con rack · fabricación propia en Pedro Goyena 1023")}
       <div class="banda__texto">
         <div class="etiqueta">El taller</div>
         <h2>Una familia, dos generaciones,<br>el mismo taller.</h2>
         <p>
-          Victorio Altobello abrió en {EMPRESA["desde"]} y seguimos en Rosario,
-          fabricando acá. Eso cambia cosas concretas: si necesitás un escritorio
-          de una medida que no está en el catálogo, lo hacemos. Si dentro de cinco
-          años se rompe un herraje, tenemos el repuesto.
+          Victorio Altobello abrió en {EMPRESA["desde"]} y seguimos fabricando en
+          Rosario, en {EMPRESA["fabrica"]}. Eso cambia cosas concretas: si
+          necesitás un escritorio de una medida que no está en el catálogo, lo
+          hacemos. Si dentro de cinco años se rompe un herraje, tenemos el
+          repuesto.
         </p>
         <a class="btn btn--claro" href="proyectos.html">Ver proyectos entregados {flecha()}</a>
       </div>
@@ -421,7 +441,7 @@ INICIO = f"""    <!-- Portada -->
         <div class="fila-serv revelar">
           <div class="fila-serv__n">PASO 02</div>
           <h3>Fabricación</h3>
-          <p>Producimos en Bv. Rondeau. Las medidas especiales y los frentes
+          <p>Producimos en {EMPRESA["fabrica"]}. Las medidas especiales y los frentes
              fuera de catálogo salen de la misma línea que el resto, sin
              recargo por ser distintos.</p>
           <a class="enlace-flecha" href="catalogo.html">Ver el catálogo {flecha("")}</a>
@@ -468,7 +488,7 @@ INICIO = f"""    <!-- Portada -->
         </p>
         <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
           <a class="btn btn--acento" href="contacto.html">Pedir presupuesto {flecha()}</a>
-          <a class="btn btn--linea" href="tel:+543414530004">Llamar al {EMPRESA["tel1"]}</a>
+          <a class="btn btn--linea" href="tel:{EMPRESA["showroom_tel_href"]}">Llamar al {EMPRESA["showroom_tel"]}</a>
         </div>
       </div>
     </section>
@@ -682,9 +702,9 @@ SERVICIOS = f"""    <div class="env">
       <div class="fila-serv revelar">
         <div class="fila-serv__n">03</div>
         <h3>Showroom</h3>
-        <p>Bv. Rondeau 3042, Rosario. Vení a sentarte en las sillas antes de
-           comprar veinte. Es la única forma seria de elegirlas.</p>
-        <span class="dato" style="font-size:var(--t-xs);color:var(--humo)">LUN A VIE 8–17 H</span>
+        <p>{EMPRESA["showroom"]}, Rosario. Vení a sentarte en las sillas antes
+           de comprar veinte. Es la única forma seria de elegirlas.</p>
+        <span class="dato" style="font-size:var(--t-xs);color:var(--humo)">LUN A VIE 9–18 H</span>
       </div>
     </section>
 """
@@ -866,39 +886,39 @@ CONTACTO = f"""    <div class="env">
         <!-- Datos -->
         <aside style="background:var(--papel-puro);border:var(--borde);padding:2rem">
           <div class="etiqueta">Dónde estamos</div>
-          <h2 style="font-size:var(--t-lg)">Showroom y taller</h2>
+          <h2 style="font-size:var(--t-lg)">Dos direcciones<br>en Rosario</h2>
           <p style="margin-top:0.75rem;color:var(--humo)">
-            Es el mismo lugar: podés ver cómo se fabrica y sentarte en las
-            sillas el mismo día.
+            En el showroom podés sentarte en las sillas antes de comprarlas.
+            En Pedro Goyena están la fábrica y la administración.
           </p>
 
-          <dl style="margin:2rem 0 0;display:grid;gap:1.35rem">
-            <div>
-              <dt class="etiqueta" style="margin-bottom:0.3rem">Dirección</dt>
-              <dd style="margin:0">{EMPRESA["calle"]}<br>{EMPRESA["ciudad"]}</dd>
-            </div>
-            <div>
-              <dt class="etiqueta" style="margin-bottom:0.3rem">Teléfonos</dt>
-              <dd style="margin:0">
-                <a class="dato" href="tel:+543414530004">{EMPRESA["tel1"]}</a><br>
-                <a class="dato" href="tel:+543414555606">{EMPRESA["tel2"]}</a>
-              </dd>
-            </div>
-            <div>
-              <dt class="etiqueta" style="margin-bottom:0.3rem">Email</dt>
-              <dd style="margin:0"><a href="mailto:{EMPRESA["mail"]}">{EMPRESA["mail"]}</a></dd>
-            </div>
-            <div>
-              <dt class="etiqueta" style="margin-bottom:0.3rem">Horarios</dt>
-              <dd style="margin:0" class="dato">
-                Lun a vie · 8 a 17 h<br>
-                Sábados · 9 a 13 h
-              </dd>
-            </div>
-          </dl>
+          <div style="margin-top:2rem;padding-top:1.5rem;border-top:var(--borde)">
+            <div class="etiqueta" style="color:var(--naranja)">Showroom</div>
+            <p style="font-weight:500">{EMPRESA["showroom"]}</p>
+            <p class="dato" style="font-size:var(--t-sm);color:var(--humo);margin-top:0.35rem">{EMPRESA["showroom_hs"]}</p>
+            <p style="margin-top:0.75rem;font-size:var(--t-sm)">
+              <a class="dato" href="tel:{EMPRESA["showroom_tel_href"]}">{EMPRESA["showroom_tel"]}</a><br>
+              <a href="mailto:{EMPRESA["showroom_mail"]}">{EMPRESA["showroom_mail"]}</a>
+            </p>
+          </div>
 
-          {slot_foto("foto--roble", "frente-local.jpg", "Frente del local",
-                     estilo="aspect-ratio:4/3;margin-top:2rem")}
+          <div style="margin-top:1.75rem;padding-top:1.5rem;border-top:var(--borde)">
+            <div class="etiqueta">Fábrica y administración</div>
+            <p style="font-weight:500">{EMPRESA["fabrica"]}</p>
+            <p class="dato" style="font-size:var(--t-sm);color:var(--humo);margin-top:0.35rem">{EMPRESA["fabrica_hs"]}</p>
+            <p style="margin-top:0.75rem;font-size:var(--t-sm)">
+              <a class="dato" href="tel:{EMPRESA["fabrica_tel_href"]}">{EMPRESA["fabrica_tel"]}</a><br>
+              <a href="mailto:{EMPRESA["fabrica_mail"]}">{EMPRESA["fabrica_mail"]}</a>
+            </p>
+          </div>
+
+          <a class="btn btn--linea" style="margin-top:1.75rem;width:100%"
+             href="https://wa.me/{EMPRESA["whatsapp_href"]}" rel="noopener">
+            WhatsApp {EMPRESA["whatsapp"]}
+          </a>
+
+          {slot_foto("foto--roble", "frente-local.webp", "Frente del showroom",
+                     estilo="aspect-ratio:4/3;margin-top:1.5rem")}
         </aside>
       </div>
     </section>

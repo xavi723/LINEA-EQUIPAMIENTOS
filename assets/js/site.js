@@ -137,13 +137,24 @@
       quitar.setAttribute("aria-label", "Quitar " + pieza.nombre + " de la lista");
       quitar.textContent = "×";
       quitar.addEventListener("click", function () {
-        lista.splice(i, 1);
-        guardar(lista);
-        pintarContador();
-        pintarPanel();
-        pintarResumen();
-        sincronizarBotones();
-        mostrarAviso("Se quitó " + pieza.nombre + ".");
+        function aplicar() {
+          lista.splice(i, 1);
+          guardar(lista);
+          pintarContador();
+          pintarPanel();
+          pintarResumen();
+          sincronizarBotones();
+          mostrarAviso("Se quitó " + pieza.nombre + ".");
+        }
+
+        if (reduceMotion) { aplicar(); return; }
+
+        /* La fila se va primero, hacia el lado del botón que la quitó;
+           recién después se rearma la lista, para que las de abajo no
+           salten mientras el ojo todavía está en la que desaparece. */
+        fila.dataset.saliendo = "si";
+        quitar.disabled = true;
+        window.setTimeout(aplicar, 180);
       });
 
       fila.appendChild(foto);
@@ -234,6 +245,34 @@
   pintarResumen();
   sincronizarBotones();
 
+  /* ---------- Logo real ----------
+     El isotipo dibujado en SVG es una aproximación hecha a ojo desde una
+     imagen. Si alguien deja el archivo de marca en assets/img/, el sitio
+     lo usa en lugar del dibujo: logo.svg para la cabecera y
+     logo-blanco.svg para el pie, que va sobre fondo oscuro.
+     Acepta .svg o .png, en ese orden. */
+  (function () {
+    document.querySelectorAll("[data-marca]").forEach(function (marca) {
+      var base = marca.dataset.marca === "claro" ? "logo-blanco" : "logo";
+      var formatos = ["svg", "png"];
+
+      (function probar(i) {
+        if (i >= formatos.length) return;
+        var ruta = "assets/img/" + base + "." + formatos[i];
+        var sonda = new Image();
+        sonda.onload = function () {
+          var img = document.createElement("img");
+          img.src = ruta;
+          img.alt = "Altobello Victorio, muebles para oficina";
+          img.className = "marca__logo";
+          marca.replaceChildren(img);
+        };
+        sonda.onerror = function () { probar(i + 1); };
+        sonda.src = ruta;
+      })(0);
+    });
+  })();
+
   /* ---------- Slots de imagen ----------
      Cada .foto declara su archivo en data-img. Probamos si existe:
      si carga, se pinta de fondo y desaparece el rótulo de reemplazo;
@@ -245,9 +284,13 @@
     var sonda = new Image();
     sonda.onload = function () {
       slot.style.backgroundImage = "url('" + ruta + "')";
-      var rotulo = slot.querySelector(".foto__marca-agua");
-      if (rotulo) rotulo.remove();
       slot.dataset.cargada = "si";
+
+      var rotulo = slot.querySelector(".foto__marca-agua");
+      if (!rotulo) return;
+      if (reduceMotion) { rotulo.remove(); return; }
+      rotulo.dataset.saliendo = "si";
+      window.setTimeout(function () { rotulo.remove(); }, 240);
     };
     sonda.src = ruta;
   });
@@ -283,16 +326,66 @@
   var piezas = document.querySelectorAll("[data-categoria]");
   var salidaConteo = document.querySelector("[data-conteo]");
 
+  /* Cada pasada lleva un número. Si alguien toca otra casilla antes de
+     que termine la anterior, la vieja se descarta en lugar de ocultar
+     una pieza que ya volvió a estar visible. */
+  var pasada = 0;
+
+  function ocultar(pieza, mia) {
+    pieza.dataset.saliendo = "si";
+    window.setTimeout(function () {
+      if (pasada !== mia) return;
+      pieza.hidden = true;
+      delete pieza.dataset.saliendo;
+    }, 150);
+  }
+
+  function aparecer(pieza, orden) {
+    delete pieza.dataset.saliendo;
+    pieza.hidden = false;
+    pieza.dataset.entrando = "si";
+    pieza.style.setProperty("--retraso-entrada", (orden * 40) + "ms");
+
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        delete pieza.dataset.entrando;
+        window.setTimeout(function () {
+          pieza.style.removeProperty("--retraso-entrada");
+        }, 200 + orden * 40);
+      });
+    });
+  }
+
   function aplicarFiltros() {
     var activas = [];
     filtros.forEach(function (f) { if (f.checked) activas.push(f.value); });
 
+    var grilla = document.querySelector(".rejilla-prod");
+    if (grilla) grilla.dataset.filtrando = "si";
+
+    pasada++;
+    var mia = pasada;
     var visibles = 0;
+    var entrando = 0;
+
     piezas.forEach(function (pieza) {
       var cat = pieza.dataset.categoria;
       var mostrar = activas.length === 0 || activas.indexOf(cat) !== -1;
-      pieza.hidden = !mostrar;
       if (mostrar) visibles++;
+
+      if (reduceMotion) {
+        delete pieza.dataset.saliendo;
+        delete pieza.dataset.entrando;
+        pieza.hidden = !mostrar;
+        return;
+      }
+
+      var oculta = pieza.hidden;
+      if (mostrar && (oculta || pieza.dataset.saliendo)) {
+        aparecer(pieza, entrando++);
+      } else if (!mostrar && !oculta) {
+        ocultar(pieza, mia);
+      }
     });
 
     if (salidaConteo) {
@@ -320,7 +413,15 @@
       var estado = form.querySelector("[data-estado-form]");
       if (estado) {
         estado.hidden = false;
-        estado.textContent = "Listo. Es una maqueta de demostración, así que no se envió nada — en la web real esto llega al equipo comercial y te responden dentro de las 24 h hábiles.";
+        if (!reduceMotion) {
+          estado.dataset.entrando = "si";
+          window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(function () {
+              delete estado.dataset.entrando;
+            });
+          });
+        }
+        estado.textContent = "Listo. Es una maqueta de demostración, así que no se envió nada — en la web real esto llega a presupuestos@altobellovictorio.com.ar.";
         estado.focus();
       }
     });

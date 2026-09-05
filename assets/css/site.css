@@ -159,6 +159,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- 4. Marca ---------- */
 .marca { display: flex; align-items: center; gap: 0.65rem; }
+/* Cuando existe el archivo de marca real, reemplaza al dibujo. */
+.marca__logo { height: 42px; width: auto; }
+@media (max-width: 620px) { .marca__logo { height: 32px; } }
 .marca__iso { flex: none; display: block; }
 .marca__texto { display: flex; flex-direction: column; line-height: 1; }
 .marca__nombre {
@@ -274,8 +277,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .foto--verde .foto__marca-agua,
 .foto--tinta .foto__marca-agua { color: rgba(244,243,239,0.32); }
-/* Cuando hay foto real, el rótulo de reemplazo desaparece. */
-.foto[style*="background-image"] .foto__marca-agua { display: none; }
+/* Cuando entra la foto real, el rótulo se desvanece en vez de cortarse.
+   Lo dispara el JS al confirmar que la imagen cargó. */
+.foto__marca-agua { transition: opacity 220ms var(--curva); }
+.foto__marca-agua[data-saliendo="si"] { opacity: 0; }
 
 /* ---------- 7. Cabecera ---------- */
 .cabecera {
@@ -373,12 +378,25 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .hamburguesa[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 }
 
+/* Colapso por filas de grid: es la única forma de transicionar de
+   "sin alto" a "alto del contenido" sin medirlo en JS. El alto cuesta
+   layout en cada cuadro, así que se mantiene corto. */
 .menu-movil {
-  display: none;
-  border-top: var(--borde);
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
   background: var(--papel);
+  border-top: 1px solid transparent;
+  transition: grid-template-rows var(--d-menu) var(--curva),
+              opacity var(--d-menu) var(--curva),
+              border-color var(--d-menu) var(--curva);
 }
-.menu-movil[data-abierto="si"] { display: block; }
+.menu-movil > div { overflow: hidden; min-height: 0; }
+.menu-movil[data-abierto="si"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  border-top-color: var(--arena-osc);
+}
 .menu-movil ul { display: flex; flex-direction: column; }
 .menu-movil a {
   display: block;
@@ -873,4 +891,47 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 @media (max-width: 360px) {
   .marca__nombre { font-size: 0.92rem; }
+}
+
+
+/* ---------- 24. Filtrado del catálogo ----------
+   Al filtrar, las piezas entraban y salían de golpe. Ahora salen
+   desvaneciéndose y entran desde abajo, escalonadas. Son transiciones y
+   no keyframes a propósito: quien filtra suele tocar dos o tres casillas
+   seguidas, y una transición retoma desde donde está en lugar de
+   reiniciar. */
+/* La transición rápida se activa recién cuando alguien toca un filtro.
+   Antes de eso mandan el revelado de entrada y su escalonado, que son
+   bastante más lentos a propósito. */
+.rejilla-prod[data-filtrando="si"] .prod {
+  transition: opacity 150ms var(--curva), transform 150ms var(--curva);
+  transition-delay: var(--retraso-entrada, 0ms);
+}
+.prod[data-saliendo="si"] { opacity: 0; transform: scale(0.97); }
+.prod[data-entrando="si"] { opacity: 0; transform: translateY(8px); }
+
+/* ---------- 25. Salida de una pieza de la lista ----------
+   Al quitar una pieza se rearmaba la lista entera y las de abajo
+   saltaban. La fila se va primero, hacia el lado del botón que la quitó. */
+.item { transition: opacity 180ms var(--curva), transform 180ms var(--curva); }
+.item[data-saliendo="si"] { opacity: 0; transform: translateX(12px); }
+
+/* ---------- 26. Confirmación del formulario ----------
+   Es el momento en que el visitante sabe que su pedido salió. Aparece
+   una sola vez, así que puede tomarse un instante más que el resto. */
+[data-estado-form] {
+  transition: opacity 260ms var(--curva), transform 260ms var(--curva);
+}
+[data-estado-form][data-entrando="si"] { opacity: 0; transform: translateY(6px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .rejilla-prod[data-filtrando="si"] .prod, .item, [data-estado-form],
+  .foto__marca-agua, .menu-movil {
+    transition: none;
+  }
+  .prod[data-saliendo="si"], .prod[data-entrando="si"],
+  .item[data-saliendo="si"], [data-estado-form][data-entrando="si"] {
+    opacity: 1;
+    transform: none;
+  }
 }

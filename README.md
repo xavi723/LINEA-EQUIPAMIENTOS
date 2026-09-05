@@ -91,11 +91,36 @@ editorial— en vez de una sola para todo. El hover está encerrado en
 pegados, y `prefers-reduced-motion` deja las opacidades y quita los
 desplazamientos.
 
+## El logo
+
+El isotipo que se ve hoy está dibujado en SVG a ojo, mirando una imagen
+del logo: **es una aproximación, no la marca real.**
+
+Para reemplazarlo no hay que tocar código. Dejá los archivos en
+`assets/img/` con estos nombres y el sitio los toma solo:
+
+- `logo.svg` — versión oscura, para la cabecera
+- `logo-blanco.svg` — versión clara, para el pie (va sobre fondo verde)
+
+Acepta `.png` si no hay `.svg`. Mientras no existan, se sigue viendo el
+dibujo.
+
+## Datos de contacto
+
+Verificados contra la página de contacto de la empresa:
+
+| | |
+|---|---|
+| Showroom | Bv. Rondeau 3042 · Lun a Vie 9 a 18 h |
+| | Tel (0341) 455-5606 · presupuestos@altobellovictorio.com.ar |
+| Fábrica y administración | Pedro Goyena 1023 · Lun a Jue 8-12 y 13-17, Vie hasta 16 h |
+| | Tel (0341) 453-0775 · administracion@altobellovictorio.com.ar |
+| WhatsApp | (0341) 15-601-6491 |
+| Fundación | 1959 |
+
 ## Pendiente de confirmar con la empresa
 
-- El mail `ventas@altobellovictorio.com.ar` es **inventado**.
-- Los horarios de atención son de muestra.
-- «Respuesta en 24 h hábiles» es una promesa comercial: confirmar.
+- El **logo** es una aproximación dibujada. Ver arriba cómo reemplazarlo.
 - Los nombres de producto y las familias salen de los nombres de archivo
   de las fotos, así que son reales. Las **medidas no están**: las fichas
   dicen «Medidas y terminaciones a consultar» en vez de inventar
@@ -105,3 +130,5 @@ desplazamientos.
   empresa es más grande.
 - De los proyectos, solo el Colegio de Arquitectos y BEI Desarrollos
   están acreditados; los otros tres son de muestra y no tienen foto.
+- Los teléfonos figuran en el sitio de la empresa sin característica;
+  asumí (0341), que es la de Rosario.

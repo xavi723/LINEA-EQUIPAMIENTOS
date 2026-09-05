@@ -19,7 +19,7 @@
 
   <header class="cabecera">
     <div class="env cabecera__barra">
-      <a href="index.html" aria-label="Altobello Victorio, inicio"><span class="marca">
+      <a href="index.html" aria-label="Altobello Victorio, inicio"><span class="marca" data-marca="oscuro">
       <svg class="marca__iso" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
         <path d="M30 0 L8 11.2 L30 11.2 Z M8 11.2 L30 22.4 L30 30 L8 30 Z" fill="var(--tinta)" transform="translate(-4 0)"/>
       </svg>
@@ -32,12 +32,12 @@
       <nav class="nav nav--principal" aria-label="Principal"><a class="nav__enlace" href="index.html">Inicio</a><a class="nav__enlace" href="catalogo.html">Catálogo</a><a class="nav__enlace" href="servicios.html">Servicios</a><a class="nav__enlace" href="proyectos.html">Proyectos</a><a class="nav__enlace" href="contacto.html" aria-current="page">Contacto</a></nav>
 
       <div class="cabecera__acciones">
-        <a class="tel" href="tel:+543414530004">
+        <a class="tel" href="tel:+543414555606">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 2h3l1.4 3.5-1.8 1.2a10 10 0 0 0 3.7 3.7l1.2-1.8L14 10v3a1 1 0 0 1-1.1 1A11.5 11.5 0 0 1 2 3.1 1 1 0 0 1 3 2Z"
                   stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
           </svg>
-          (0341) 453-0004
+          (0341) 455-5606
         </a>
         <button class="btn btn--linea btn--presupuesto" type="button" data-abrir-panel
                 aria-label="Abrir la lista de presupuesto">
@@ -138,39 +138,39 @@
         <!-- Datos -->
         <aside style="background:var(--papel-puro);border:var(--borde);padding:2rem">
           <div class="etiqueta">Dónde estamos</div>
-          <h2 style="font-size:var(--t-lg)">Showroom y taller</h2>
+          <h2 style="font-size:var(--t-lg)">Dos direcciones<br>en Rosario</h2>
           <p style="margin-top:0.75rem;color:var(--humo)">
-            Es el mismo lugar: podés ver cómo se fabrica y sentarte en las
-            sillas el mismo día.
+            En el showroom podés sentarte en las sillas antes de comprarlas.
+            En Pedro Goyena están la fábrica y la administración.
           </p>
 
-          <dl style="margin:2rem 0 0;display:grid;gap:1.35rem">
-            <div>
-              <dt class="etiqueta" style="margin-bottom:0.3rem">Dirección</dt>
-              <dd style="margin:0">Bv. Rondeau 3042<br>Rosario, Santa Fe</dd>
-            </div>
-            <div>
-              <dt class="etiqueta" style="margin-bottom:0.3rem">Teléfonos</dt>
-              <dd style="margin:0">
-                <a class="dato" href="tel:+543414530004">(0341) 453-0004</a><br>
-                <a class="dato" href="tel:+543414555606">(0341) 455-5606</a>
-              </dd>
-            </div>
-            <div>
-              <dt class="etiqueta" style="margin-bottom:0.3rem">Email</dt>
-              <dd style="margin:0"><a href="mailto:ventas@altobellovictorio.com.ar">ventas@altobellovictorio.com.ar</a></dd>
-            </div>
-            <div>
-              <dt class="etiqueta" style="margin-bottom:0.3rem">Horarios</dt>
-              <dd style="margin:0" class="dato">
-                Lun a vie · 8 a 17 h<br>
-                Sábados · 9 a 13 h
-              </dd>
-            </div>
-          </dl>
+          <div style="margin-top:2rem;padding-top:1.5rem;border-top:var(--borde)">
+            <div class="etiqueta" style="color:var(--naranja)">Showroom</div>
+            <p style="font-weight:500">Bv. Rondeau 3042</p>
+            <p class="dato" style="font-size:var(--t-sm);color:var(--humo);margin-top:0.35rem">Lunes a viernes de 9 a 18 h</p>
+            <p style="margin-top:0.75rem;font-size:var(--t-sm)">
+              <a class="dato" href="tel:+543414555606">(0341) 455-5606</a><br>
+              <a href="mailto:presupuestos@altobellovictorio.com.ar">presupuestos@altobellovictorio.com.ar</a>
+            </p>
+          </div>
 
-          <div class="foto foto--roble" data-img="assets/img/frente-local.jpg" style="aspect-ratio:4/3;margin-top:2rem">
-              <div class="foto__marca-agua">assets/img/<br>frente-local.jpg</div>
+          <div style="margin-top:1.75rem;padding-top:1.5rem;border-top:var(--borde)">
+            <div class="etiqueta">Fábrica y administración</div>
+            <p style="font-weight:500">Pedro Goyena 1023</p>
+            <p class="dato" style="font-size:var(--t-sm);color:var(--humo);margin-top:0.35rem">Lunes a jueves de 8 a 12 y de 13 a 17 h · Viernes hasta las 16 h</p>
+            <p style="margin-top:0.75rem;font-size:var(--t-sm)">
+              <a class="dato" href="tel:+543414530775">(0341) 453-0775</a><br>
+              <a href="mailto:administracion@altobellovictorio.com.ar">administracion@altobellovictorio.com.ar</a>
+            </p>
+          </div>
+
+          <a class="btn btn--linea" style="margin-top:1.75rem;width:100%"
+             href="https://wa.me/5493416016491" rel="noopener">
+            WhatsApp (0341) 15-601-6491
+          </a>
+
+          <div class="foto foto--roble" data-img="assets/img/frente-local.webp" style="aspect-ratio:4/3;margin-top:1.5rem">
+              <div class="foto__marca-agua">assets/img/<br>frente-local.webp</div>
             </div>
         </aside>
       </div>
@@ -188,7 +188,7 @@
     <div class="env">
       <div class="pie__cols">
         <div>
-          <span class="marca">
+          <span class="marca" data-marca="claro">
       <svg class="marca__iso" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
         <path d="M30 0 L8 11.2 L30 11.2 Z M8 11.2 L30 22.4 L30 30 L8 30 Z" fill="var(--papel-puro)" transform="translate(-4 0)"/>
       </svg>
@@ -220,20 +220,25 @@
           </ul>
         </div>
         <div>
-          <div class="pie__titulo">Dónde estamos</div>
+          <div class="pie__titulo">Showroom</div>
           <ul>
-            <li>Bv. Rondeau 3042</li>
-            <li>Rosario, Santa Fe</li>
-            <li><a href="tel:+543414530004">(0341) 453-0004</a></li>
+            <li>Bv. Rondeau 3042, Rosario, Santa Fe</li>
             <li><a href="tel:+543414555606">(0341) 455-5606</a></li>
-            <li><a href="mailto:ventas@altobellovictorio.com.ar">ventas@altobellovictorio.com.ar</a></li>
+            <li><a href="mailto:presupuestos@altobellovictorio.com.ar">presupuestos@altobellovictorio.com.ar</a></li>
+          </ul>
+
+          <div class="pie__titulo" style="margin-top:1.75rem">Fábrica</div>
+          <ul>
+            <li>Pedro Goyena 1023, Rosario, Santa Fe</li>
+            <li><a href="tel:+543414530775">(0341) 453-0775</a></li>
+            <li><a href="mailto:administracion@altobellovictorio.com.ar">administracion@altobellovictorio.com.ar</a></li>
           </ul>
         </div>
       </div>
 
       <div class="pie__legal">
         <span>© 2026 Altobello Victorio · Desde 1959</span>
-        <span>Lunes a viernes de 8 a 17 h · Sábados de 9 a 13 h</span>
+        <span>Showroom: Lunes a viernes de 9 a 18 h</span>
       </div>
     </div>
   </footer>
@@ -257,7 +262,7 @@
     <div class="panel__pie">
       <p style="font-size:var(--t-sm);color:var(--humo);margin-bottom:1rem">
         Armamos el presupuesto sobre el conjunto: a mayor volumen, mejor precio
-        por pieza. Te respondemos dentro de las 24 h hábiles.
+        por pieza.
       </p>
       <a class="btn btn--acento" href="contacto.html" style="width:100%">
         Pedir presupuesto
