@@ -3,6 +3,7 @@
 import Image from "next/image";
 
 import type { Producto } from "@/lib/datos";
+import { img } from "@/lib/rutas";
 import { usePresupuesto } from "@/components/presupuesto";
 
 export function FichaProducto({ producto }: { producto: Producto }) {
@@ -13,7 +14,7 @@ export function FichaProducto({ producto }: { producto: Producto }) {
     <>
       <div className="foto prod__foto">
         <Image
-          src={`/img/${producto.img}`}
+          src={img(producto.img)}
           alt={producto.nombre}
           fill
           sizes="(max-width: 700px) 100vw, 300px"

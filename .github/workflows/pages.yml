@@ -1,0 +1,59 @@
+# Publica el sitio en GitHub Pages en cada push a la rama.
+#
+# Para activarlo, una sola vez: en el repo, Settings → Pages → Source →
+# "GitHub Actions". No hay secretos ni tokens que configurar.
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [claude/altobello-figma-sketch-6lsq3f]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un despliegue por vez; si llegan varios pushes seguidos, se publica el
+# último y no se cancela el que ya está corriendo.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar
+        # El sitio se sirve bajo /<repo>, así que las rutas y los
+        # archivos estáticos necesitan ese prefijo.
+        env:
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+        run: npm run build
+
+      - name: Evitar que Jekyll se coma la carpeta _next
+        run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

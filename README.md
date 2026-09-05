@@ -19,37 +19,59 @@ npm start          # sirve el build
 npm run fotos      # regenera las imágenes desde fotos-originales/
 ```
 
-## Desplegar en Vercel
+## Desplegar
 
-No hace falta configurar nada: Vercel detecta Next.js solo.
+El build genera **HTML estático**, sin servidor. Sirve igual en cualquier
+hosting de archivos. Hay dos caminos armados.
+
+### GitHub Pages (gratis, permite uso comercial)
+
+Ya hay un workflow listo en `.github/workflows/pages.yml`. Se activa una
+sola vez:
+
+1. En el repo: **Settings → Pages → Source → GitHub Actions**.
+2. Listo. Cada push a la rama publica el sitio.
+
+La URL queda en `https://<usuario>.github.io/<repo>/`. No hay secretos ni
+tokens que configurar.
+
+> El repo tiene que ser **público**. GitHub Pages sobre repos privados
+> requiere plan pago.
+
+### Vercel
 
 1. Importá el repo en [vercel.com/new](https://vercel.com/new).
 2. Elegí la rama.
 3. Deploy.
 
-No hay variables de entorno ni base de datos.
+Vercel detecta Next solo, no hay nada que configurar.
 
 ### Sobre el costo
 
-El sitio está armado para no gastar cuota. Las siete rutas se
-prerrenderizan como HTML estático y se sirven desde el CDN: **no hay
-funciones de servidor, ni revalidación, ni optimización de imágenes en
-tiempo de ejecución**. Eso deja fuera de juego los tres límites que
-suelen consumirse en el plan gratuito (invocaciones, CPU activa y
-transformaciones de imagen).
+El sitio está armado para no gastar cuota: las siete rutas son HTML
+estático servido desde el CDN. **No hay funciones de servidor, ni
+revalidación, ni optimización de imágenes en tiempo de ejecución.** Eso
+deja fuera de juego los límites que suelen consumirse en los planes
+gratuitos (invocaciones, CPU y transformaciones de imagen).
 
 Lo único que se consume es tráfico: la portada pesa unos 0,6 MB la
-primera vez y después queda en caché. Con el tope de 100 GB del plan
-Hobby eso da del orden de 150 mil visitas por mes.
+primera vez y después queda en caché.
 
-El plan Hobby **no cobra**: si llegaras a un tope, el sitio deja de
-servir hasta el mes siguiente en vez de facturarte.
+**La letra chica de Vercel:** su plan gratuito (Hobby) no cobra —si
+llegaras a un tope, el sitio deja de servir hasta el mes siguiente en vez
+de facturarte— pero **no permite uso comercial**. Para mostrar el boceto
+está bien; si la empresa lo adopta como su web real, corresponde el plan
+Pro. GitHub Pages y Cloudflare Pages no tienen esa restricción.
 
-**La letra chica que importa:** el plan Hobby no permite uso comercial.
-Para mostrar el boceto está bien. Si la empresa lo adopta como su web
-real, corresponde el plan Pro (20 USD por asiento al mes). Alternativa
-sin ese impedimento: Cloudflare Pages, cuyo plan gratuito sí permite uso
-comercial y también despliega Next.
+### Servirlo bajo un subdirectorio
+
+GitHub Pages publica en `/<repo>`, no en la raíz. La variable
+`NEXT_PUBLIC_BASE_PATH` maneja eso, y el workflow ya la pasa. En local y
+en Vercel queda vacía.
+
+Todo lo que salga de `public/` tiene que pasar por `img()`
+(`lib/rutas.ts`): Next prefija solo lo que controla él —los `<Link>` y
+sus bundles—, así que una URL escrita a mano se rompe bajo subdirectorio.
 
 ### Un detalle del build estático
 

@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { img } from "@/lib/rutas";
 
 /**
  * Hueco de imagen. Si el archivo todavía no está, queda un bloque de
@@ -23,7 +24,7 @@ export function Foto({
       className={cn("foto", className)}
       role="img"
       aria-label={alt}
-      style={{ backgroundImage: `url(/img/${src})`, ...style }}
+      style={{ backgroundImage: `url(${img(src)})`, ...style }}
     >
       {pie ? <div className="foto__pie">{pie}</div> : null}
     </div>

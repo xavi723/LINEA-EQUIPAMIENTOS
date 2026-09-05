@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 
 import { usePresupuesto } from "@/components/presupuesto";
 import { Flecha } from "@/components/flecha";
+import { img } from "@/lib/rutas";
 
 export function PanelPresupuesto() {
   const { lista, quitar, panelAbierto, cerrarPanel, aviso } = usePresupuesto();
@@ -68,7 +69,7 @@ export function PanelPresupuesto() {
               <div className="item" key={pieza.codigo}>
                 <div
                   className="foto item__foto"
-                  style={{ backgroundImage: `url(/img/${pieza.img})` }}
+                  style={{ backgroundImage: `url(${img(pieza.img)})` }}
                 />
                 <div>
                   <div className="item__nombre">{pieza.nombre}</div>
