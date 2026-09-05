@@ -40,49 +40,32 @@ PAGINAS = [
 # tono = color de reemplazo mientras no esté la foto en assets/img/.
 # --------------------------------------------------------------------
 CATEGORIAS = [
-    ("escritorios",  "Escritorios",        "Ejecutivos, operativos y bench"),
-    ("sillas",       "Sillas",             "Ergonómicas, operativas y de dirección"),
-    ("reunion",      "Salas de reunión",   "Mesas de consejo y colaborativas"),
-    ("espera",       "Recepción y espera", "Mostradores y sillonería"),
-    ("guardado",     "Guardado",           "Bibliotecas, armarios y archivos"),
+    ("escritorios", "Escritorios",      "Ejecutivos, operativos y con rack"),
+    ("sillas",      "Sillas",           "Ergonómicas, operativas y de dirección"),
+    ("reunion",     "Salas de reunión", "Mesas de directorio y colaborativas"),
+    ("accesorios",  "Accesorios",       "Percheros y complementos"),
 ]
 
+# El catálogo real, tomado de las fotos que mandó la empresa.
+# Sin medidas ni códigos: los que había antes eran inventados y en una
+# presentación al cliente un dato falso cuesta más de lo que aporta.
+# (código, nombre, línea, categoría, imagen)
 PRODUCTOS = [
-    # (código, nombre, línea, categoría, ancho, prof, alto, tapizados, tono, img)
-    ("ST-140", "Escritorio Strada 1400", "Línea Strada", "escritorios", 1400, 700, 750,
-     ["#E4E0D6", "#C9A57A", "#0C1F1A"], "foto--roble", "escritorio-strada.jpg"),
-    ("ST-BEN", "Bench Strada 4 puestos", "Línea Strada", "escritorios", 2800, 1400, 750,
-     ["#E4E0D6", "#C9A57A"], "foto--roble", "bench-strada.jpg"),
-    ("RD-180", "Escritorio Rondeau", "Línea Dirección", "escritorios", 1800, 900, 750,
-     ["#0C1F1A", "#C9A57A"], "foto--tinta", "escritorio-rondeau.jpg"),
-    ("LT-120", "Escritorio Litoral", "Línea Operativa", "escritorios", 1200, 600, 750,
-     ["#E4E0D6", "#8FBFAC"], "foto--menta", "escritorio-litoral.jpg"),
+    ("escritorio-prisma",     "Escritorio Prisma",     "Ejecutivos", "escritorios", "escritorio-prisma.webp"),
+    ("escritorio-strada",     "Escritorio Strada",     "Con rack",   "escritorios", "escritorio-strada.webp"),
+    ("escritorio-tetra",      "Escritorio Tetra",      "Con rack",   "escritorios", "escritorio-tetra.webp"),
+    ("escritorio-ergonomico", "Escritorio Ergonómico", "Operativos", "escritorios", "escritorio-ergonomico.webp"),
+    ("escritorio-recto",      "Escritorio Recto",      "Operativos", "escritorios", "escritorio-recto.webp"),
 
-    ("SE-AIR", "Silla Aire", "Ergonómicas", "sillas", 660, 640, 1250,
-     ["#0C1F1A", "#D2571C", "#8FBFAC", "#E4E0D6"], "foto--tinta", "silla-aire.jpg"),
-    ("SE-MSH", "Silla Mesh Alta", "Ergonómicas", "sillas", 680, 660, 1300,
-     ["#0C1F1A", "#D2571C", "#8FBFAC"], "foto--verde", "silla-mesh.jpg"),
-    ("SO-NDO", "Silla Nodo", "Operativas", "sillas", 600, 580, 950,
-     ["#0C1F1A", "#8FBFAC", "#E4E0D6"], "foto--menta", "silla-nodo.jpg"),
-    ("SD-DIR", "Sillón Dirección", "Línea Dirección", "sillas", 720, 720, 1220,
-     ["#0C1F1A", "#5A4632"], "foto--tinta", "sillon-direccion.jpg"),
+    ("silla-cool",            "Silla Cool",            "Ergonómicas", "sillas", "silla-cool.webp"),
+    ("silla-cool-jazz",       "Silla Cool Jazz",       "Dirección",   "sillas", "silla-cool-jazz.webp"),
+    ("silla-equis",           "Silla Equis",           "Operativas",  "sillas", "silla-equis.webp"),
+    ("butaca-paulin",         "Butaca Paulín",         "Recepción",   "sillas", "butaca-paulin.webp"),
 
-    ("MR-320", "Mesa Consejo 3200", "Salas de reunión", "reunion", 3200, 1200, 750,
-     ["#C9A57A", "#E4E0D6", "#0C1F1A"], "foto--roble", "mesa-consejo.jpg"),
-    ("MR-ARG", "Mesa Ágora redonda", "Colaborativas", "reunion", 1400, 1400, 750,
-     ["#C9A57A", "#E4E0D6"], "foto--roble", "mesa-agora.jpg"),
+    ("mesa-bote",             "Mesa Bote",             "Directorio",     "reunion", "mesa-bote.webp"),
+    ("mesa-redonda",          "Mesa Redonda",          "Colaborativas",  "reunion", "mesa-redonda.webp"),
 
-    ("MO-ARC", "Mostrador Arco", "Recepción", "espera", 2400, 800, 1100,
-     ["#C9A57A", "#0C1F1A"], "foto--roble", "mostrador-arco.jpg"),
-    ("SF-E2C", "Sofá Espera 2 cuerpos", "Recepción", "espera", 1400, 750, 800,
-     ["#8FBFAC", "#D2571C", "#0C1F1A"], "foto--menta", "sofa-espera.jpg"),
-
-    ("BM-MOD", "Biblioteca Modular", "Guardado", "guardado", 900, 400, 1800,
-     ["#E4E0D6", "#C9A57A"], "foto--roble", "biblioteca-modular.jpg"),
-    ("AM-2PT", "Armario metálico 2 puertas", "Metálicos", "guardado", 900, 450, 1950,
-     ["#E4E0D6", "#0C1F1A"], "foto--verde", "armario-metalico.jpg"),
-    ("AR-4CJ", "Archivo 4 cajones", "Metálicos", "guardado", 470, 620, 1320,
-     ["#E4E0D6", "#0C1F1A"], "foto--verde", "archivo-4cajones.jpg"),
+    ("perchero",              "Perchero",              "Complementos",   "accesorios", "perchero.webp"),
 ]
 
 # --------------------------------------------------------------------
@@ -176,8 +159,7 @@ PIE = f"""<footer class="pie">
             <li><a href="catalogo.html#escritorios">Escritorios</a></li>
             <li><a href="catalogo.html#sillas">Sillas</a></li>
             <li><a href="catalogo.html#reunion">Salas de reunión</a></li>
-            <li><a href="catalogo.html#espera">Recepción y espera</a></li>
-            <li><a href="catalogo.html#guardado">Guardado</a></li>
+            <li><a href="catalogo.html#accesorios">Accesorios</a></li>
           </ul>
         </div>
         <div>
@@ -283,48 +265,46 @@ def slot_foto(clases, archivo, rotulo, pie=None, estilo=""):
             </div>"""
 
 
+def n_piezas(clave):
+    n = sum(1 for p in PRODUCTOS if p[3] == clave)
+    return f"{n} pieza" if n == 1 else f"{n} piezas"
+
+
 def tarjeta_producto(p, revelar=True):
-    codigo, nombre, linea, cat, an, pr, al, tapizados, tono, img = p
-    muestras = "".join(
-        f'<span class="muestra" style="background:{c}"></span>' for c in tapizados
-    )
+    codigo, nombre, linea, cat, img = p
     cls = "prod revelar" if revelar else "prod"
     return f"""<article class="{cls}" data-categoria="{cat}">
-              {slot_foto(f"prod__foto {tono}", img, nombre)}
-              <div class="prod__codigo">{codigo}</div>
+              {slot_foto("prod__foto", img, nombre)}
+              <div class="prod__codigo">{linea}</div>
               <h3 class="prod__nombre">{html.escape(nombre)}</h3>
-              <div class="prod__linea">{linea}</div>
-              <div class="prod__medidas">{an} × {pr} × {al} mm</div>
-              <div class="prod__pie">
-                <div class="muestras" title="Terminaciones disponibles">{muestras}</div>
-                <button class="btn-sumar" type="button" data-sumar
-                        data-codigo="{codigo}" data-nombre="{html.escape(nombre, quote=True)}"
-                        data-tono="{tono}" data-img="assets/img/{img}">
-                  <span data-etiqueta>Presupuestar</span>
-                </button>
-              </div>
+              <div class="prod__medidas">Medidas y terminaciones a consultar</div>
+              <button class="btn-sumar" type="button" data-sumar
+                      data-codigo="{codigo}" data-nombre="{html.escape(nombre, quote=True)}"
+                      data-img="assets/img/{img}">
+                <span data-etiqueta>Presupuestar</span>
+              </button>
             </article>"""
 
 
 # ====================================================================
 # INICIO
 # ====================================================================
-destacados = [p for p in PRODUCTOS if p[0] in ("SE-AIR", "ST-140", "MR-320", "MO-ARC")]
+destacados = [p for p in PRODUCTOS
+               if p[0] in ("silla-cool", "escritorio-prisma", "mesa-bote", "silla-cool-jazz")]
 
-cat_tonos = {
-    "escritorios": ("foto--roble", "escritorios.jpg"),
-    "sillas":      ("foto--tinta", "sillas-trio.jpg"),
-    "reunion":     ("foto--roble", "salas-reunion.jpg"),
-    "espera":      ("foto--menta", "recepcion-espera.jpg"),
-    "guardado":    ("foto--verde", "guardado.jpg"),
+cat_portadas = {
+    "escritorios": "cat-escritorios.webp",
+    "sillas":      "cat-sillas.webp",
+    "reunion":     "cat-reunion.webp",
+    "accesorios":  "cat-accesorios.webp",
 }
 
 tarjetas_cat = "".join(
     f"""<a class="cat revelar" href="catalogo.html#{clave}">
-            {slot_foto("cat__foto " + cat_tonos[clave][0], cat_tonos[clave][1], nombre)}
+            {slot_foto("cat__foto", cat_portadas[clave], nombre)}
             <div class="cat__meta">
               <span class="cat__nombre">{nombre}</span>
-              <span class="cat__n">{sum(1 for p in PRODUCTOS if p[3] == clave)} piezas</span>
+              <span class="cat__n">{n_piezas(clave)}</span>
             </div>
             <p style="font-size:var(--t-sm);color:var(--humo);margin:0">{desc}</p>
           </a>"""
@@ -335,13 +315,13 @@ tarjetas_destacadas = "".join(tarjeta_producto(p) for p in destacados)
 
 INICIO = f"""    <!-- Portada -->
     <section class="portada">
-      {slot_foto("portada__foto", "oficina-colegio-arquitectos.jpg", "Oficina equipada")}
+      {slot_foto("portada__foto", "hero-portada.webp", "Silla Cool")}
       <div class="portada__velo"></div>
       <div class="env portada__contenido">
         <div class="etiqueta entra">Rosario · desde {EMPRESA["desde"]}</div>
         <h1 class="entra" style="--paso:70ms">Equipamos oficinas que se usan ocho horas por día.</h1>
         <p class="portada__bajada entra" style="--paso:140ms">
-          Fabricamos escritorios, sillas y guardado en nuestro taller de Rosario.
+          Fabricamos escritorios, sillas y mesas de reunión en nuestro taller de Rosario.
           Medimos tu espacio, te mostramos cómo va a quedar en 3D y lo dejamos instalado.
         </p>
         <div class="portada__acciones entra" style="--paso:210ms">
@@ -388,8 +368,8 @@ INICIO = f"""    <!-- Portada -->
 
     <!-- Banda: el taller -->
     <section class="banda banda--oscura">
-      {slot_foto("banda__foto foto--roble", "taller-rondeau.jpg", "Taller",
-                 pie="Taller propio · Bv. Rondeau 3042, Rosario")}
+      {slot_foto("banda__foto", "banda-escritorios.webp", "Escritorio Tetra",
+                 pie="Escritorio Tetra con rack · fabricación propia")}
       <div class="banda__texto">
         <div class="etiqueta">El taller</div>
         <h2>Una familia, dos generaciones,<br>el mismo taller.</h2>
@@ -460,8 +440,8 @@ INICIO = f"""    <!-- Portada -->
 
     <!-- Banda: sillas -->
     <section class="banda banda--invertida">
-      {slot_foto("banda__foto foto--tinta", "sillas-ergonomicas.jpg", "Sillas ergonómicas",
-                 pie="Silla Aire · malla y espuma de alta densidad")}
+      {slot_foto("banda__foto foto--tinta", "banda-sillas.webp", "Silla Cool Jazz",
+                 pie="Silla Cool Jazz · línea de dirección")}
       <div class="banda__texto">
         <div class="etiqueta">Ergonomía</div>
         <h2>La silla es<br>la decisión que más<br>se nota.</h2>
@@ -565,7 +545,7 @@ CATALOGO = f"""    <div class="env">
               Mostrando las {len(PRODUCTOS)} piezas
             </span>
             <span class="dato" style="font-size:var(--t-xs);color:var(--humo)">
-              Medidas: ancho × profundidad × alto (mm)
+              Fabricación a medida sobre cualquier pieza
             </span>
           </div>
 
@@ -619,8 +599,8 @@ SERVICIOS = f"""    <div class="env">
     </section>
 
     <section class="banda">
-      {slot_foto("banda__foto foto--menta", "diseno-3d.jpg", "Diseño 3D",
-                 pie="Proyecto 3D · texturas de madera, pisos y terminaciones reales")}
+      {slot_foto("banda__foto", "banda-reunion.webp", "Mesa Redonda",
+                 pie="Proyecto 3D · texturas, pisos y terminaciones reales")}
       <div class="banda__texto">
         <div class="etiqueta">Servicio 01</div>
         <h2>Diseño 3D</h2>
@@ -638,7 +618,7 @@ SERVICIOS = f"""    <div class="env">
     </section>
 
     <section class="banda banda--invertida banda--oscura">
-      {slot_foto("banda__foto foto--roble", "fabricacion.jpg", "Fabricación",
+      {slot_foto("banda__foto foto--tinta", "banda-sillas.webp", "Fabricación",
                  pie="Producción propia · Bv. Rondeau 3042")}
       <div class="banda__texto">
         <div class="etiqueta">Servicio 02</div>
@@ -657,7 +637,7 @@ SERVICIOS = f"""    <div class="env">
     </section>
 
     <section class="banda">
-      {slot_foto("banda__foto foto--verde", "instalacion.jpg", "Instalación",
+      {slot_foto("banda__foto", "banda-escritorios.webp", "Instalación",
                  pie="Entrega y armado con equipo propio")}
       <div class="banda__texto">
         <div class="etiqueta">Servicio 03</div>

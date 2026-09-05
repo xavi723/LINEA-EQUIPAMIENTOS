@@ -40,13 +40,22 @@ aviso que lo aclara. Conectarlo a un mail o a un CRM es un paso posterior.
 
 ## Las fotos
 
-Ninguna foto está incluida todavía. Mientras falten, cada hueco se muestra
-como un bloque de color sobrio con el nombre del archivo que corresponde —
-nunca como una imagen rota — así que el sitio se puede presentar igual.
+Los 12 productos del catálogo tienen su foto real, procesada desde los
+originales que mandó la empresa (`fotos-originales/`). El script
+`procesar_fotos.py` les borra la marca de agua, cambia el fondo blanco
+por el del sitio, recorta el aire sobrante y encuadra cada una:
 
-**Para cargarlas:** copiá los `.jpg` en `assets/img/` con los nombres
-exactos que lista [`assets/img/README.md`](assets/img/README.md). El sitio
-las detecta solo, sin tocar código.
+```bash
+python3 procesar_fotos.py
+```
+
+El detalle está en [`assets/img/README.md`](assets/img/README.md).
+
+**Faltan 7 fotos de ambiente** — oficinas terminadas, el taller y el
+frente del local — que no son de producto y no tenemos. Esos huecos se
+muestran como bloques de color sobrios con el nombre del archivo que
+falta, nunca como imágenes rotas, así que el sitio se puede presentar
+igual. Están listados en `assets/img/README.md`.
 
 ## Editar el sitio
 
@@ -84,13 +93,15 @@ desplazamientos.
 
 ## Pendiente de confirmar con la empresa
 
-Estos datos los tomé de fuentes públicas o son de muestra. Antes de
-mostrarlo conviene chequearlos:
-
 - El mail `ventas@altobellovictorio.com.ar` es **inventado**.
 - Los horarios de atención son de muestra.
 - «Respuesta en 24 h hábiles» es una promesa comercial: confirmar.
-- Los códigos, medidas y nombres de producto son verosímiles pero
-  **no son el catálogo real**, salvo la Línea Strada.
+- Los nombres de producto y las familias salen de los nombres de archivo
+  de las fotos, así que son reales. Las **medidas no están**: las fichas
+  dicen «Medidas y terminaciones a consultar» en vez de inventar
+  milímetros. Cuando la empresa las pase, se cargan en `PRODUCTOS`
+  dentro de `build.py`.
+- El catálogo son 12 piezas, las que tienen foto. El catálogo real de la
+  empresa es más grande.
 - De los proyectos, solo el Colegio de Arquitectos y BEI Desarrollos
-  están acreditados; los otros tres son de muestra.
+  están acreditados; los otros tres son de muestra y no tienen foto.

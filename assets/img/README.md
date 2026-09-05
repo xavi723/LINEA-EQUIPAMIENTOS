@@ -1,68 +1,55 @@
-# Fotos del sitio
+# Imágenes del sitio
 
-Copiá cada archivo en esta carpeta **con este nombre exacto**.
-El sitio las toma sola: no hay que tocar una línea de código.
+Los archivos `.webp` de esta carpeta **se generan solos**. No los edites a
+mano: se sobrescriben.
 
-Mientras un archivo no esté, ese hueco se muestra como un bloque de color
-sobrio con el nombre del archivo que falta — nunca como una imagen rota.
-Así se puede presentar el sitio aunque falten fotos.
+## De dónde salen
 
-**Total: 33 imágenes.**
+Los originales que mandó la empresa están en `fotos-originales/`. El
+script `procesar_fotos.py` (en la raíz) los convierte en las versiones que
+usa el sitio:
 
-## Portada y bandas (horizontal, 2400×1200 o más)
+```bash
+python3 procesar_fotos.py
+```
 
-- `colegio-arquitectos-detalle.jpg`
-- `diseno-3d.jpg`
-- `fabricacion.jpg`
-- `instalacion.jpg`
-- `oficina-colegio-arquitectos.jpg`
-- `sillas-ergonomicas.jpg`
-- `taller-rondeau.jpg`
+Por cada foto hace tres cosas:
 
-## Categorías (vertical 4:5, 1000×1250)
+1. **Borra la marca de agua.** Los originales tienen el chevron de la
+   marca impreso en gris claro abajo a la derecha. Sobre fondo blanco no
+   se ve, pero al recortar el producto sobre el verde de la marca queda
+   como una mancha. El script la detecta sola: son los píxeles oscuros en
+   las 17 fotos a la vez, cosa que ningún producto cumple.
+2. **Cambia el fondo blanco** por el color de destino, con una franja de
+   mezcla para que el recorte no quede dentado.
+3. **Recorta el aire sobrante y encuadra** sin deformar, para que un
+   escritorio ancho y un perchero angosto ocupen una porción pareja de su
+   tarjeta.
 
-- `escritorios.jpg`
-- `guardado.jpg`
-- `recepcion-espera.jpg`
-- `salas-reunion.jpg`
-- `sillas-trio.jpg`
+## Para agregar o cambiar una foto
 
-## Proyectos (16:11, 1400×960 · el destacado 21:9)
+1. Poné el archivo nuevo en `fotos-originales/`.
+2. Agregalo al diccionario que corresponda dentro de `procesar_fotos.py`
+   (`FICHAS`, `CATEGORIAS` o `ANCHAS`).
+3. Si es un producto nuevo, sumalo también a `PRODUCTOS` en `build.py`.
+4. Corré `python3 procesar_fotos.py && python3 build.py`.
+
+## Lo que todavía falta
+
+Estas son fotos de **ambiente**, no de producto, y no las tenemos. Cada
+hueco se muestra mientras tanto como un bloque de color sobrio con el
+nombre del archivo que falta — nunca como una imagen rota — así que el
+sitio se puede presentar igual.
 
 - `bei-desarrollos.jpg`
+- `colegio-arquitectos-detalle.jpg`
 - `colegio-arquitectos.jpg`
 - `consultorios.jpg`
 - `estudio-contable.jpg`
 - `frente-local.jpg`
 - `planta-industrial.jpg`
 
-## Productos (cuadrado 1:1, 1200×1200)
-
-- `archivo-4cajones.jpg`
-- `armario-metalico.jpg`
-- `bench-strada.jpg`
-- `biblioteca-modular.jpg`
-- `escritorio-litoral.jpg`
-- `escritorio-rondeau.jpg`
-- `escritorio-strada.jpg`
-- `mesa-agora.jpg`
-- `mesa-consejo.jpg`
-- `mostrador-arco.jpg`
-- `silla-aire.jpg`
-- `silla-mesh.jpg`
-- `silla-nodo.jpg`
-- `sillon-direccion.jpg`
-- `sofa-espera.jpg`
-
-## Recomendaciones
-
-- **Formato**: `.jpg` de calidad 80 alcanza y pesa poco. Si podés exportar
-  `.webp`, mejor todavía — cambiá la extensión en `build.py` y regenerá.
-- **Peso**: que ninguna pase de 400 KB. La portada es la que más importa:
-  es lo primero que carga y define la velocidad percibida del sitio.
-- **Encuadre**: todas se recortan al centro. Dejá aire alrededor del
-  producto para que el recorte no lo corte.
-- Las cuatro fotos que ya tenés van en: `oficina-colegio-arquitectos.jpg`
-  (la del Colegio de Arquitectos), `sillas-trio.jpg` (las tres sillas),
-  `linea-strada.jpg` → renombrala a `escritorios.jpg`, y
-  `sillas-ergonomicas.jpg` (la de fondo negro).
+Son fotos de oficinas terminadas, del taller y del frente del local. Las
+cuatro que circularon al principio (la del Colegio de Arquitectos, las
+tres sillas de colores, la Línea Strada y las sillas sobre fondo negro)
+sirven para varios de estos huecos si se suben como archivo.
