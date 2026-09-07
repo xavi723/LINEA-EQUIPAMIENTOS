@@ -558,7 +558,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-top: var(--borde);
   font-variant-numeric: tabular-nums;
 }
-.prod .btn-sumar { margin-top: 0.8rem; width: 100%; justify-content: center; }
+/* Las dos acciones de la ficha: sumar al presupuesto (la principal,
+   ocupa lo que sobra) y consultar por WhatsApp (cuadrada, solo icono).
+   La de WhatsApp no lleva texto porque en la grilla de cuatro columnas
+   "Consultar por WhatsApp" no entra sin partirse en dos renglones; el
+   icono es inequívoco y el nombre completo va en aria-label y title. */
+.prod__acciones { display: flex; gap: 0.4rem; margin-top: 0.8rem; }
+.prod .btn-sumar { flex: 1; justify-content: center; }
 
 /* Muestras de tapizado — color real del producto, no decoración */
 .muestras { display: flex; gap: 5px; }
@@ -588,6 +594,37 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .btn-sumar:active { transform: scale(0.96); }
 .btn-sumar[data-agregado="si"] { background: var(--naranja); border-color: var(--naranja); color: var(--papel-puro); }
+
+/* Consulta por WhatsApp de una pieza concreta. Usa el verde de la marca
+   de WhatsApp: acá el color no es decoración, es la señal de a dónde
+   lleva el botón, y cambiarlo por el naranja del sitio haría dudar. */
+.btn-wsp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 36px;
+  min-height: 36px;
+  border: 1px solid rgba(12,31,26,0.16);
+  border-radius: 2px;
+  color: #1FA855;
+  background: none;
+  transition: background var(--d-hover) var(--curva-hover),
+              border-color var(--d-hover) var(--curva-hover),
+              color var(--d-hover) var(--curva-hover),
+              transform var(--d-pulso) var(--curva);
+}
+
+.btn-wsp:active { transform: scale(0.96); }
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-wsp:hover { background: #1FA855; border-color: #1FA855; color: var(--papel-puro); }
+}
+
+.btn-wsp:focus-visible {
+  outline: 2px solid var(--naranja);
+  outline-offset: 2px;
+}
 
 /* ---------- 11. Banda editorial ---------- */
 .banda { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
