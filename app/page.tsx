@@ -121,49 +121,45 @@ export default function Inicio() {
         <div className="env">
           <Revelar className="enc-seccion">
             <div>
-              <div className="etiqueta">Cómo trabajamos</div>
-              <h2>Del proyecto<br />a la oficina armada</h2>
+              <div className="etiqueta">Servicios</div>
+              <h2>Tres servicios<br />alrededor del mueble</h2>
             </div>
             <p>
               <Pendiente>
-                Introducción al proceso de trabajo — a completar con la empresa.
+                Introducción a los servicios — a completar con la empresa.
               </Pendiente>
             </p>
           </Revelar>
 
-          {/* Los dos servicios que la empresa sí publica: el
-              Departamento de Arquitectura con su software 3D, y el
-              equipo profesional de instalación. */}
+          {/* Los tres servicios que presta la empresa, con su texto. */}
           <Revelar className="fila-serv">
-            <div className="fila-serv__n">PASO 01</div>
-            <h3>Departamento de Arquitectura</h3>
+            <div className="fila-serv__n">01</div>
+            <h3>Asesoramiento y diseño</h3>
             <p>
-              Contamos con un Departamento de Arquitectura que puede asesorarte
-              en tu proyecto, y con software de diseño para que puedas
-              visualizarlo antes de decidir.
+              Te acompañamos en el diseño de tu oficina con un equipo de
+              Arquitectura.
             </p>
             <Link className="enlace-flecha" href="/servicios">Ver cómo es <Flecha className="" /></Link>
           </Revelar>
 
           <Revelar className="fila-serv">
-            <div className="fila-serv__n">PASO 02</div>
-            <h3>Fabricación</h3>
+            <div className="fila-serv__n">02</div>
+            <h3>Garantía y servicio</h3>
             <p>
-              <Pendiente>
-                Cómo es el proceso de fabricación, qué se puede hacer a medida y
-                con qué plazos. A completar con la empresa.
-              </Pendiente>
+              Nuestros productos están pensados para durar. Ofrecemos garantía,
+              repuestos y servicio de reparación.
             </p>
-            <Link className="enlace-flecha" href="/catalogo">Ver el catálogo <Flecha className="" /></Link>
+            <Link className="enlace-flecha" href="/servicios">Ver más <Flecha className="" /></Link>
           </Revelar>
 
           <Revelar className="fila-serv">
-            <div className="fila-serv__n">PASO 03</div>
-            <h3>Instalación</h3>
+            <div className="fila-serv__n">03</div>
+            <h3>Transporte e instalación</h3>
             <p>
-              Ponemos a disposición un equipo profesional de instalación de
-              mobiliario, que ayuda a materializar el proyecto de tu oficina sin
-              complicaciones.
+              <Pendiente>
+                Descripción del servicio de transporte e instalación — a
+                completar con la empresa.
+              </Pendiente>
             </p>
             <Link className="enlace-flecha" href="/contacto">Coordinar una visita <Flecha className="" /></Link>
           </Revelar>

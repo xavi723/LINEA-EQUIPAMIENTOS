@@ -4,8 +4,7 @@ import { EMPRESA } from "@/lib/datos";
 /**
  * Las cifras de la portada. Cuentan al entrar en pantalla, escalonadas.
  *
- * "3D" no es un número y no cuenta: queda fija. El año va sin separador
- * de miles, porque 1959 no se escribe "1.959".
+ * El año va sin separador de miles, porque 1959 no se escribe "1.959".
  */
 export function Cifras() {
   // Se calcula al compilar, no en cada visita: la página es estática y
@@ -36,13 +35,15 @@ export function Cifras() {
       </div>
 
       <div className="cifras__item">
-        <span className="cifras__n">3D</span>
-        <span className="cifras__p">Diseño de tu proyecto</span>
+        <span className="cifras__n">
+          <NumberTicker value={3} delay={0.65} />
+        </span>
+        <span className="cifras__p">Servicios</span>
       </div>
 
       <div className="cifras__item">
         <span className="cifras__n">
-          <NumberTicker value={2} delay={0.7} />
+          <NumberTicker value={2} delay={0.8} />
         </span>
         <span className="cifras__p">Direcciones en Rosario</span>
       </div>

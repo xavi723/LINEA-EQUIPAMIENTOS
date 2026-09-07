@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     template: `%s · ${EMPRESA.nombre}`,
   },
   description:
-    "Equipamiento para empresas en Rosario desde 1959. Departamento de Arquitectura, software de diseño e instalación de mobiliario.",
+    "Equipamiento para empresas en Rosario desde 1959. Asesoramiento y diseño, garantía y servicio, transporte e instalación.",
   openGraph: {
     type: "website",
     locale: "es_AR",
