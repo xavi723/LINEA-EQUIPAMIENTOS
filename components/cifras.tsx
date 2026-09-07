@@ -32,19 +32,19 @@ export function Cifras() {
         <span className="cifras__n">
           <NumberTicker value={anios} delay={0.55} />
         </span>
-        <span className="cifras__p">Años fabricando acá</span>
+        <span className="cifras__p">Años de trayectoria</span>
       </div>
 
       <div className="cifras__item">
         <span className="cifras__n">3D</span>
-        <span className="cifras__p">Tu oficina antes de comprarla</span>
+        <span className="cifras__p">Diseño de tu proyecto</span>
       </div>
 
       <div className="cifras__item">
         <span className="cifras__n">
           <NumberTicker value={2} delay={0.7} />
         </span>
-        <span className="cifras__p">Showroom y fábrica propios</span>
+        <span className="cifras__p">Direcciones en Rosario</span>
       </div>
     </div>
   );

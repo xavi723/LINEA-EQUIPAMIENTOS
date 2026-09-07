@@ -35,11 +35,11 @@ const plex = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://altobellovictorio.vercel.app"),
   title: {
-    default: `${EMPRESA.nombre} · Muebles para oficina en Rosario`,
+    default: `${EMPRESA.nombre} · ${EMPRESA.bajada} en Rosario`,
     template: `%s · ${EMPRESA.nombre}`,
   },
   description:
-    "Fabricamos escritorios, sillas ergonómicas y mesas de reunión para oficinas en Rosario desde 1959. Relevamiento, proyecto 3D, fabricación propia e instalación.",
+    "Equipamiento para empresas en Rosario desde 1959. Departamento de Arquitectura, software de diseño e instalación de mobiliario.",
   openGraph: {
     type: "website",
     locale: "es_AR",

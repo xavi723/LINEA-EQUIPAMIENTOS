@@ -12,9 +12,10 @@ export function Footer() {
         <div className="pie__cols">
           <div>
             <Marca variante="claro" />
+            {/* "Empresa familiar" y "desde 1959" están verificados. */}
             <p style={{ marginTop: "1rem", fontSize: "var(--t-sm)" }}>
-              Empresa familiar rosarina. Fabricamos muebles y equipamiento para
-              oficinas y locales comerciales desde {EMPRESA.desde}.
+              Empresa familiar de Rosario. Equipamiento para empresas desde{" "}
+              {EMPRESA.desde}.
             </p>
           </div>
 
@@ -41,14 +42,13 @@ export function Footer() {
             <div className="pie__titulo">Showroom</div>
             <ul>
               <li>{showroom.calle}, {EMPRESA.ciudad}</li>
-              <li><a href={`tel:${showroom.telHref}`}>{showroom.tel}</a></li>
+              <li><a href={`tel:${showroom.telHref}`}>Tel. {showroom.tel}</a></li>
               <li><a href={`mailto:${showroom.mail}`}>{showroom.mail}</a></li>
             </ul>
 
             <div className="pie__titulo" style={{ marginTop: "1.75rem" }}>Fábrica</div>
             <ul>
               <li>{fabrica.calle}, {EMPRESA.ciudad}</li>
-              <li><a href={`tel:${fabrica.telHref}`}>{fabrica.tel}</a></li>
               <li><a href={`mailto:${fabrica.mail}`}>{fabrica.mail}</a></li>
             </ul>
           </div>

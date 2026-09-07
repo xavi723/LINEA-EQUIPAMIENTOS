@@ -4,12 +4,13 @@ import Link from "next/link";
 import { EMPRESA } from "@/lib/datos";
 import { Flecha } from "@/components/flecha";
 import { Foto } from "@/components/foto";
+import { Pendiente } from "@/components/pendiente";
 import { Revelar } from "@/components/revelar";
 
 export const metadata: Metadata = {
   title: "Servicios",
   description:
-    "Relevamiento y diseño 3D, fabricación a medida, entrega e instalación con equipo propio en Rosario.",
+    "Departamento de Arquitectura, software de diseño 3D y equipo profesional de instalación de mobiliario.",
 };
 
 export default function Servicios() {
@@ -28,49 +29,48 @@ export default function Servicios() {
           <div>
             <div className="etiqueta">Servicios</div>
             <h1 style={{ fontSize: "var(--t-2xl)" }}>
-              No vendemos muebles sueltos.<br />Entregamos la oficina puesta.
+              Asesoramiento, diseño<br />e instalación
             </h1>
           </div>
           <p>
-            Desde la primera medición hasta el último tornillo. Todo con equipo
-            propio, sin tercerizar la parte que más se nota.
+            <Pendiente>
+              Bajada de la página de servicios — a completar con la empresa.
+            </Pendiente>
           </p>
         </div>
       </section>
 
+      {/* Servicio 01 — texto de la propia empresa. */}
       <section className="banda">
-        <Foto className="banda__foto" src="amb-biblioteca.webp" alt="Biblioteca y sala de trabajo"
-              pie="Colegio de Arquitectos, Rosario" />
+        <Foto className="banda__foto" src="amb-biblioteca.webp" alt="Oficina equipada" />
         <div className="banda__texto">
           <div className="etiqueta">Servicio 01</div>
-          <h2>Diseño 3D</h2>
+          <h2>Departamento<br />de Arquitectura</h2>
           <p>
-            Tomamos las medidas de tu planta y la dibujamos amueblada. Vas a ver
-            los escritorios en su lugar, los colores de tapizado que elegiste y
-            cómo circula la gente entre los puestos.
+            Contamos con un Departamento de Arquitectura que puede asesorarte en
+            tu proyecto, y con software y herramientas de diseño para que puedas
+            visualizarlo.
           </p>
           <p style={{ marginTop: "1rem" }}>
-            Sirve para discutir con tu equipo antes de firmar nada, y para darte
-            cuenta de que ese pasillo de 70 cm era angosto.
+            El software tiene una completa biblioteca con ítems de decoración y
+            texturas de madera, pisos y terminaciones, que permite representar tu
+            ambiente con realismo.
           </p>
-          <Link className="btn btn--linea" href="/contacto">Pedir un proyecto 3D <Flecha /></Link>
+          <Link className="btn btn--linea" href="/contacto">Pedir un proyecto <Flecha /></Link>
         </div>
       </section>
 
       <section className="banda banda--invertida banda--oscura">
-        <Foto className="banda__foto foto--tinta" src="amb-silla-negro.webp" alt="Silla ergonómica"
-              pie={`Producción propia · ${EMPRESA.fabrica.calle}`} />
+        <Foto className="banda__foto foto--tinta" src="amb-silla-negro.webp" alt="Silla de oficina" />
         <div className="banda__texto">
           <div className="etiqueta">Servicio 02</div>
-          <h2>Fabricación a medida</h2>
+          <h2>Fabricación</h2>
           <p>
-            El catálogo es un punto de partida. Si tu espacio pide un escritorio
-            de 1650 mm, una mesa en L o un mostrador que siga una pared curva,
-            sale de la misma línea de producción.
-          </p>
-          <p style={{ marginTop: "1rem" }}>
-            Y como fabricamos nosotros, dentro de cinco años seguimos teniendo el
-            herraje, la tapa y el color exactos para ampliar o reponer.
+            <Pendiente>
+              Qué se fabrica, con qué materiales, qué se puede hacer a medida,
+              qué plazos manejan y cómo funcionan las ampliaciones y los
+              repuestos. Todo esto lo tiene que aportar la empresa.
+            </Pendiente>
           </p>
           <Link className="btn btn--claro" href="/contacto">
             Consultar una medida especial <Flecha />
@@ -78,20 +78,16 @@ export default function Servicios() {
         </div>
       </section>
 
+      {/* Servicio 03 — texto de la propia empresa. */}
       <section className="banda">
-        <Foto className="banda__foto" src="amb-atrio.webp" alt="Oficinas instaladas"
-              pie="Entrega y armado con equipo propio" />
+        <Foto className="banda__foto" src="amb-atrio.webp" alt="Oficina equipada" />
         <div className="banda__texto">
           <div className="etiqueta">Servicio 03</div>
-          <h2>Entrega e instalación</h2>
+          <h2>Instalación</h2>
           <p>
-            Llevamos, armamos, nivelamos y nos llevamos el embalaje. Si tu
-            oficina no puede parar, coordinamos el armado para un fin de semana o
-            fuera del horario laboral.
-          </p>
-          <p style={{ marginTop: "1rem" }}>
-            En mudanzas grandes vamos por sectores, para que nunca haya un piso
-            entero sin poder trabajar.
+            Ponemos a disposición un equipo profesional de instalación de
+            mobiliario, que ayuda a materializar el proyecto de tu oficina sin
+            complicaciones.
           </p>
           <Link className="btn btn--linea" href="/contacto">Coordinar una entrega <Flecha /></Link>
         </div>
@@ -101,40 +97,41 @@ export default function Servicios() {
         <Revelar className="enc-seccion">
           <div>
             <div className="etiqueta">Además</div>
-            <h2>Lo que casi nadie pregunta<br />y después importa</h2>
+            <h2>Otros servicios</h2>
           </div>
         </Revelar>
 
         <Revelar className="fila-serv">
           <div className="fila-serv__n">01</div>
-          <h3>Garantía y repuestos</h3>
+          <h3>
+            <Pendiente>Servicio a completar</Pendiente>
+          </h3>
           <p>
-            Fabricamos las piezas, así que tenemos los repuestos. Un pistón, una
-            rueda o un cajón se cambian sin reemplazar el mueble entero.
+            <Pendiente>
+              Garantías, repuestos, mantenimiento, ampliaciones: si la empresa
+              los ofrece, este es el lugar. Van los datos que ellos confirmen.
+            </Pendiente>
           </p>
-          <span className="dato" style={{ fontSize: "var(--t-xs)", color: "var(--humo)" }}>
-            CONSULTAR PLAZOS
-          </span>
         </Revelar>
 
         <Revelar className="fila-serv">
           <div className="fila-serv__n">02</div>
-          <h3>Ampliaciones</h3>
+          <h3>
+            <Pendiente>Servicio a completar</Pendiente>
+          </h3>
           <p>
-            Si el año que viene sumás seis puestos, los hacemos iguales a los que
-            ya tenés: misma tapa, mismo canto, mismo color.
+            <Pendiente>
+              Segundo servicio adicional — a definir con la empresa.
+            </Pendiente>
           </p>
-          <span className="dato" style={{ fontSize: "var(--t-xs)", color: "var(--humo)" }}>
-            SIN MÍNIMO
-          </span>
         </Revelar>
 
         <Revelar className="fila-serv">
           <div className="fila-serv__n">03</div>
           <h3>Showroom</h3>
           <p>
-            {EMPRESA.showroom.calle}, Rosario. Vení a sentarte en las sillas
-            antes de comprar veinte. Es la única forma seria de elegirlas.
+            {EMPRESA.showroom.calle}, Rosario. Podés venir a ver y probar las
+            piezas antes de decidir.
           </p>
           <span className="dato" style={{ fontSize: "var(--t-xs)", color: "var(--humo)" }}>
             LUN A VIE 9–18 H

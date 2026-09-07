@@ -136,7 +136,7 @@ export function CatalogoCliente() {
           <div style={{ borderTop: "var(--borde)", paddingTop: "1.5rem" }}>
             <div className="etiqueta">¿No lo encontrás?</div>
             <p style={{ fontSize: "var(--t-sm)", color: "var(--humo)" }}>
-              Fabricamos a medida. Contanos qué necesitás y te cotizamos.
+              Contanos qué necesitás y te respondemos.
             </p>
             <Link className="enlace-flecha" href="/contacto" style={{ marginTop: "1rem" }}>
               Consultar <Flecha className="" />
@@ -152,7 +152,7 @@ export function CatalogoCliente() {
                 : `Mostrando ${visibles} de ${PRODUCTOS.length} piezas`}
             </span>
             <span className="dato" style={{ fontSize: "var(--t-xs)", color: "var(--humo)" }}>
-              Fabricación a medida sobre cualquier pieza
+              {CATEGORIAS.length} familias
             </span>
           </div>
 
@@ -175,7 +175,7 @@ export function CatalogoCliente() {
             <h3>¿Estás equipando una oficina entera?</h3>
             <p style={{ margin: "0.75rem auto 0", color: "var(--humo)" }}>
               Sumá las piezas que te interesen a la lista y pedí un presupuesto
-              por el conjunto. A mayor volumen, mejor precio por pieza.
+              por el conjunto.
             </p>
             <Link className="btn btn--solido" href="/contacto" style={{ marginTop: "1.75rem" }}>
               Pedir presupuesto <Flecha />

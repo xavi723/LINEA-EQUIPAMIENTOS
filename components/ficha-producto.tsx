@@ -5,6 +5,7 @@ import Image from "next/image";
 import type { Producto } from "@/lib/datos";
 import { img } from "@/lib/rutas";
 import { usePresupuesto } from "@/components/presupuesto";
+import { Pendiente } from "@/components/pendiente";
 
 export function FichaProducto({ producto }: { producto: Producto }) {
   const { alternar, tiene } = usePresupuesto();
@@ -21,7 +22,9 @@ export function FichaProducto({ producto }: { producto: Producto }) {
           style={{ objectFit: "cover" }}
         />
       </div>
-      <div className="prod__codigo">{producto.linea}</div>
+      <div className="prod__codigo">
+        {producto.linea || <Pendiente>Línea a confirmar</Pendiente>}
+      </div>
       <h3 className="prod__nombre">{producto.nombre}</h3>
       <div className="prod__medidas">Medidas y terminaciones a consultar</div>
       <button

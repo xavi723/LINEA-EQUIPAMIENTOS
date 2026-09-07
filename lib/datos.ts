@@ -1,37 +1,52 @@
 /**
  * Datos del sitio de Altobello Victorio.
  *
- * Los de contacto están verificados contra la página de contacto de la
- * empresa. Los productos y sus familias salen de los nombres de archivo
- * de las fotos que mandaron, así que son reales; las medidas todavía no
- * las tenemos y por eso las fichas dicen "a consultar" en vez de
- * inventar milímetros.
+ * REGLA: acá solo entra información que se pudo verificar contra
+ * fuentes de la propia empresa (su web, su ficha de LinkedIn, los
+ * directorios donde ella misma se publica). Lo que no se pudo
+ * verificar no se completa con algo verosímil: se deja marcado como
+ * pendiente para que lo confirmen ellos.
+ *
+ * Los nombres de producto salen de los archivos de foto que mandó el
+ * cliente, así que son reales. Las medidas no las tenemos y por eso
+ * las fichas dicen "a consultar" en vez de inventar milímetros.
  */
 
 export const EMPRESA = {
   nombre: "Altobello Victorio",
-  bajada: "Muebles para oficina",
+
+  // Verificado: la empresa se presenta como "equipamiento para
+  // empresas" y como fabricante de muebles para oficina.
+  bajada: "Equipamiento para empresas",
+
+  // Verificado: "desde sus inicios en 1959".
   desde: 1959,
   ciudad: "Rosario, Santa Fe",
 
   showroom: {
     calle: "Bv. Rondeau 3042",
     horario: "Lunes a viernes de 9 a 18 h",
-    tel: "(0341) 455-5606",
+    // Los teléfonos se muestran como los publica la empresa, sin
+    // agregarles característica. El href sí la lleva, porque si no el
+    // enlace no marca desde un celular.
+    tel: "4555606",
     telHref: "+543414555606",
-    cel: "(0341) 15-532-1776",
+    cel: "155321776",
     mail: "presupuestos@altobellovictorio.com.ar",
   },
 
   fabrica: {
     calle: "Pedro Goyena 1023",
-    horario: "Lunes a jueves de 8 a 12 y de 13 a 17 h · Viernes hasta las 16 h",
-    tel: "(0341) 453-0775",
-    telHref: "+543414530775",
+    horario: "Lunes a viernes de 8 a 12 y de 13 a 17 h · Viernes hasta las 16 h",
     mail: "administracion@altobellovictorio.com.ar",
   },
 
-  whatsapp: "(0341) 15-601-6491",
+  // La empresa publica este teléfono y este WhatsApp juntos, sin
+  // aclarar a qué dirección corresponden. Por eso van aparte y no
+  // colgados del showroom ni de la fábrica.
+  tel: "(0341) 4530775",
+  telHref: "+543414530775",
+  whatsapp: "0341 156016491",
   whatsappHref: "5493416016491",
 } as const;
 
@@ -44,29 +59,34 @@ export interface Categoria {
   portada: string;
 }
 
+/**
+ * Las descripciones quedan pendientes salvo la de escritorios, que sale
+ * de las propias secciones del catálogo de la empresa (escritorios
+ * ejecutivos y escritorios operativos).
+ */
 export const CATEGORIAS: Categoria[] = [
   {
     clave: "escritorios",
     nombre: "Escritorios",
-    descripcion: "Ejecutivos, operativos y con rack",
+    descripcion: "Ejecutivos y operativos",
     portada: "cat-escritorios.webp",
   },
   {
     clave: "sillas",
     nombre: "Sillas",
-    descripcion: "Ergonómicas, operativas y de dirección",
+    descripcion: "",
     portada: "cat-sillas.webp",
   },
   {
     clave: "reunion",
     nombre: "Salas de reunión",
-    descripcion: "Mesas de directorio y colaborativas",
+    descripcion: "",
     portada: "cat-reunion.webp",
   },
   {
     clave: "accesorios",
     nombre: "Accesorios",
-    descripcion: "Percheros y complementos",
+    descripcion: "",
     portada: "cat-accesorios.webp",
   },
 ];
@@ -79,22 +99,28 @@ export interface Producto {
   img: string;
 }
 
+/**
+ * Los nombres son los reales. La "línea" solo se completa cuando la
+ * empresa la publica: Prisma, Strada, Tetra, Cool y Equis están
+ * verificadas. El resto queda vacío hasta que nos lo confirmen; la
+ * ficha muestra un hueco en lugar de una familia inventada.
+ */
 export const PRODUCTOS: Producto[] = [
-  { codigo: "escritorio-prisma", nombre: "Escritorio Prisma", linea: "Ejecutivos", categoria: "escritorios", img: "escritorio-prisma.webp" },
-  { codigo: "escritorio-strada", nombre: "Escritorio Strada", linea: "Con rack", categoria: "escritorios", img: "escritorio-strada.webp" },
-  { codigo: "escritorio-tetra", nombre: "Escritorio Tetra", linea: "Con rack", categoria: "escritorios", img: "escritorio-tetra.webp" },
-  { codigo: "escritorio-ergonomico", nombre: "Escritorio Ergonómico", linea: "Operativos", categoria: "escritorios", img: "escritorio-ergonomico.webp" },
-  { codigo: "escritorio-recto", nombre: "Escritorio Recto", linea: "Operativos", categoria: "escritorios", img: "escritorio-recto.webp" },
+  { codigo: "escritorio-prisma", nombre: "Escritorio Prisma", linea: "Línea Prisma", categoria: "escritorios", img: "escritorio-prisma.webp" },
+  { codigo: "escritorio-strada", nombre: "Escritorio Strada", linea: "Línea Strada", categoria: "escritorios", img: "escritorio-strada.webp" },
+  { codigo: "escritorio-tetra", nombre: "Escritorio Tetra", linea: "Línea Tetra", categoria: "escritorios", img: "escritorio-tetra.webp" },
+  { codigo: "escritorio-ergonomico", nombre: "Escritorio Ergonómico", linea: "", categoria: "escritorios", img: "escritorio-ergonomico.webp" },
+  { codigo: "escritorio-recto", nombre: "Escritorio Recto", linea: "", categoria: "escritorios", img: "escritorio-recto.webp" },
 
-  { codigo: "silla-cool", nombre: "Silla Cool", linea: "Ergonómicas", categoria: "sillas", img: "silla-cool.webp" },
-  { codigo: "silla-cool-jazz", nombre: "Silla Cool Jazz", linea: "Dirección", categoria: "sillas", img: "silla-cool-jazz.webp" },
-  { codigo: "silla-equis", nombre: "Silla Equis", linea: "Operativas", categoria: "sillas", img: "silla-equis.webp" },
-  { codigo: "butaca-paulin", nombre: "Butaca Paulín", linea: "Recepción", categoria: "sillas", img: "butaca-paulin.webp" },
+  { codigo: "silla-cool", nombre: "Silla Cool", linea: "Línea Cool", categoria: "sillas", img: "silla-cool.webp" },
+  { codigo: "silla-cool-jazz", nombre: "Silla Cool Jazz", linea: "Línea Cool", categoria: "sillas", img: "silla-cool-jazz.webp" },
+  { codigo: "silla-equis", nombre: "Silla Equis", linea: "Línea Equis", categoria: "sillas", img: "silla-equis.webp" },
+  { codigo: "butaca-paulin", nombre: "Butaca Paulín", linea: "", categoria: "sillas", img: "butaca-paulin.webp" },
 
-  { codigo: "mesa-bote", nombre: "Mesa Bote", linea: "Directorio", categoria: "reunion", img: "mesa-bote.webp" },
-  { codigo: "mesa-redonda", nombre: "Mesa Redonda", linea: "Colaborativas", categoria: "reunion", img: "mesa-redonda.webp" },
+  { codigo: "mesa-bote", nombre: "Mesa Bote", linea: "", categoria: "reunion", img: "mesa-bote.webp" },
+  { codigo: "mesa-redonda", nombre: "Mesa Redonda", linea: "", categoria: "reunion", img: "mesa-redonda.webp" },
 
-  { codigo: "perchero", nombre: "Perchero", linea: "Complementos", categoria: "accesorios", img: "perchero.webp" },
+  { codigo: "perchero", nombre: "Perchero", linea: "", categoria: "accesorios", img: "perchero.webp" },
 ];
 
 export interface Proyecto {
@@ -105,23 +131,17 @@ export interface Proyecto {
 }
 
 /**
- * Solo proyectos reales y con foto. Hubo tres más, de muestra; ponerles
- * una foto verdadera habría convertido un hueco evidente en una
- * atribución falsa, que de cara a la empresa es peor.
+ * La empresa sí publica proyectos entregados (COFCO International en la
+ * Bolsa de Comercio, Núcleo Servicios, la Asociación Rosarina de
+ * Fútbol, Óptica Contini, la Cooperativa de Trabajo Paraná y la
+ * Municipalidad de Puerto San Martín), pero no sabemos cuál de esas
+ * obras muestra cada una de las fotos que tenemos. Poner un nombre real
+ * debajo de una foto que quizá sea de otra obra es una atribución
+ * falsa, así que las tarjetas van con el nombre pendiente.
  */
 export const PROYECTOS: Proyecto[] = [
-  {
-    nombre: "Colegio de Arquitectos",
-    lugar: "Rosario, Santa Fe",
-    descripcion: "Biblioteca, sala de reunión y puestos de trabajo",
-    img: "amb-atrio.webp",
-  },
-  {
-    nombre: "BEI Desarrollos",
-    lugar: "Rosario, Santa Fe",
-    descripcion: "Oficinas con Línea Strada",
-    img: "amb-lounge.webp",
-  },
+  { nombre: "", lugar: "", descripcion: "", img: "amb-atrio.webp" },
+  { nombre: "", lugar: "", descripcion: "", img: "amb-lounge.webp" },
 ];
 
 export const NAVEGACION = [

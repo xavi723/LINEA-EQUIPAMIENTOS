@@ -62,7 +62,7 @@ export function PanelPresupuesto() {
           {lista.length === 0 ? (
             <p className="panel__vacio">
               Todavía no sumaste piezas. Agregá lo que te interese desde el
-              catálogo y te pasamos un presupuesto por el conjunto.
+              catálogo.
             </p>
           ) : (
             lista.map((pieza) => (
@@ -90,8 +90,7 @@ export function PanelPresupuesto() {
 
         <div className="panel__pie">
           <p style={{ fontSize: "var(--t-sm)", color: "var(--humo)", marginBottom: "1rem" }}>
-            Armamos el presupuesto sobre el conjunto: a mayor volumen, mejor
-            precio por pieza.
+            Nos llega tu lista y te respondemos con el presupuesto.
           </p>
           <Link className="btn btn--acento" href="/contacto" style={{ width: "100%" }} onClick={cerrarPanel}>
             Pedir presupuesto <Flecha />

@@ -3,11 +3,12 @@ import Link from "next/link";
 
 import { CATEGORIAS, PRODUCTOS } from "@/lib/datos";
 import { CatalogoCliente } from "@/components/catalogo-cliente";
+import { Pendiente } from "@/components/pendiente";
 
 export const metadata: Metadata = {
   title: "Catálogo",
   description:
-    "Escritorios, sillas, mesas de reunión y accesorios para oficina. Fabricación a medida sobre cualquier pieza.",
+    "Escritorios, sillas, mesas de reunión y accesorios para oficina.",
 };
 
 export default function Catalogo() {
@@ -30,8 +31,9 @@ export default function Catalogo() {
             <h1 style={{ fontSize: "var(--t-2xl)" }}>Catálogo</h1>
           </div>
           <p>
-            Casi todo se fabrica también a medida — si necesitás otra
-            terminación o una medida distinta, preguntanos.
+            <Pendiente>
+              Bajada del catálogo — a completar con la empresa.
+            </Pendiente>
           </p>
         </div>
       </section>

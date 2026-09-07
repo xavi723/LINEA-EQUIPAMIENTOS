@@ -28,8 +28,7 @@ export function FormularioPresupuesto() {
       <div className="etiqueta">Pedido de presupuesto</div>
       <h1 style={{ fontSize: "var(--t-2xl)" }}>Contanos qué<br />necesitás equipar</h1>
       <p style={{ marginTop: "1rem", color: "var(--humo)" }}>
-        Cuanto más nos digas, más preciso sale el presupuesto. Si tenés el plano,
-        mejor todavía.
+        Contanos qué necesitás y te respondemos con un presupuesto.
       </p>
 
       <div className="contacto__resumen">
@@ -81,7 +80,7 @@ export function FormularioPresupuesto() {
               placeholder="Metros del espacio, plazos, si ya tenés muebles que querés conservar…"
             />
             <span className="campo__ayuda">
-              Si tenés plano en PDF o DWG, mencionalo y te lo pedimos por mail.
+              Si tenés el plano del espacio, mencionalo y te lo pedimos por mail.
             </span>
           </div>
         </div>

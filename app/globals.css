@@ -1055,3 +1055,57 @@ button, input, select, textarea { font: inherit; color: inherit; }
    que ese contenedor herede el tamaño del hueco. */
 .prod__foto { position: relative; }
 .prod__foto img { object-fit: cover; }
+
+/* ══════════════════════════════════════════════════════════════════
+   28 · CONTENIDO PENDIENTE
+
+   Los huecos de texto que la empresa todavía tiene que darnos. Se
+   marcan en vez de rellenarse con algo inventado: en un boceto, un
+   hueco visible es información; un párrafo plausible es una mentira
+   que después hay que salir a desmentir.
+
+   Hereda el color del bloque donde cae (banda clara u oscura) usando
+   currentColor, así funciona sobre papel y sobre tinta sin variantes.
+   ────────────────────────────────────────────────────────────────── */
+.pendiente {
+  display: inline;
+  color: color-mix(in srgb, currentColor 55%, transparent);
+  text-decoration: underline dashed
+    color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 0.28em;
+  text-decoration-thickness: 1px;
+  font-style: italic;
+}
+
+/* En títulos el subrayado punteado ensucia: alcanza con bajarle el peso
+   y el contraste para que se lea como hueco. */
+h1 > .pendiente,
+h2 > .pendiente,
+h3 > .pendiente,
+.pendiente:is(h1, h2, h3) {
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 500;
+  color: color-mix(in srgb, currentColor 42%, transparent);
+}
+
+/* La marca que lo identifica de un vistazo al recorrer la página. En un
+   título hereda un cuerpo enorme, así que se fija en su propio tamaño. */
+.pendiente::before {
+  content: "✎ ";
+  font-style: normal;
+  opacity: 0.65;
+}
+
+h1 .pendiente::before,
+h2 .pendiente::before,
+h3 .pendiente::before,
+.pendiente:is(h1, h2, h3)::before {
+  font-size: var(--t-sm);
+  vertical-align: 0.28em;
+}
+
+p.pendiente,
+div.pendiente {
+  display: block;
+}
