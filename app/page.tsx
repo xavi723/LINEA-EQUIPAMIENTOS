@@ -197,9 +197,9 @@ export default function Inicio() {
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", marginTop: "2rem" }}>
             <Link className="btn btn--acento" href="/contacto">Pedir presupuesto <Flecha /></Link>
-            <a className="btn btn--linea" href={`tel:${EMPRESA.showroom.telHref}`}>
-              Llamar al {EMPRESA.showroom.tel}
-            </a>
+            <Link className="btn btn--linea" href="/contacto">
+              Ver los datos de contacto
+            </Link>
           </div>
         </Revelar>
       </section>

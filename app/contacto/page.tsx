@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { EMPRESA } from "@/lib/datos";
+import { EMPRESA, TELEFONO } from "@/lib/datos";
+import { Pendiente } from "@/components/pendiente";
 import { FormularioPresupuesto } from "@/components/formulario-presupuesto";
 import { Foto } from "@/components/foto";
 
@@ -41,8 +42,7 @@ export default function Contacto() {
                 {showroom.horario}
               </p>
               <p style={{ marginTop: "0.75rem", fontSize: "var(--t-sm)" }}>
-                Tel. <a className="dato" href={`tel:${showroom.telHref}`}>{showroom.tel}</a>
-                {" · "}Cel. <span className="dato">{showroom.cel}</span><br />
+                <Pendiente>Tel. {TELEFONO}</Pendiente><br />
                 <a href={`mailto:${showroom.mail}`}>{showroom.mail}</a>
               </p>
             </div>
@@ -54,25 +54,17 @@ export default function Contacto() {
                 {fabrica.horario}
               </p>
               <p style={{ marginTop: "0.75rem", fontSize: "var(--t-sm)" }}>
+                <Pendiente>Tel. {TELEFONO}</Pendiente><br />
                 <a href={`mailto:${fabrica.mail}`}>{fabrica.mail}</a>
               </p>
             </div>
 
             <div style={{ marginTop: "1.75rem", paddingTop: "1.5rem", borderTop: "var(--borde)" }}>
-              <div className="etiqueta">Otras vías</div>
+              <div className="etiqueta">WhatsApp</div>
               <p style={{ marginTop: "0.35rem", fontSize: "var(--t-sm)" }}>
-                Tel. <a className="dato" href={`tel:${EMPRESA.telHref}`}>{EMPRESA.tel}</a>
+                <Pendiente>{TELEFONO}</Pendiente>
               </p>
             </div>
-
-            <a
-              className="btn btn--linea"
-              style={{ marginTop: "1.25rem", width: "100%" }}
-              href={`https://wa.me/${EMPRESA.whatsappHref}`}
-              rel="noopener"
-            >
-              WhatsApp {EMPRESA.whatsapp}
-            </a>
 
             <Foto src="amb-sala-reunion.webp" alt="Oficina equipada"
                   style={{ aspectRatio: "4 / 3", marginTop: "1.5rem" }} />

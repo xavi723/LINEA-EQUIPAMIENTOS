@@ -26,12 +26,6 @@ export const EMPRESA = {
   showroom: {
     calle: "Bv. Rondeau 3042",
     horario: "Lunes a viernes de 9 a 18 h",
-    // Los teléfonos se muestran como los publica la empresa, sin
-    // agregarles característica. El href sí la lleva, porque si no el
-    // enlace no marca desde un celular.
-    tel: "4555606",
-    telHref: "+543414555606",
-    cel: "155321776",
     mail: "presupuestos@altobellovictorio.com.ar",
   },
 
@@ -40,15 +34,21 @@ export const EMPRESA = {
     horario: "Lunes a viernes de 8 a 12 y de 13 a 17 h · Viernes hasta las 16 h",
     mail: "administracion@altobellovictorio.com.ar",
   },
-
-  // La empresa publica este teléfono y este WhatsApp juntos, sin
-  // aclarar a qué dirección corresponden. Por eso van aparte y no
-  // colgados del showroom ni de la fábrica.
-  tel: "(0341) 4530775",
-  telHref: "+543414530775",
-  whatsapp: "0341 156016491",
-  whatsappHref: "5493416016491",
 } as const;
+
+/**
+ * Ningún número real en el boceto.
+ *
+ * Un teléfono es el dato que más caro sale equivocado: si me confundo de
+ * bloque, alguien llama a la fábrica creyendo que llama al showroom, o
+ * peor, a un número que no es de la empresa. Y a diferencia de un texto
+ * mal puesto, un botón que marca se usa sin pensarlo.
+ *
+ * Así que hasta que la empresa confirme cada número y a qué dirección
+ * corresponde, en pantalla va este relleno y no se enlaza a ningún lado:
+ * un tel: a un número inventado es peor que no tener el enlace.
+ */
+export const TELEFONO = "000 000-0000" as const;
 
 export type ClaveCategoria = "escritorios" | "sillas" | "reunion" | "accesorios";
 

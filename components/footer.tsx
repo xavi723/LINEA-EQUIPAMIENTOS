@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-import { EMPRESA } from "@/lib/datos";
+import { EMPRESA, TELEFONO } from "@/lib/datos";
+import { Pendiente } from "@/components/pendiente";
 import { Marca } from "@/components/marca";
 
 export function Footer() {
@@ -42,13 +43,14 @@ export function Footer() {
             <div className="pie__titulo">Showroom</div>
             <ul>
               <li>{showroom.calle}, {EMPRESA.ciudad}</li>
-              <li><a href={`tel:${showroom.telHref}`}>Tel. {showroom.tel}</a></li>
+              <li><Pendiente>Tel. {TELEFONO}</Pendiente></li>
               <li><a href={`mailto:${showroom.mail}`}>{showroom.mail}</a></li>
             </ul>
 
             <div className="pie__titulo" style={{ marginTop: "1.75rem" }}>Fábrica</div>
             <ul>
               <li>{fabrica.calle}, {EMPRESA.ciudad}</li>
+              <li><Pendiente>Tel. {TELEFONO}</Pendiente></li>
               <li><a href={`mailto:${fabrica.mail}`}>{fabrica.mail}</a></li>
             </ul>
           </div>
