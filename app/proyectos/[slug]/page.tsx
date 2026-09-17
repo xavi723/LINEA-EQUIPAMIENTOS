@@ -5,7 +5,9 @@ import { notFound } from "next/navigation";
 import { PROYECTOS } from "@/lib/datos";
 import { Flecha } from "@/components/flecha";
 import { Foto } from "@/components/foto";
+import { Pendiente } from "@/components/pendiente";
 import { Revelar } from "@/components/revelar";
+import { cn } from "@/lib/utils";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -32,7 +34,9 @@ export default async function ProyectoDetalle({ params }: Params) {
   const p = buscar((await params).slug);
   if (!p) notFound();
 
-  const fotos = p.fotos?.length ? p.fotos : [p.img];
+  // Sin galería cargada, la foto de la tarjeta a 3:2.
+  const fotos = p.fotos?.length ? p.fotos : [{ src: p.img, ancho: 3, alto: 2 }];
+  const verticales = fotos.every((f) => f.alto > f.ancho);
 
   return (
     <>
@@ -58,7 +62,7 @@ export default async function ProyectoDetalle({ params }: Params) {
             <dl className="proy-det__ficha">
               <div>
                 <dt>Lugar</dt>
-                <dd>{p.lugar}</dd>
+                <dd>{p.lugar || <Pendiente>Lugar</Pendiente>}</dd>
               </div>
               {p.linea ? (
                 <div>
@@ -72,18 +76,19 @@ export default async function ProyectoDetalle({ params }: Params) {
       </section>
 
       {/*
-        Las fotos miden unos 1070 px de ancho: a dos columnas se ven
-        nítidas; estiradas a todo el ancho de la pantalla quedarían
+        Cada foto va entera, a su proporción: hay proyectos con fotos
+        apaisadas y otros con verticales. Las originales miden unos 1000 px
+        de ancho: a dos columnas se ven nítidas; a todo el ancho quedarían
         blandas. En pantallas chicas pasan a una por fila.
       */}
       <section className="env" style={{ paddingBottom: "var(--e-6)" }}>
-        <div className="proy-det__galeria">
+        <div className={cn("proy-det__galeria", verticales && "proy-det__galeria--verticales")}>
           {fotos.map((f, i) => (
-            <Revelar key={f} orden={i}>
+            <Revelar key={f.src} orden={i} className="proy-det__item">
               <Foto
-                className="proy-det__foto"
-                src={f}
+                src={f.src}
                 alt={`${p.nombre}, foto ${i + 1} de ${fotos.length}`}
+                style={{ aspectRatio: `${f.ancho} / ${f.alto}` }}
               />
             </Revelar>
           ))}

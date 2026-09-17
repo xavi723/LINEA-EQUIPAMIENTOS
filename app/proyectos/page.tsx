@@ -103,6 +103,7 @@ function TarjetaProyecto({ p }: { p: Proyecto }) {
         src={p.img}
         alt={p.nombre || "Oficina equipada"}
         pie={cantidad > 1 ? `${cantidad} fotos` : undefined}
+        style={p.encuadre ? { backgroundPosition: p.encuadre } : undefined}
       />
       <div className="proy__meta">
         <div>

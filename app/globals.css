@@ -1187,8 +1187,12 @@ div.pendiente {
   color: var(--humo);
 }
 
-.proy-det__galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--e-3); }
-.proy-det__foto { aspect-ratio: 3 / 2; }
+/* Columnas y no grilla: con fotos de alturas distintas, la grilla deja
+   huecos al emparejar filas. Cada foto conserva su proporción. */
+.proy-det__galeria { columns: 2; column-gap: var(--e-3); }
+.proy-det__item { break-inside: avoid; margin-bottom: var(--e-3); }
+/* Todas verticales: a dos columnas cada foto mide casi 800 px de alto. */
+.proy-det__galeria--verticales { columns: 3; }
 
 .proy-det__cierre {
   display: flex;
@@ -1210,5 +1214,5 @@ div.pendiente {
 
 @media (max-width: 900px) {
   .proy-det__enc { grid-template-columns: 1fr; gap: var(--e-3); }
-  .proy-det__galeria { grid-template-columns: 1fr; }
+  .proy-det__galeria, .proy-det__galeria--verticales { columns: 1; }
 }

@@ -123,12 +123,24 @@ export const PRODUCTOS: Producto[] = [
   { codigo: "perchero", nombre: "Perchero", linea: "", categoria: "accesorios", img: "perchero.webp" },
 ];
 
+/** Foto de galería. El tamaño da la proporción: se muestra entera, sin recorte. */
+export interface FotoProyecto {
+  src: string;
+  ancho: number;
+  alto: number;
+}
+
 export interface Proyecto {
   nombre: string;
   lugar: string;
   descripcion: string;
   /** Foto de la tarjeta en el listado. */
   img: string;
+  /**
+   * Qué parte de la foto se ve en la tarjeta apaisada (background-position).
+   * Hace falta con fotos verticales: por defecto solo queda la franja del medio.
+   */
+  encuadre?: string;
   /**
    * Solo los proyectos identificados tienen página propia, en
    * /proyectos/<slug>. Los de nombre pendiente quedan como tarjeta.
@@ -138,7 +150,7 @@ export interface Proyecto {
   texto?: string;
   linea?: string;
   /** Galería de la página del proyecto, en orden. */
-  fotos?: string[];
+  fotos?: FotoProyecto[];
 }
 
 /**
@@ -164,7 +176,26 @@ export const PROYECTOS: Proyecto[] = [
       "Base metálica y tapas de melamina, pensadas para optimizar espacios de trabajo.",
     linea: "Línea Strada",
     img: "proy-banco-municipal-1.webp",
-    fotos: ["proy-banco-municipal-1.webp", "proy-banco-municipal-2.webp"],
+    fotos: [
+      { src: "proy-banco-municipal-1.webp", ancho: 1067, alto: 712 },
+      { src: "proy-banco-municipal-2.webp", ancho: 1070, alto: 716 },
+    ],
+  },
+  {
+    slug: "don-palacios-construcciones",
+    nombre: "Don Palacios Construcciones",
+    lugar: "",
+    descripcion: "Equipamiento para Don Palacios Construcciones.",
+    texto: "Equipamiento para Don Palacios Construcciones.",
+    img: "proy-don-palacios-3.webp",
+    encuadre: "center 30%",
+    fotos: [
+      { src: "proy-don-palacios-1.webp", ancho: 720, alto: 960 },
+      { src: "proy-don-palacios-2.webp", ancho: 900, alto: 1200 },
+      { src: "proy-don-palacios-3.webp", ancho: 900, alto: 1200 },
+      { src: "proy-don-palacios-4.webp", ancho: 900, alto: 1200 },
+      { src: "proy-don-palacios-5.webp", ancho: 720, alto: 960 },
+    ],
   },
   { nombre: "", lugar: "", descripcion: "", img: "amb-atrio.webp" },
   { nombre: "", lugar: "", descripcion: "", img: "amb-lounge.webp" },

@@ -169,10 +169,15 @@ la versión de referencia, y el motivo de cada una:
   dicen «Medidas y terminaciones a consultar» en vez de inventar
   milímetros. Cuando la empresa las pase, se cargan en `PRODUCTOS`.
 - El catálogo son 12 piezas, las que tienen foto. El real es más grande.
-- Proyectos tiene tres: el Coworking Banco Municipal (nombrado en un
-  posteo de Instagram, con página propia y dos fotos) y dos fotos de obra
-  con el nombre pendiente. Para sumar uno con página, cargale `slug` y
-  `fotos` en `PROYECTOS`.
+- Proyectos tiene cuatro: Coworking Banco Municipal y Don Palacios
+  Construcciones (nombrados en posteos de Instagram, con página propia y
+  galería) y dos fotos de obra con el nombre pendiente. A Don Palacios le
+  falta el lugar.
+- Para sumar un proyecto con página: poné las fotos en `fotos-originales/`,
+  sumalas a `PROYECTOS` en `procesar_fotos.py` (recorta solo las bandas
+  negras de los bordes, si las hay) y cargá `slug` y `fotos` con las medidas
+  que imprime el script en `PROYECTOS` de `lib/datos.ts`. Si las fotos son
+  verticales, `encuadre` elige qué franja se ve en la tarjeta.
 - Los teléfonos figuran en la web de la empresa sin característica;
   asumí (0341), que es la de Rosario.
 

@@ -245,18 +245,6 @@ AMBIENTE = [
      (0.0, 0.0, 0.32, 1.0), 700,
      "Silla ergonómica sobre negro, a la izquierda del titular."),
 
-    # De un posteo de Instagram que nombra la obra y la línea usada.
-    # Es un .jpg, no .webp: la detección de la marca de agua solo mira
-    # los .webp de producto, así que no la altera.
-    # Van enteras: se muestran a su proporción (3:2) en la página del
-    # proyecto, sin recorte.
-    ("Coworking Banco Municipal 1.jpg", "proy-banco-municipal-1.webp",
-     (0.0, 0.0, 1.0, 1.0), 1100,
-     "Coworking de Banco Municipal en La Favorita, vista general con ventanal."),
-
-    ("Coworking Banco Municipal 2.jpg", "proy-banco-municipal-2.webp",
-     (0.0, 0.0, 1.0, 1.0), 1100,
-     "Mismo coworking: mesa larga y barra con taburetes."),
 ]
 
 
@@ -279,3 +267,78 @@ if __name__ == "__main__":
     for origen, salida, caja, ancho, _ in AMBIENTE:
         nombre, an, al = recortar(origen, salida, caja, ancho)
         print(f"ambiente  {nombre:28s} {an}x{al}")
+
+
+# --------------------------------------------------------------------
+# Fotos de proyectos
+# --------------------------------------------------------------------
+# Salen de posteos de Instagram que nombran la obra. Van enteras, a su
+# proporción, en la página de cada proyecto. Algunas capturas traen
+# bandas negras arriba y abajo (una foto vertical encajada en un cuadro):
+# se recortan antes de guardar.
+#
+# El recorte vive acá y no en AMBIENTE a propósito: ahí hay una foto
+# sobre fondo negro que tiene que quedar como está. Son .jpg, no .webp:
+# la detección de la marca de agua solo mira los .webp de producto, así
+# que no la alteran.
+PROYECTOS = [
+    # (origen, salida, qué muestra)
+    ("Coworking Banco Municipal 1.jpg", "proy-banco-municipal-1.webp",
+     "Coworking de Banco Municipal en La Favorita, vista general con ventanal."),
+    ("Coworking Banco Municipal 2.jpg", "proy-banco-municipal-2.webp",
+     "Mismo coworking: mesa larga y barra con taburetes."),
+
+    ("Don Palacios 1.jpg", "proy-don-palacios-1.webp",
+     "Mesa de reunión frente al revestimiento de listones con TV."),
+    ("Don Palacios 2.jpg", "proy-don-palacios-2.webp",
+     "Escritorio de atención con dos sillas azules y lámpara colgante."),
+    ("Don Palacios 3.jpg", "proy-don-palacios-3.webp",
+     "Recepción: pared de madera con el logo y puerta enrasada. Portada."),
+    ("Don Palacios 4.jpg", "proy-don-palacios-4.webp",
+     "Biblioteca de madera con TV sobre bajo mesada blanco."),
+    ("Don Palacios 5.jpg", "proy-don-palacios-5.webp",
+     "Despacho con mesa de madera y mueble en L blanco."),
+]
+
+
+def quitar_bordes_negros(im, umbral=24, cubre=0.97):
+    """Recorta filas y columnas negras en los bordes.
+
+    Una fila cuenta como banda solo si casi todos sus píxeles son
+    oscuros: un mueble negro contra el borde (una silla, una lámpara)
+    ocupa una parte de la fila, no la fila entera, y no se toca."""
+    a = np.asarray(im.convert("L")) < umbral
+    filas = a.mean(axis=1) >= cubre
+    cols = a.mean(axis=0) >= cubre
+
+    def borde(v):
+        n = 0
+        while n < len(v) and v[n]:
+            n += 1
+        return n
+
+    arriba, abajo = borde(filas), borde(filas[::-1])
+    izq, der = borde(cols), borde(cols[::-1])
+    if arriba + abajo >= im.height or izq + der >= im.width:
+        return im, (0, 0, 0, 0)   # la foto entera es oscura: no se toca
+    return (im.crop((izq, arriba, im.width - der, im.height - abajo)),
+            (arriba, abajo, izq, der))
+
+
+def foto_de_proyecto(origen, salida, ancho=1100):
+    im = Image.open(os.path.join(SRC, origen)).convert("RGB")
+    im, bandas = quitar_bordes_negros(im)
+    if im.width > ancho:
+        im = im.resize((ancho, max(int(im.height * ancho / im.width), 1)), Image.LANCZOS)
+    im.save(os.path.join(DST, salida), "WEBP", quality=88, method=6)
+    return salida, im.width, im.height, bandas
+
+
+if __name__ == "__main__":
+    for origen, salida, _ in PROYECTOS:
+        if not os.path.exists(os.path.join(SRC, origen)):
+            print(f"proyecto  FALTA {origen}")
+            continue
+        nombre, an, al, bandas = foto_de_proyecto(origen, salida)
+        recorte = "  bordes negros (arriba, abajo, izq, der): %s" % (bandas,) if any(bandas) else ""
+        print(f"proyecto  {nombre:28s} {an}x{al}{recorte}")
