@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { PROYECTOS } from "@/lib/datos";
+import { PROYECTOS, type Proyecto } from "@/lib/datos";
 import { Flecha } from "@/components/flecha";
 import { Foto } from "@/components/foto";
 import { Pendiente } from "@/components/pendiente";
@@ -49,20 +49,7 @@ export default function Proyectos() {
         <div className="rejilla-proy">
           {PROYECTOS.map((p, i) => (
             <Revelar as="article" className="proy" key={p.img} orden={i}>
-              <Foto className="proy__foto" src={p.img} alt="Oficina equipada" />
-              <div className="proy__meta">
-                <div>
-                  <h3 className="proy__nombre">
-                    {p.nombre || <Pendiente>Nombre del proyecto</Pendiente>}
-                  </h3>
-                  <p style={{ fontSize: "var(--t-sm)", color: "var(--humo)", marginTop: "0.2rem" }}>
-                    {p.descripcion || <Pendiente>Qué se equipó</Pendiente>}
-                  </p>
-                </div>
-                <span className="proy__lugar">
-                  {p.lugar || <Pendiente>Lugar</Pendiente>}
-                </span>
-              </div>
+              <TarjetaProyecto p={p} />
             </Revelar>
           ))}
         </div>
@@ -99,5 +86,45 @@ export default function Proyectos() {
         </Revelar>
       </section>
     </>
+  );
+}
+
+/**
+ * Los proyectos con página propia son un enlace entero; los de nombre
+ * pendiente quedan como tarjeta suelta, porque no hay nada que mostrar
+ * más allá de la foto.
+ */
+function TarjetaProyecto({ p }: { p: Proyecto }) {
+  const cantidad = p.fotos?.length ?? 0;
+  const contenido = (
+    <>
+      <Foto
+        className="proy__foto"
+        src={p.img}
+        alt={p.nombre || "Oficina equipada"}
+        pie={cantidad > 1 ? `${cantidad} fotos` : undefined}
+      />
+      <div className="proy__meta">
+        <div>
+          <h3 className="proy__nombre">
+            {p.nombre || <Pendiente>Nombre del proyecto</Pendiente>}
+          </h3>
+          <p style={{ fontSize: "var(--t-sm)", color: "var(--humo)", marginTop: "0.2rem" }}>
+            {p.descripcion || <Pendiente>Qué se equipó</Pendiente>}
+          </p>
+        </div>
+        <span className="proy__lugar">
+          {p.lugar || <Pendiente>Lugar</Pendiente>}
+        </span>
+      </div>
+    </>
+  );
+
+  return p.slug ? (
+    <Link className="proy__enlace" href={`/proyectos/${p.slug}`}>
+      {contenido}
+    </Link>
+  ) : (
+    contenido
   );
 }

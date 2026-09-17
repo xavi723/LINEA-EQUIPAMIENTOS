@@ -127,7 +127,18 @@ export interface Proyecto {
   nombre: string;
   lugar: string;
   descripcion: string;
+  /** Foto de la tarjeta en el listado. */
   img: string;
+  /**
+   * Solo los proyectos identificados tienen página propia, en
+   * /proyectos/<slug>. Los de nombre pendiente quedan como tarjeta.
+   */
+  slug?: string;
+  bajada?: string;
+  texto?: string;
+  linea?: string;
+  /** Galería de la página del proyecto, en orden. */
+  fotos?: string[];
 }
 
 /**
@@ -138,8 +149,23 @@ export interface Proyecto {
  * obras muestra cada una de las fotos que tenemos. Poner un nombre real
  * debajo de una foto que quizá sea de otra obra es una atribución
  * falsa, así que las tarjetas van con el nombre pendiente.
+ *
+ * Las que sí tienen nombre salen de posteos de Instagram donde la obra
+ * está identificada junto a sus fotos.
  */
 export const PROYECTOS: Proyecto[] = [
+  {
+    slug: "coworking-banco-municipal",
+    nombre: "Coworking Banco Municipal",
+    lugar: "La Favorita",
+    descripcion: "Línea Strada: base metálica y tapas de melamina",
+    bajada: "Soluciones para coworking con diseño liviano y estructura sólida.",
+    texto:
+      "Base metálica y tapas de melamina, pensadas para optimizar espacios de trabajo.",
+    linea: "Línea Strada",
+    img: "proy-banco-municipal-1.webp",
+    fotos: ["proy-banco-municipal-1.webp", "proy-banco-municipal-2.webp"],
+  },
   { nombre: "", lugar: "", descripcion: "", img: "amb-atrio.webp" },
   { nombre: "", lugar: "", descripcion: "", img: "amb-lounge.webp" },
 ];

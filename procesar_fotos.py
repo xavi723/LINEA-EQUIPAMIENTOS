@@ -244,6 +244,19 @@ AMBIENTE = [
     ("Sillas ergonomicas diseñadas para tu comodidad.webp", "amb-silla-negro.webp",
      (0.0, 0.0, 0.32, 1.0), 700,
      "Silla ergonómica sobre negro, a la izquierda del titular."),
+
+    # De un posteo de Instagram que nombra la obra y la línea usada.
+    # Es un .jpg, no .webp: la detección de la marca de agua solo mira
+    # los .webp de producto, así que no la altera.
+    # Van enteras: se muestran a su proporción (3:2) en la página del
+    # proyecto, sin recorte.
+    ("Coworking Banco Municipal 1.jpg", "proy-banco-municipal-1.webp",
+     (0.0, 0.0, 1.0, 1.0), 1100,
+     "Coworking de Banco Municipal en La Favorita, vista general con ventanal."),
+
+    ("Coworking Banco Municipal 2.jpg", "proy-banco-municipal-2.webp",
+     (0.0, 0.0, 1.0, 1.0), 1100,
+     "Mismo coworking: mesa larga y barra con taburetes."),
 ]
 
 

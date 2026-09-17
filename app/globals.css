@@ -684,7 +684,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .proy__meta { display: flex; justify-content: space-between; gap: var(--e-2); margin-top: 0.85rem; }
 .proy__nombre { font-family: var(--display); font-size: var(--t-md); font-weight: 600; }
-.proy__lugar { font-family: var(--dato); font-size: var(--t-xs); color: var(--humo); }
+.proy__lugar { font-family: var(--dato); font-size: var(--t-xs); color: var(--humo); white-space: nowrap; }
 .proy--ancho { grid-column: 1 / -1; }
 .proy--ancho .proy__foto { aspect-ratio: 21 / 9; }
 
@@ -1151,3 +1151,64 @@ div.pendiente {
    marca ✎ entraría como un tercer ítem y se iría a su propio renglón.
    Ahí alcanza con el punteado y el gris para que se lea como relleno. */
 .tel.pendiente::before { content: none; }
+
+/* ---------- 29. Página de proyecto ----------
+   Las tarjetas con página propia son un enlace entero; el hover de la
+   foto (sección 20) sigue funcionando porque vive en .proy. */
+.proy__enlace { display: block; }
+.proy__enlace:focus-visible { outline: 2px solid var(--naranja); outline-offset: 4px; }
+
+.proy-det__enc {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--e-6);
+  align-items: end;
+}
+.proy-det__bajada {
+  margin-top: var(--e-3);
+  font-family: var(--display);
+  font-size: var(--t-md);
+  max-width: 32ch;
+}
+.proy-det__texto { color: var(--humo); max-width: 46ch; }
+.proy-det__ficha { margin-top: var(--e-4); border-top: var(--borde); }
+.proy-det__ficha div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--e-2);
+  padding-block: 0.8rem;
+  border-bottom: var(--borde);
+}
+.proy-det__ficha dt {
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--humo);
+}
+
+.proy-det__galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--e-3); }
+.proy-det__foto { aspect-ratio: 3 / 2; }
+
+.proy-det__cierre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+  padding-top: 0;
+}
+.enlace-volver {
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--humo);
+}
+.enlace-volver::before { content: "← "; }
+.enlace-volver:hover { color: var(--naranja); }
+
+@media (max-width: 900px) {
+  .proy-det__enc { grid-template-columns: 1fr; gap: var(--e-3); }
+  .proy-det__galeria { grid-template-columns: 1fr; }
+}

@@ -88,6 +88,7 @@ app/
   catalogo/           catálogo con filtros
   servicios/          diseño 3D, fabricación, instalación
   proyectos/          casos entregados
+    [slug]/           página de cada proyecto con nombre, con su galería
   contacto/           formulario y direcciones
 components/
   ui/number-ticker.tsx  cifras que cuentan al entrar en pantalla
@@ -168,7 +169,10 @@ la versión de referencia, y el motivo de cada una:
   dicen «Medidas y terminaciones a consultar» en vez de inventar
   milímetros. Cuando la empresa las pase, se cargan en `PRODUCTOS`.
 - El catálogo son 12 piezas, las que tienen foto. El real es más grande.
-- Proyectos tiene dos, los documentados con foto y crédito.
+- Proyectos tiene tres: el Coworking Banco Municipal (nombrado en un
+  posteo de Instagram, con página propia y dos fotos) y dos fotos de obra
+  con el nombre pendiente. Para sumar uno con página, cargale `slug` y
+  `fotos` en `PROYECTOS`.
 - Los teléfonos figuran en la web de la empresa sin característica;
   asumí (0341), que es la de Rosario.
 
