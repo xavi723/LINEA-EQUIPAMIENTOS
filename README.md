@@ -169,10 +169,11 @@ la versión de referencia, y el motivo de cada una:
   dicen «Medidas y terminaciones a consultar» en vez de inventar
   milímetros. Cuando la empresa las pase, se cargan en `PRODUCTOS`.
 - El catálogo son 12 piezas, las que tienen foto. El real es más grande.
-- Proyectos tiene seis: Coworking Banco Municipal, Don Palacios
-  Construcciones, Banco Municipal y BCRlabs (los cuatro con página propia
-  y galería, con fotos que mandó la empresa) y dos fotos de obra con el
-  nombre pendiente. A Don Palacios y a Banco Municipal les falta el lugar.
+- Proyectos son cuatro: Coworking Banco Municipal, Don Palacios
+  Construcciones, Banco Municipal y BCRlabs, todos con página propia y
+  galería, con fotos que mandó la empresa. A Don Palacios y a Banco
+  Municipal les falta el lugar. Las dos tarjetas anónimas que había antes
+  salieron: al lado de cuatro obras con nombre se leían como un error.
 - Ojo con los dos del banco: el coworking de La Favorita y la sucursal son
   proyectos distintos para el mismo cliente.
 - Para sumar un proyecto con página: poné las fotos en `fotos-originales/`,

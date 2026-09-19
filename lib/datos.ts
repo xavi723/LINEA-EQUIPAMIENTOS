@@ -158,9 +158,15 @@ export interface Proyecto {
  * Bolsa de Comercio, Núcleo Servicios, la Asociación Rosarina de
  * Fútbol, Óptica Contini, la Cooperativa de Trabajo Paraná y la
  * Municipalidad de Puerto San Martín), pero no sabemos cuál de esas
- * obras muestra cada una de las fotos que tenemos. Poner un nombre real
- * debajo de una foto que quizá sea de otra obra es una atribución
- * falsa, así que las tarjetas van con el nombre pendiente.
+ * obras muestra cada una de las fotos de ambiente que tenemos. Poner un
+ * nombre real debajo de una foto que quizá sea de otra obra es una
+ * atribución falsa.
+ *
+ * Mientras el listado eran solo esas fotos, iban como tarjetas con el
+ * nombre pendiente. Ahora que hay cuatro obras identificadas, dos
+ * tarjetas anónimas al lado se leen como un error y no como un hueco,
+ * así que salieron. Sus fotos siguen en uso en la portada y en
+ * servicios.
  *
  * Las que sí tienen nombre salen de posteos de Instagram donde la obra
  * está identificada junto a sus fotos.
@@ -238,8 +244,6 @@ export const PROYECTOS: Proyecto[] = [
       { src: "proy-bcrlabs-9.webp", ancho: 1100, alto: 1100 },
     ],
   },
-  { nombre: "", lugar: "", descripcion: "", img: "amb-atrio.webp" },
-  { nombre: "", lugar: "", descripcion: "", img: "amb-lounge.webp" },
 ];
 
 export const NAVEGACION = [

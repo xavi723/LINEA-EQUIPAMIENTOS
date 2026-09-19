@@ -11,7 +11,7 @@
      madera clara, verde del logo). Todo se pinta explícito. */
   --tinta:      #0C1F1A;  /* verde-negro del isotipo */
   --tinta-80:   #33463F;
-  --humo:       #6E7773;  /* neutro sesgado al verde, no gris puro */
+  --humo:       #636C68;  /* neutro sesgado al verde; 4.9:1 sobre papel, AA */
   --humo-claro: #9AA29D;
   --papel:      #F4F3EF;  /* blanco de plano técnico */
   --papel-puro: #FCFBF8;
@@ -876,6 +876,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
   .fila-serv:hover { background: var(--papel-puro); }
   .proy:hover .proy__foto::after { background: rgba(12,31,26,0.16); }
+  .enlace-volver:hover { color: var(--naranja); }
+  .enlace-volver:hover::before { transform: translateX(-4px); }
 }
 
 /* ---------- 21. Secuencia de entrada de la portada ----------
@@ -907,8 +909,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
     transition: none;
   }
 
-  .btn__flecha, .enlace-flecha svg, .nav__enlace::after { transition: none; }
-  .btn:active, .btn-sumar:active { transform: none; }
+  .btn__flecha, .enlace-flecha svg, .nav__enlace::after,
+  .enlace-volver::before, .proy__enlace { transition: none; }
+  .btn:active, .btn-sumar:active, .proy__enlace:active { transform: none; }
 
   /* El cajón y el aviso siguen apareciendo, pero sin viajar. */
   .panel {
@@ -997,6 +1000,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
   left: -9999px;
   top: 0;
   z-index: 100;
+}
+
+/* Título que ordena el documento para un lector de pantalla sin ocupar
+   lugar en la página. */
+.solo-lector {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 .saltar:focus { left: 1rem; top: 1rem; }
 
@@ -1106,7 +1120,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
    ────────────────────────────────────────────────────────────────── */
 .pendiente {
   display: inline;
-  color: color-mix(in srgb, currentColor 55%, transparent);
+  color: color-mix(in srgb, currentColor 62%, transparent);
   text-decoration: underline dashed
     color-mix(in srgb, currentColor 35%, transparent);
   text-underline-offset: 0.28em;
@@ -1123,7 +1137,7 @@ h3 > .pendiente,
   text-decoration: none;
   font-style: normal;
   font-weight: 500;
-  color: color-mix(in srgb, currentColor 42%, transparent);
+  color: color-mix(in srgb, currentColor 46%, transparent);
 }
 
 /* La marca que lo identifica de un vistazo al recorrer la página. En un
@@ -1155,7 +1169,11 @@ div.pendiente {
 /* ---------- 29. Página de proyecto ----------
    Las tarjetas con página propia son un enlace entero; el hover de la
    foto (sección 20) sigue funcionando porque vive en .proy. */
-.proy__enlace { display: block; }
+.proy__enlace { display: block; transition: transform var(--d-pulso) var(--curva); }
+/* La tarjeta es el enlace principal del listado y no respondía al
+   click, a diferencia de los botones. Menos escala que un botón: la
+   superficie es mucho más grande y el mismo factor se ve exagerado. */
+.proy__enlace:active { transform: scale(0.99); }
 .proy__enlace:focus-visible { outline: 2px solid var(--naranja); outline-offset: 4px; }
 
 .proy-det__enc {
@@ -1209,8 +1227,14 @@ div.pendiente {
   text-transform: uppercase;
   color: var(--humo);
 }
-.enlace-volver::before { content: "← "; }
-.enlace-volver:hover { color: var(--naranja); }
+/* inline-block para que la flecha acepte transform, como el resto de
+   las flechas del sitio. */
+.enlace-volver::before {
+  content: "←";
+  display: inline-block;
+  margin-right: 0.4em;
+  transition: transform var(--d-menu) var(--curva);
+}
 
 @media (max-width: 900px) {
   .proy-det__enc { grid-template-columns: 1fr; gap: var(--e-3); }

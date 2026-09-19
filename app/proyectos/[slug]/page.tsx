@@ -51,18 +51,30 @@ export default async function ProyectoDetalle({ params }: Params) {
       </div>
 
       <section className="env" style={{ paddingBottom: "3rem" }}>
+        {/*
+          Entra como la portada: es lo primero que se ve al abrir el
+          proyecto y aparecía de golpe mientras las fotos de abajo sí se
+          revelaban. Animación CSS y no JS, porque corre mientras la
+          página todavía carga fuentes y fotos.
+        */}
         <div className="proy-det__enc">
           <div>
-            <div className="etiqueta">Proyecto</div>
-            <h1 style={{ fontSize: "var(--t-2xl)" }}>{p.nombre}</h1>
-            {p.bajada ? <p className="proy-det__bajada">{p.bajada}</p> : null}
+            <div className="etiqueta entra">Proyecto</div>
+            <h1 className="entra" style={{ fontSize: "var(--t-2xl)", ["--paso" as string]: "70ms" }}>
+              {p.nombre}
+            </h1>
+            {p.bajada ? (
+              <p className="proy-det__bajada entra" style={{ ["--paso" as string]: "140ms" }}>
+                {p.bajada}
+              </p>
+            ) : null}
           </div>
-          <div>
+          <div className="entra" style={{ ["--paso" as string]: "210ms" }}>
             {p.texto ? <p className="proy-det__texto">{p.texto}</p> : null}
             <dl className="proy-det__ficha">
               <div>
                 <dt>Lugar</dt>
-                <dd>{p.lugar || <Pendiente>Lugar</Pendiente>}</dd>
+                <dd>{p.lugar || <Pendiente>A confirmar</Pendiente>}</dd>
               </div>
               {p.linea ? (
                 <div>

@@ -46,6 +46,7 @@ export default function Proyectos() {
         una imagen que puede ser de otra.
       */}
       <section className="seccion--ajustada env">
+        <h2 className="solo-lector">Proyectos entregados</h2>
         <div className="rejilla-proy">
           {PROYECTOS.map((p, i) => (
             <Revelar as="article" className="proy" key={p.img} orden={i}>
