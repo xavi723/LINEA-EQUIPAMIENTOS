@@ -1253,3 +1253,38 @@ div.pendiente {
   .proy-det__enc { grid-template-columns: 1fr; gap: var(--e-3); }
   .proy-det__galeria, .proy-det__galeria--verticales { columns: 1; }
 }
+
+/* ---------- 31. Showroom ----------
+   Una foto alta del frente, que es lo que la persona va a buscar en la
+   calle, y dos del interior al lado. Debajo, los datos para ir. */
+.showroom { display: grid; grid-template-columns: 1.35fr 1fr; gap: var(--e-3); }
+.showroom__col { display: grid; gap: var(--e-3); align-content: stretch; }
+.showroom__col > * { display: flex; }
+.showroom__col .showroom__foto { flex: 1; }
+.showroom__foto { aspect-ratio: 4 / 3; width: 100%; }
+.showroom__foto--alta { aspect-ratio: auto; height: 100%; min-height: 26rem; }
+
+.showroom__datos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--e-3);
+  margin-top: var(--e-4);
+  padding-top: var(--e-3);
+  border-top: var(--borde);
+}
+.showroom__datos dt {
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--humo);
+  margin-bottom: 0.4rem;
+}
+.showroom__datos dd { line-height: 1.55; }
+.showroom__cta { margin-top: var(--e-4); }
+
+@media (max-width: 900px) {
+  .showroom { grid-template-columns: 1fr; }
+  .showroom__foto--alta { min-height: 0; aspect-ratio: 4 / 3; }
+  .showroom__datos { grid-template-columns: 1fr; gap: var(--e-2); }
+}

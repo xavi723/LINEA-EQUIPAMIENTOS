@@ -338,6 +338,18 @@ PROYECTOS = [
      "Puestos operativos con tabique divisorio y cajoneras."),
     ("BCRlabs 9.jpg", "proy-bcrlabs-9.webp",
      "Detalle de la pata del escritorio y el divisor."),
+
+    # Showroom de Bv. Rondeau. La 1 es la de la portada; las otras tres
+    # arman el apartado. Los originales miden 960 px de ancho: alcanzan
+    # para la grilla, y en la portada se estiran (ver nota en el README).
+    ("Showroom 1.jpg", "showroom-salon.webp",
+     "Salón principal del showroom. Va en la portada."),
+    ("Showroom 2.jpg", "showroom-frente.webp",
+     "Frente del edificio de Bv. Rondeau 3042, con el cartel."),
+    ("Showroom 3.jpg", "showroom-sillas.webp",
+     "Sector de sillas de colores contra el patio."),
+    ("Showroom 4.jpg", "showroom-escritorio.webp",
+     "Escritorio ejecutivo junto al ventanal a la calle."),
 ]
 
 

@@ -16,7 +16,11 @@ export default function Inicio() {
   return (
     <>
       <section className="portada">
-        <Foto className="portada__foto" src="amb-portada.webp" alt="Oficina equipada" />
+        <Foto
+          className="portada__foto"
+          src="showroom-salon.webp"
+          alt={`Salón del showroom de Altobello Victorio en ${EMPRESA.showroom.calle}`}
+        />
         <div className="portada__velo" />
 
         <div className="env portada__contenido">
@@ -182,6 +186,68 @@ export default function Inicio() {
           </p>
           <Link className="btn btn--linea" href="/catalogo">Ver todas las sillas <Flecha /></Link>
         </div>
+      </section>
+
+      {/* Showroom. Las fotos son del local de Bv. Rondeau. */}
+      <section className="seccion env" id="showroom">
+        <Revelar className="enc-seccion">
+          <div>
+            <div className="etiqueta">Showroom</div>
+            <h2>Vení a probarlas<br />en {EMPRESA.showroom.calle}</h2>
+          </div>
+          <p>
+            Sentarte en las sillas, medir los escritorios y ver las terminaciones de
+            cerca es la mejor forma de elegir. Te esperamos.
+          </p>
+        </Revelar>
+
+        <div className="showroom">
+          <Revelar>
+            <Foto
+              className="showroom__foto showroom__foto--alta"
+              src="showroom-frente.webp"
+              alt={`Frente del showroom en ${EMPRESA.showroom.calle}`}
+            />
+          </Revelar>
+          <div className="showroom__col">
+            <Revelar orden={1}>
+              <Foto
+                className="showroom__foto"
+                src="showroom-sillas.webp"
+                alt="Sector de sillas del showroom, contra el patio"
+              />
+            </Revelar>
+            <Revelar orden={2}>
+              <Foto
+                className="showroom__foto"
+                src="showroom-escritorio.webp"
+                alt="Escritorio ejecutivo junto al ventanal del showroom"
+              />
+            </Revelar>
+          </div>
+        </div>
+
+        <Revelar>
+          <dl className="showroom__datos">
+            <div>
+              <dt>Dónde</dt>
+              <dd>{EMPRESA.showroom.calle}<br />{EMPRESA.ciudad}</dd>
+            </div>
+            <div>
+              <dt>Horario</dt>
+              <dd>{EMPRESA.showroom.horario}</dd>
+            </div>
+            <div>
+              <dt>Consultas</dt>
+              <dd>
+                <a href={`mailto:${EMPRESA.showroom.mail}`}>{EMPRESA.showroom.mail}</a>
+              </dd>
+            </div>
+          </dl>
+          <Link className="btn btn--linea showroom__cta" href="/contacto">
+            Cómo llegar <Flecha />
+          </Link>
+        </Revelar>
       </section>
 
       <section className="seccion env" style={{ textAlign: "center" }}>

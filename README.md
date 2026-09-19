@@ -143,6 +143,12 @@ la imagen, porque son piezas de la web actual. El script recorta las
 zonas limpias en vez de taparlo, para no superponer dos titulares. El
 detalle está en [`public/img/README.md`](public/img/README.md).
 
+La portada usa una foto del showroom propio. **Los originales del
+showroom miden 960 px de ancho**, así que a pantalla completa se estiran
+y pierden nitidez en monitores grandes. Si la empresa tiene esa misma
+foto en tamaño original, reemplazarla en `fotos-originales/Showroom
+1.jpg` y correr `npm run fotos` alcanza.
+
 ## Las cifras que cuentan
 
 `components/ui/number-ticker.tsx` anima las cifras de la portada al
