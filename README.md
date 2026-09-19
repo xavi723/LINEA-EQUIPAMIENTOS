@@ -169,10 +169,12 @@ la versión de referencia, y el motivo de cada una:
   dicen «Medidas y terminaciones a consultar» en vez de inventar
   milímetros. Cuando la empresa las pase, se cargan en `PRODUCTOS`.
 - El catálogo son 12 piezas, las que tienen foto. El real es más grande.
-- Proyectos tiene cuatro: Coworking Banco Municipal y Don Palacios
-  Construcciones (nombrados en posteos de Instagram, con página propia y
-  galería) y dos fotos de obra con el nombre pendiente. A Don Palacios le
-  falta el lugar.
+- Proyectos tiene seis: Coworking Banco Municipal, Don Palacios
+  Construcciones, Banco Municipal y BCRlabs (los cuatro con página propia
+  y galería, con fotos que mandó la empresa) y dos fotos de obra con el
+  nombre pendiente. A Don Palacios y a Banco Municipal les falta el lugar.
+- Ojo con los dos del banco: el coworking de La Favorita y la sucursal son
+  proyectos distintos para el mismo cliente.
 - Para sumar un proyecto con página: poné las fotos en `fotos-originales/`,
   sumalas a `PROYECTOS` en `procesar_fotos.py` (recorta solo las bandas
   negras de los bordes, si las hay) y cargá `slug` y `fotos` con las medidas
