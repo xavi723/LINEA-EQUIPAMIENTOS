@@ -181,7 +181,7 @@ export const PROYECTOS: Proyecto[] = [
     texto:
       "Base metálica y tapas de melamina, pensadas para optimizar espacios de trabajo.",
     linea: "Línea Strada",
-    img: "proy-banco-municipal-1.webp",
+    img: "proy-banco-municipal-2.webp",
     fotos: [
       { src: "proy-banco-municipal-1.webp", ancho: 1067, alto: 712 },
       { src: "proy-banco-municipal-2.webp", ancho: 1070, alto: 716 },

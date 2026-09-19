@@ -18,8 +18,8 @@ export default function Inicio() {
       <section className="portada">
         <Foto
           className="portada__foto"
-          src="showroom-salon.webp"
-          alt={`Salón del showroom de Altobello Victorio en ${EMPRESA.showroom.calle}`}
+          src="proy-banco-municipal-1.webp"
+          alt="Coworking del Banco Municipal equipado por Altobello Victorio"
         />
         <div className="portada__velo" />
 
