@@ -164,6 +164,11 @@ la versión de referencia, y el motivo de cada una:
 
 ## Pendiente de confirmar con la empresa
 
+- La empresa pasó su texto institucional, así que ya están escritos con
+  sus palabras: la bajada de portada, el párrafo de «Una empresa
+  familiar», la introducción a los servicios (portada y página) y la
+  bajada de proyectos. Siguen pendientes la introducción al catálogo, las
+  sillas, el proyecto destacado y los textos de cierre.
 - Los nombres de producto y las familias salen de los nombres de archivo
   de las fotos, así que son reales. Las **medidas no están**: las fichas
   dicen «Medidas y terminaciones a consultar» en vez de inventar

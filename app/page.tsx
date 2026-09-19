@@ -31,10 +31,8 @@ export default function Inicio() {
           </h1>
 
           <p className="portada__bajada entra" style={{ ["--paso" as string]: "140ms" }}>
-            <Pendiente>
-              Bajada de portada — dos o tres líneas que la empresa tiene que
-              definir.
-            </Pendiente>
+            Empresa familiar desde {EMPRESA.desde}. Queremos ayudarte a aprovechar al
+            máximo tu oficina, acompañar tu pasión y hacer realidad tu sueño.
           </p>
 
           <div className="portada__acciones entra" style={{ ["--paso" as string]: "210ms" }}>
@@ -86,10 +84,11 @@ export default function Inicio() {
           {/* "Empresa familiar" y "desde 1959" están verificados. */}
           <h2>Una empresa familiar,<br />desde {EMPRESA.desde}.</h2>
           <p>
-            <Pendiente>
-              Historia de la empresa — quiénes son, cómo empezaron, qué los
-              distingue. Este es el párrafo que más conviene que escriban ellos.
-            </Pendiente>
+            Somos una empresa familiar en crecimiento que, desde sus inicios en{" "}
+            {EMPRESA.desde}, busca soluciones para que puedas mejorar tu jornada laboral
+            y experimentar el placer de trabajar. Trabajamos con un equipo de personas
+            llenas de valores humanos y profesionales, que aportan sus habilidades en
+            cada proyecto.
           </p>
           <Link className="btn btn--claro" href="/proyectos">
             Ver proyectos <Flecha />
@@ -125,9 +124,9 @@ export default function Inicio() {
               <h2>Tres servicios<br />alrededor del mueble</h2>
             </div>
             <p>
-              <Pendiente>
-                Introducción a los servicios — a completar con la empresa.
-              </Pendiente>
+              Juntos creamos el diseño ideal para cada oficina, con soluciones
+              simples, eficaces y accesibles que te permitan optimizar tus recursos y
+              maximizar tu rentabilidad.
             </p>
           </Revelar>
 

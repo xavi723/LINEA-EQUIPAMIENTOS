@@ -31,9 +31,9 @@ export default function Servicios() {
             </h1>
           </div>
           <p>
-            <Pendiente>
-              Bajada de la página de servicios — a completar con la empresa.
-            </Pendiente>
+            Juntos creamos el diseño ideal para cada oficina, con soluciones
+            simples, eficaces y accesibles que te permitan optimizar tus recursos y
+            maximizar tu rentabilidad.
           </p>
         </div>
       </section>

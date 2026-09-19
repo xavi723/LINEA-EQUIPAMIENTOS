@@ -535,6 +535,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: rgba(12,31,26,0);
   transition: background var(--d-hover) var(--curva-hover);
 }
+/* El aro aparece y se va con el hover (sección 20). Se ve decenas de
+   veces por día, así que va rápido: 140 ms. */
+.prod__foto, .cat__foto, .proy__foto {
+  transition: box-shadow var(--d-hover) var(--curva-hover),
+              border-color var(--d-hover) var(--curva-hover);
+}
 .prod__codigo {
   font-family: var(--dato);
   font-size: var(--t-xs);
@@ -871,6 +877,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
   .prod:hover .prod__foto::after { background: rgba(12,31,26,0.10); }
   .prod:hover .prod__nombre { color: var(--naranja); }
+
+  /* El aro de marca: dice "esto responde" con el naranja del tapizado,
+     sin mover nada de lugar. Va por dentro para no empujar la grilla. */
+  .prod:hover .prod__foto,
+  .cat:hover .cat__foto,
+  .proy:hover .proy__foto { box-shadow: inset 0 0 0 2px var(--naranja); }
+  .prod:hover .prod__foto { border-color: var(--naranja); }
 
   .btn-sumar:hover { background: var(--tinta); color: var(--papel-puro); border-color: var(--tinta); }
 

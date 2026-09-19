@@ -32,9 +32,8 @@ export default function Proyectos() {
             </h1>
           </div>
           <p>
-            <Pendiente>
-              Bajada de la página de proyectos — a completar con la empresa.
-            </Pendiente>
+            Apostamos por las soluciones prácticas, para tomar decisiones basadas en
+            la realidad. Estas son algunas de las oficinas que equipamos.
           </p>
         </div>
       </section>
