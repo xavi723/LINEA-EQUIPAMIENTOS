@@ -55,9 +55,9 @@ export default function Inicio() {
             <h2>Todo lo que entra en una oficina</h2>
           </div>
           <p>
-            <Pendiente>
-              Texto de introducción al catálogo — a completar con la empresa.
-            </Pendiente>
+            Escritorios, asientos, guardado y accesorios. Fabricamos nuestras propias
+            líneas —Strada, Tetra y Ejecutiva— y también resolvemos los pedidos a
+            medida, cuando el espacio pide otra cosa.
           </p>
         </Revelar>
 
@@ -159,10 +159,9 @@ export default function Inicio() {
             <div className="fila-serv__n">03</div>
             <h3>Transporte e instalación</h3>
             <p>
-              <Pendiente>
-                Descripción del servicio de transporte e instalación — a
-                completar con la empresa.
-              </Pendiente>
+              Llevamos las piezas hasta tu oficina y las dejamos armadas y en su
+              lugar. Coordinamos el día y la hora para que el movimiento no te
+              frene el trabajo.
             </p>
             <Link className="enlace-flecha" href="/contacto">Coordinar una visita <Flecha className="" /></Link>
           </Revelar>
@@ -175,11 +174,10 @@ export default function Inicio() {
           <div className="etiqueta">Sillas</div>
           <h2>Nuestras<br />sillas</h2>
           <p>
-            <Pendiente>
-              Características de las sillas: regulaciones, materiales, tapizados
-              disponibles y garantía. Son datos técnicos que tiene que dar la
-              empresa, no se pueden suponer.
-            </Pendiente>
+            Ergonómicas, operativas, de recepción y ejecutivas: más de veinte modelos,
+            entre ellos Cool, Cool Jazz, Equis, Trieste, Tokio y Citiz. Cada uno se
+            arma en la versión que necesitás —rodante con gas, cuatro patas apilable,
+            trineo, tándem o cajera— tapizada o en plástico.
           </p>
           <p style={{ marginTop: "1rem" }}>
             Podés probarlas en el showroom de {EMPRESA.showroom.calle} antes de comprar.
@@ -255,10 +253,9 @@ export default function Inicio() {
           <div className="etiqueta" style={{ justifyContent: "center" }}>Siguiente paso</div>
           <h2>Contanos qué espacio<br />tenés que equipar</h2>
           <p style={{ margin: "1.25rem auto 0", color: "var(--humo)" }}>
-            <Pendiente>
-              Texto de cierre — qué le pedimos al visitante y qué recibe a
-              cambio. A completar con la empresa.
-            </Pendiente>
+            Contanos cuántos puestos tenés que equipar y cómo es el lugar. Nuestro
+            equipo de arquitectura diseña la oficina con vos, y después la fabricamos,
+            la llevamos y la instalamos.
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", marginTop: "2rem" }}>
             <Link className="btn btn--acento" href="/contacto">Pedir presupuesto <Flecha /></Link>

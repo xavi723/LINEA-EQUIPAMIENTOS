@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { CATEGORIAS, PRODUCTOS } from "@/lib/datos";
 import { CatalogoCliente } from "@/components/catalogo-cliente";
-import { Pendiente } from "@/components/pendiente";
 
 export const metadata: Metadata = {
   title: "Catálogo",
@@ -31,9 +30,9 @@ export default function Catalogo() {
             <h1 style={{ fontSize: "var(--t-2xl)" }}>Catálogo</h1>
           </div>
           <p>
-            <Pendiente>
-              Bajada del catálogo — a completar con la empresa.
-            </Pendiente>
+            Escritorios, asientos, mesas de reunión y accesorios de nuestras líneas
+            Strada, Tetra y Ejecutiva. Estas son las piezas con foto; el catálogo
+            completo es más grande y lo recorremos juntos en el showroom.
           </p>
         </div>
       </section>

@@ -56,20 +56,16 @@ export default function Proyectos() {
       </section>
 
       <section className="banda banda--oscura">
-        <Foto className="banda__foto" src="amb-biblioteca.webp" alt="Oficina equipada" />
+        <Foto className="banda__foto" src="proy-bcrlabs-4.webp" alt="Despacho vidriado de BCRlabs" />
         <div className="banda__texto">
           <div className="etiqueta">Un caso</div>
-          <h2>
-            <Pendiente>Proyecto destacado</Pendiente>
-          </h2>
+          <h2>BCRlabs,<br />Bolsa de Comercio</h2>
           <p>
-            <Pendiente>
-              El caso que la empresa quiera contar en detalle: qué pedía el
-              cliente, qué se resolvió y con qué piezas. Nombre, fotos y datos
-              los tienen que dar ellos.
-            </Pendiente>
+            Un espacio de innovación y trabajo colaborativo, equipado de punta a
+            punta: salas de reunión, despachos vidriados, islas de puestos y
+            guardado. Todo el mobiliario, diseñado a medida.
           </p>
-          <Link className="btn btn--claro" href="/contacto">Contanos tu proyecto <Flecha /></Link>
+          <Link className="btn btn--claro" href="/proyectos/bcrlabs">Ver el proyecto <Flecha /></Link>
         </div>
       </section>
 
@@ -78,7 +74,9 @@ export default function Proyectos() {
           <div className="etiqueta" style={{ justifyContent: "center" }}>Tu turno</div>
           <h2>¿Arrancamos con el tuyo?</h2>
           <p style={{ margin: "1.25rem auto 0", color: "var(--humo)" }}>
-            <Pendiente>Texto de cierre — a completar con la empresa.</Pendiente>
+            Empezamos como empezaron estos: escuchando qué necesitás. Nuestro equipo de
+            arquitectura diseña la oficina con vos y nosotros la fabricamos, la
+            llevamos y la instalamos.
           </p>
           <Link className="btn btn--acento" href="/contacto" style={{ marginTop: "2rem" }}>
             Pedir presupuesto <Flecha />

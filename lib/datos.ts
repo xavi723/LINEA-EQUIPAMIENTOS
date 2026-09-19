@@ -25,30 +25,29 @@ export const EMPRESA = {
 
   showroom: {
     calle: "Bv. Rondeau 3042",
-    horario: "Lunes a viernes de 9 a 18 h",
+    horario: "Lunes a viernes de 9 a 17 h",
     mail: "presupuestos@altobellovictorio.com.ar",
   },
 
   fabrica: {
     calle: "Pedro Goyena 1023",
-    horario: "Lunes a viernes de 8 a 12 y de 13 a 17 h · Viernes hasta las 16 h",
+    horario: "Lunes a jueves de 9 a 17 h · Viernes hasta las 16 h",
     mail: "administracion@altobellovictorio.com.ar",
   },
 } as const;
 
 /**
- * Ningún número real en el boceto.
+ * Teléfono y WhatsApp. Sale de la página de contacto de la propia
+ * empresa (altobellovictorio.com.ar): publica un solo número para las
+ * dos cosas, así que el enlace tel: y el botón de WhatsApp van ahí.
  *
- * Un teléfono es el dato que más caro sale equivocado: si me confundo de
- * bloque, alguien llama a la fábrica creyendo que llama al showroom, o
- * peor, a un número que no es de la empresa. Y a diferencia de un texto
- * mal puesto, un botón que marca se usa sin pensarlo.
- *
- * Así que hasta que la empresa confirme cada número y a qué dirección
- * corresponde, en pantalla va este relleno y no se enlaza a ningún lado:
- * un tel: a un número inventado es peor que no tener el enlace.
+ * Es el dato que más caro sale equivocado, así que si la empresa usa
+ * números distintos para showroom y fábrica, este es el lugar donde
+ * corregirlo.
  */
-export const TELEFONO = "000 000-0000" as const;
+export const TELEFONO = "+54 341 532 1776" as const;
+/** El mismo número, sin formato, para tel: y wa.me. */
+export const TELEFONO_CRUDO = "5493415321776" as const;
 
 export type ClaveCategoria = "escritorios" | "sillas" | "reunion" | "accesorios";
 
@@ -74,19 +73,19 @@ export const CATEGORIAS: Categoria[] = [
   {
     clave: "sillas",
     nombre: "Sillas",
-    descripcion: "",
+    descripcion: "Ergonómicas, operativas y de recepción",
     portada: "cat-sillas.webp",
   },
   {
     clave: "reunion",
     nombre: "Salas de reunión",
-    descripcion: "",
+    descripcion: "Mesas rectangulares, redondas y bote",
     portada: "cat-reunion.webp",
   },
   {
     clave: "accesorios",
     nombre: "Accesorios",
-    descripcion: "",
+    descripcion: "Percheros, cestos y pasacables",
     portada: "cat-accesorios.webp",
   },
 ];
@@ -109,18 +108,18 @@ export const PRODUCTOS: Producto[] = [
   { codigo: "escritorio-prisma", nombre: "Escritorio Prisma", linea: "Línea Prisma", categoria: "escritorios", img: "escritorio-prisma.webp" },
   { codigo: "escritorio-strada", nombre: "Escritorio Strada", linea: "Línea Strada", categoria: "escritorios", img: "escritorio-strada.webp" },
   { codigo: "escritorio-tetra", nombre: "Escritorio Tetra", linea: "Línea Tetra", categoria: "escritorios", img: "escritorio-tetra.webp" },
-  { codigo: "escritorio-ergonomico", nombre: "Escritorio Ergonómico", linea: "", categoria: "escritorios", img: "escritorio-ergonomico.webp" },
-  { codigo: "escritorio-recto", nombre: "Escritorio Recto", linea: "", categoria: "escritorios", img: "escritorio-recto.webp" },
+  { codigo: "escritorio-ergonomico", nombre: "Escritorio Ergonómico", linea: "Escritorios", categoria: "escritorios", img: "escritorio-ergonomico.webp" },
+  { codigo: "escritorio-recto", nombre: "Escritorio Recto", linea: "Escritorios", categoria: "escritorios", img: "escritorio-recto.webp" },
 
   { codigo: "silla-cool", nombre: "Silla Cool", linea: "Línea Cool", categoria: "sillas", img: "silla-cool.webp" },
   { codigo: "silla-cool-jazz", nombre: "Silla Cool Jazz", linea: "Línea Cool", categoria: "sillas", img: "silla-cool-jazz.webp" },
   { codigo: "silla-equis", nombre: "Silla Equis", linea: "Línea Equis", categoria: "sillas", img: "silla-equis.webp" },
-  { codigo: "butaca-paulin", nombre: "Butaca Paulín", linea: "", categoria: "sillas", img: "butaca-paulin.webp" },
+  { codigo: "butaca-paulin", nombre: "Butaca Paulín", linea: "Asientos", categoria: "sillas", img: "butaca-paulin.webp" },
 
-  { codigo: "mesa-bote", nombre: "Mesa Bote", linea: "", categoria: "reunion", img: "mesa-bote.webp" },
-  { codigo: "mesa-redonda", nombre: "Mesa Redonda", linea: "", categoria: "reunion", img: "mesa-redonda.webp" },
+  { codigo: "mesa-bote", nombre: "Mesa Bote", linea: "Mesas de reunión", categoria: "reunion", img: "mesa-bote.webp" },
+  { codigo: "mesa-redonda", nombre: "Mesa Redonda", linea: "Mesas de reunión", categoria: "reunion", img: "mesa-redonda.webp" },
 
-  { codigo: "perchero", nombre: "Perchero", linea: "", categoria: "accesorios", img: "perchero.webp" },
+  { codigo: "perchero", nombre: "Perchero", linea: "Accesorios", categoria: "accesorios", img: "perchero.webp" },
 ];
 
 /** Foto de galería. El tamaño da la proporción: se muestra entera, sin recorte. */
@@ -190,7 +189,7 @@ export const PROYECTOS: Proyecto[] = [
   {
     slug: "don-palacios-construcciones",
     nombre: "Don Palacios Construcciones",
-    lugar: "",
+    lugar: "Rosario",
     descripcion: "Equipamiento para Don Palacios Construcciones.",
     texto: "Equipamiento para Don Palacios Construcciones.",
     img: "proy-don-palacios-3.webp",
@@ -206,7 +205,7 @@ export const PROYECTOS: Proyecto[] = [
   {
     slug: "banco-municipal",
     nombre: "Banco Municipal",
-    lugar: "",
+    lugar: "Rosario",
     descripcion: "Mostradores, tabiques, mesas de reunión y puestos de trabajo",
     bajada: "Proyecto realizado para el Banco Municipal.",
     texto:

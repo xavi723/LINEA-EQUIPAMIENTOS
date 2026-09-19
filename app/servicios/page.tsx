@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { Flecha } from "@/components/flecha";
 import { Foto } from "@/components/foto";
-import { Pendiente } from "@/components/pendiente";
 
 export const metadata: Metadata = {
   title: "Servicios",
@@ -74,10 +73,9 @@ export default function Servicios() {
           <div className="etiqueta">Servicio 03</div>
           <h2>Transporte<br />e instalación</h2>
           <p>
-            <Pendiente>
-              Descripción del servicio de transporte e instalación — a completar
-              con la empresa.
-            </Pendiente>
+            Llevamos las piezas hasta tu oficina y las dejamos armadas y en su
+            lugar. Coordinamos el día y la hora para que el movimiento no te frene
+            el trabajo.
           </p>
           <Link className="btn btn--linea" href="/contacto">Coordinar una entrega <Flecha /></Link>
         </div>

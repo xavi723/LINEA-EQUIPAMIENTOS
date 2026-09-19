@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { NAVEGACION, TELEFONO } from "@/lib/datos";
+import { NAVEGACION, TELEFONO, TELEFONO_CRUDO } from "@/lib/datos";
 import { Marca } from "@/components/marca";
 import { usePresupuesto } from "@/components/presupuesto";
 
@@ -53,7 +53,7 @@ export function Header() {
           </nav>
 
           <div className="cabecera__acciones">
-            <span className="tel pendiente">
+            <a className="tel" href={`tel:+${TELEFONO_CRUDO}`}>
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path
                   d="M3 2h3l1.4 3.5-1.8 1.2a10 10 0 0 0 3.7 3.7l1.2-1.8L14 10v3a1 1 0 0 1-1.1 1A11.5 11.5 0 0 1 2 3.1 1 1 0 0 1 3 2Z"
@@ -63,7 +63,7 @@ export function Header() {
                 />
               </svg>
               {TELEFONO}
-            </span>
+            </a>
 
             <button
               className="btn btn--linea btn--presupuesto"

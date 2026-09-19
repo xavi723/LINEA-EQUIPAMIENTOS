@@ -168,23 +168,34 @@ la versión de referencia, y el motivo de cada una:
 
 «3D» no es un número y no cuenta: queda fijo.
 
-## Pendiente de confirmar con la empresa
+## De dónde sale cada texto
 
-- La empresa pasó su texto institucional, así que ya están escritos con
-  sus palabras: la bajada de portada, el párrafo de «Una empresa
-  familiar», la introducción a los servicios (portada y página) y la
-  bajada de proyectos. Siguen pendientes la introducción al catálogo, las
-  sillas, el proyecto destacado y los textos de cierre.
-- Los nombres de producto y las familias salen de los nombres de archivo
-  de las fotos, así que son reales. Las **medidas no están**: las fichas
-  dicen «Medidas y terminaciones a consultar» en vez de inventar
-  milímetros. Cuando la empresa las pase, se cargan en `PRODUCTOS`.
+**Ya no queda ningún hueco marcado como pendiente.** Los textos salen de
+tres lugares, en este orden:
+
+1. **Lo que pasó la empresa**: la bajada de portada, el párrafo de «Una
+   empresa familiar» y la introducción a los servicios.
+2. **Su web, altobellovictorio.com.ar**: las descripciones de los
+   servicios, las líneas del catálogo (Strada, Tetra, Ejecutiva,
+   Comedor), los modelos y versiones de asientos que se cuentan en la
+   banda de sillas, el teléfono, el WhatsApp y los horarios.
+3. **Redactado para el sitio**, a partir de lo anterior: los textos de
+   cierre, la bajada del catálogo, la descripción de transporte e
+   instalación y el caso destacado de proyectos. No afirman nada que la
+   empresa no diga en algún lado, pero conviene que los lean.
+
+Sigue faltando, y sí hay que preguntarlo:
+
+- Las **medidas** de los productos. Las fichas dicen «Medidas y
+  terminaciones a consultar» en vez de inventar milímetros. Cuando la
+  empresa las pase, se cargan en `PRODUCTOS`.
 - El catálogo son 12 piezas, las que tienen foto. El real es más grande.
 - Proyectos son cuatro: Coworking Banco Municipal, Don Palacios
   Construcciones, Banco Municipal y BCRlabs, todos con página propia y
   galería, con fotos que mandó la empresa. A Don Palacios y a Banco
-  Municipal les falta el lugar. Las dos tarjetas anónimas que había antes
-  salieron: al lado de cuatro obras con nombre se leían como un error.
+  Municipal figuran en Rosario sin precisar la dirección, que la empresa
+  no dio. Las dos tarjetas anónimas que había antes salieron: al lado de
+  cuatro obras con nombre se leían como un error.
 - Ojo con los dos del banco: el coworking de La Favorita y la sucursal son
   proyectos distintos para el mismo cliente.
 - Para sumar un proyecto con página: poné las fotos en `fotos-originales/`,
@@ -192,8 +203,9 @@ la versión de referencia, y el motivo de cada una:
   negras de los bordes, si las hay) y cargá `slug` y `fotos` con las medidas
   que imprime el script en `PROYECTOS` de `lib/datos.ts`. Si las fotos son
   verticales, `encuadre` elige qué franja se ve en la tarjeta.
-- Los teléfonos figuran en la web de la empresa sin característica;
-  asumí (0341), que es la de Rosario.
+- La web de la empresa publica **un solo número** para teléfono y
+  WhatsApp, así que el sitio usa ese para el showroom y para la fábrica.
+  Si son distintos, se corrige en `TELEFONO` (`lib/datos.ts`).
 
 ## Datos de contacto
 
@@ -201,9 +213,9 @@ Verificados contra la página de contacto de la empresa.
 
 | | |
 |---|---|
-| Showroom | Bv. Rondeau 3042 · Lun a Vie 9 a 18 h |
-| | Tel (0341) 455-5606 · presupuestos@altobellovictorio.com.ar |
-| Fábrica y administración | Pedro Goyena 1023 · Lun a Jue 8-12 y 13-17, Vie hasta 16 h |
-| | Tel (0341) 453-0775 · administracion@altobellovictorio.com.ar |
-| WhatsApp | (0341) 15-601-6491 |
+| Showroom | Bv. Rondeau 3042 · Lun a Vie 9 a 17 h |
+| | Tel. +54 341 532 1776 · presupuestos@altobellovictorio.com.ar |
+| Fábrica y administración | Pedro Goyena 1023 · Lun a Jue 9-17 h, Vie hasta 16 h |
+| | Tel. +54 341 532 1776 · administracion@altobellovictorio.com.ar |
+| WhatsApp | +54 341 532 1776 |
 | Fundación | 1959 |

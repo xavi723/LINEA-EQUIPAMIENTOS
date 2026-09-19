@@ -1174,11 +1174,6 @@ div.pendiente {
   display: block;
 }
 
-/* El teléfono de la cabecera ya es un flex con el icono al lado: la
-   marca ✎ entraría como un tercer ítem y se iría a su propio renglón.
-   Ahí alcanza con el punteado y el gris para que se lea como relleno. */
-.tel.pendiente::before { content: none; }
-
 /* ---------- 29. Página de proyecto ----------
    Las tarjetas con página propia son un enlace entero; el hover de la
    foto (sección 20) sigue funcionando porque vive en .proy. */

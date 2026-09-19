@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { EMPRESA, TELEFONO } from "@/lib/datos";
-import { Pendiente } from "@/components/pendiente";
+import { EMPRESA, TELEFONO, TELEFONO_CRUDO } from "@/lib/datos";
 import { FormularioPresupuesto } from "@/components/formulario-presupuesto";
 import { Foto } from "@/components/foto";
 
@@ -42,7 +41,7 @@ export default function Contacto() {
                 {showroom.horario}
               </p>
               <p style={{ marginTop: "0.75rem", fontSize: "var(--t-sm)" }}>
-                <Pendiente>Tel. {TELEFONO}</Pendiente><br />
+                <a href={`tel:+${TELEFONO_CRUDO}`}>Tel. {TELEFONO}</a><br />
                 <a href={`mailto:${showroom.mail}`}>{showroom.mail}</a>
               </p>
             </div>
@@ -54,7 +53,7 @@ export default function Contacto() {
                 {fabrica.horario}
               </p>
               <p style={{ marginTop: "0.75rem", fontSize: "var(--t-sm)" }}>
-                <Pendiente>Tel. {TELEFONO}</Pendiente><br />
+                <a href={`tel:+${TELEFONO_CRUDO}`}>Tel. {TELEFONO}</a><br />
                 <a href={`mailto:${fabrica.mail}`}>{fabrica.mail}</a>
               </p>
             </div>
@@ -62,7 +61,7 @@ export default function Contacto() {
             <div style={{ marginTop: "1.75rem", paddingTop: "1.5rem", borderTop: "var(--borde)" }}>
               <div className="etiqueta">WhatsApp</div>
               <p style={{ marginTop: "0.35rem", fontSize: "var(--t-sm)" }}>
-                <Pendiente>{TELEFONO}</Pendiente>
+                <a href={`https://wa.me/${TELEFONO_CRUDO}`} target="_blank" rel="noopener">{TELEFONO}</a>
               </p>
             </div>
 
