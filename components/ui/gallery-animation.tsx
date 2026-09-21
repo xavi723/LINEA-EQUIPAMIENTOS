@@ -10,12 +10,12 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
  *
  * Diferencias con la versión de referencia, y el motivo de cada una:
  *
- * - **Ninguna foto se recorta.** El original reparte el ancho en partes
- *   iguales y encaja la foto con object-fit: cover, que come los bordes
- *   —justo donde suele estar el mueble—. Acá el ancho de cada foto sale
- *   de su proporción, así que entra completa. Eso también reemplaza el
- *   ensanchado al pasar el mouse: no se puede ensanchar una foto sin
- *   recortarla o dejarla con bandas.
+ * - **Ninguna foto se recorta, ni siquiera al agrandarse.** El original
+ *   reparte el ancho en partes iguales y encaja la foto con object-fit:
+ *   cover, que come los bordes —justo donde suele estar el mueble—, y al
+ *   ensanchar una caja de proporción fija recorta todavía más. Acá cada
+ *   caja tiene la proporción de su foto y al pasar el mouse crece
+ *   entera, alto y ancho a la vez: la foto se agranda sin perder nada.
  * - **Cada foto trae su texto alternativo.** El original las numera
  *   («Gallery image 3»), que para un lector de pantalla no dice nada.
  * - **La lupa se ve en un sitio claro.** El original pinta el fondo de
@@ -84,6 +84,7 @@ export function ExpandableGallery({ fotos, className }: ExpandableGalleryProps) 
           <li
             key={f.src}
             className="galeria-tira__item"
+            data-elegida={hovered === i ? "si" : "no"}
             style={{
               ["--proporcion" as string]:
                 f.ancho && f.alto ? `${f.ancho} / ${f.alto}` : "4 / 3",
