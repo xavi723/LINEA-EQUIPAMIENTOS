@@ -92,8 +92,8 @@ app/
   contacto/           formulario y direcciones
 components/
   ui/number-ticker.tsx  cifras que cuentan al entrar en pantalla
-  ui/gallery-animation.tsx  galería del proyecto: tira que se ensancha
-                            al pasar el mouse y visor a pantalla completa
+  ui/gallery-animation.tsx  galería del proyecto: tira de fotos enteras
+                            que se desliza, y visor a pantalla completa
   presupuesto.tsx       la lista de presupuesto (contexto + localStorage)
   header, footer, marca, foto, revelar, flecha
   catalogo-cliente.tsx  filtros y grilla

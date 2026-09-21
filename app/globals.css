@@ -1277,18 +1277,28 @@ div.pendiente {
 }
 
 /* ---------- 32. Galería del proyecto ----------
-   Una tira donde la foto bajo el mouse se ensancha y las demás ceden
-   lugar. En pantalla táctil no hay mouse que lo dispare, así que abajo
-   de 900 px pasa a ser un carrusel que se desliza. */
+   Tira de fotos enteras: todas a la misma altura y cada una con el
+   ancho que le da su proporción, así ninguna se recorta. Se desliza de
+   a una foto, en cualquier tamaño de pantalla. */
 .galeria-tira {
   display: flex;
-  gap: var(--e-1);
-  height: clamp(22rem, 46vh, 32rem);
+  gap: var(--e-2);
+  height: clamp(20rem, 52vh, 34rem);
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--arena-osc) transparent;
 }
-.galeria-tira__item { position: relative; min-width: 0; }
+.galeria-tira__item {
+  position: relative;
+  flex: 0 0 auto;
+  height: 100%;
+  aspect-ratio: var(--proporcion);
+  scroll-snap-align: center;
+}
 .galeria-tira__boton {
   display: block;
   width: 100%; height: 100%;
@@ -1354,19 +1364,7 @@ div.pendiente {
 }
 
 @media (max-width: 900px) {
-  .galeria-tira {
-    height: auto;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.5rem;
-  }
-  /* Gana al flex que anima framer-motion, que en táctil no se dispara. */
-  .galeria-tira__item {
-    flex: 0 0 82% !important;
-    scroll-snap-align: center;
-    aspect-ratio: var(--proporcion);
-  }
+  .galeria-tira { height: clamp(15rem, 38vh, 22rem); scroll-snap-type: x mandatory; }
   .galeria-visor__control { width: 44px; height: 44px; }
 }
 
