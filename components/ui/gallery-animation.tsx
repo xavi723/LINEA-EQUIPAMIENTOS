@@ -4,18 +4,16 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 /**
- * Galería del proyecto: una tira de fotos a la misma altura, cada una
- * entera y con su proporción real. Al hacer clic, la foto se abre a
+ * Galería expansible: una tira de fotos donde la que está bajo el mouse
+ * se ensancha y las demás se achican. Al hacer clic, la foto se abre a
  * pantalla completa y se puede recorrer con las flechas.
  *
  * Diferencias con la versión de referencia, y el motivo de cada una:
  *
- * - **Ninguna foto se recorta, ni siquiera al agrandarse.** El original
- *   reparte el ancho en partes iguales y encaja la foto con object-fit:
- *   cover, que come los bordes —justo donde suele estar el mueble—, y al
- *   ensanchar una caja de proporción fija recorta todavía más. Acá cada
- *   caja tiene la proporción de su foto y al pasar el mouse crece
- *   entera, alto y ancho a la vez: la foto se agranda sin perder nada.
+ * - **Ninguna foto se recorta.** El original la encaja con object-fit:
+ *   cover, que al cambiar el ancho de la columna se come los bordes,
+ *   justo donde suele estar el mueble. Acá entra entera y lo que sobra
+ *   queda en papel.
  * - **Cada foto trae su texto alternativo.** El original las numera
  *   («Gallery image 3»), que para un lector de pantalla no dice nada.
  * - **La lupa se ve en un sitio claro.** El original pinta el fondo de
@@ -27,8 +25,9 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
  * - **Movimiento reducido.** Con la preferencia activada no hay
  *   ensanchado ni escala: solo el cambio de opacidad, que es el que
  *   explica qué pasó.
- * - **Se desliza en cualquier pantalla**, con las fotos enganchando de a
- *   una, así que en un teléfono se usa igual que en una computadora.
+ * - **En pantalla táctil la tira no se ensancha** — no hay mouse que la
+ *   dispare — así que pasa a ser un carrusel que se desliza, con cada
+ *   foto en su proporción real.
  */
 
 export interface FotoGaleria {
@@ -77,18 +76,26 @@ export function ExpandableGallery({ fotos, className }: ExpandableGalleryProps) 
     return () => document.removeEventListener("keydown", onKey);
   }, [abierta, cerrar, mover]);
 
+  const ancho = (i: number) => {
+    if (reduce || hovered === null) return 1;
+    return hovered === i ? 2.4 : 0.6;
+  };
+
   return (
     <div className={className}>
-      <ul className="galeria-tira">
+      <ul className="galeria-tira" data-eligiendo={hovered === null ? "no" : "si"}>
         {fotos.map((f, i) => (
-          <li
+          <motion.li
             key={f.src}
             className="galeria-tira__item"
             data-elegida={hovered === i ? "si" : "no"}
             style={{
+              flex: 1,
               ["--proporcion" as string]:
                 f.ancho && f.alto ? `${f.ancho} / ${f.alto}` : "4 / 3",
             }}
+            animate={{ flex: ancho(i) }}
+            transition={{ duration: reduce ? 0 : 0.45, ease: [0.23, 1, 0.32, 1] }}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
           >
@@ -105,18 +112,13 @@ export function ExpandableGallery({ fotos, className }: ExpandableGalleryProps) 
             >
               {/* Fotos ya optimizadas y servidas desde el propio dominio. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
+              {/* La que no está elegida se oscurece con un filtro sobre la
+                  foto, no con un velo sobre la columna: la foto entra
+                  entera y el velo teñiría también el papel de los
+                  costados, que quedaría gris en vez de papel. */}
               <img src={f.src} alt={f.alt} loading={i < 3 ? "eager" : "lazy"} />
-              {/* En reposo no hay velo: las fotos se ven como son. Recién
-                  cuando el mouse elige una, las otras ceden un poco. */}
-              <motion.span
-                aria-hidden="true"
-                className="galeria-tira__velo"
-                initial={false}
-                animate={{ opacity: hovered === null || hovered === i ? 0 : 0.22 }}
-                transition={{ duration: reduce ? 0 : 0.2 }}
-              />
             </button>
-          </li>
+          </motion.li>
         ))}
       </ul>
 

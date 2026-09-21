@@ -1277,55 +1277,45 @@ div.pendiente {
 }
 
 /* ---------- 32. Galería del proyecto ----------
-   Tira de fotos enteras: todas a la misma altura y cada una con el
-   ancho que le da su proporción, así ninguna se recorta.
-
-   Al pasar el mouse, la foto elegida crece entera —alto y ancho a la
-   vez— y pisa un poco a las vecinas. Crece con transform y no
-   cambiando su tamaño: así no empuja a las demás ni recalcula la fila
-   en cada cuadro, y sobre todo no recorta nada. El relleno de arriba y
-   abajo es el lugar que necesita para crecer sin que la fila la corte. */
+   Una tira donde la foto bajo el mouse se ensancha y las demás ceden
+   lugar. En pantalla táctil no hay mouse que lo dispare, así que abajo
+   de 900 px pasa a ser un carrusel que se desliza. */
 .galeria-tira {
   display: flex;
-  align-items: center;
-  gap: var(--e-2);
-  height: clamp(22rem, 56vh, 36rem);
+  gap: var(--e-1);
+  height: clamp(22rem, 46vh, 32rem);
   list-style: none;
   margin: 0;
-  padding: 2.25rem 0 1.5rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x proximity;
-  scrollbar-width: thin;
-  scrollbar-color: var(--arena-osc) transparent;
+  padding: 0;
 }
-.galeria-tira__item {
-  position: relative;
-  flex: 0 0 auto;
-  height: 100%;
-  aspect-ratio: var(--proporcion);
-  scroll-snap-align: center;
-  transition: transform var(--d-menu) var(--curva);
-}
-@media (hover: hover) and (pointer: fine) {
-  .galeria-tira__item[data-elegida="si"] { transform: scale(1.13); z-index: 2; }
-}
+.galeria-tira__item { position: relative; min-width: 0; }
 .galeria-tira__boton {
   display: block;
   width: 100%; height: 100%;
   padding: 0;
   border: 0;
-  background: var(--arena);
+  background: var(--papel-puro);
   cursor: pointer;
   overflow: hidden;
   border-radius: 2px;
 }
-.galeria-tira__boton img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* contain y no cover: la columna cambia de ancho al pasar el mouse, y
+   con cover la foto se recortaría para llenarla —se perdería
+   justamente el borde, que es donde suele estar el mueble—. Con
+   contain la foto entra entera siempre y lo que sobra queda en papel,
+   que se lee como margen y no como banda. */
+.galeria-tira__boton img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}
 .galeria-tira__boton:focus-visible { outline: 2px solid var(--naranja); outline-offset: 3px; }
-.galeria-tira__velo {
-  position: absolute; inset: 0;
-  background: var(--tinta);
-  pointer-events: none;
+/* Mientras el mouse elige una, las demás se oscurecen. Es un filtro
+   sobre la foto y no un velo sobre la columna, porque el velo teñiría
+   también el papel que queda al costado de la foto. */
+.galeria-tira__boton img { transition: filter var(--d-menu) var(--curva-hover); }
+.galeria-tira[data-eligiendo="si"] .galeria-tira__item[data-elegida="no"] img {
+  filter: brightness(0.82);
 }
 
 /* El visor. Fondo tinta y controles en papel: la versión de referencia
@@ -1375,11 +1365,22 @@ div.pendiente {
 }
 
 @media (max-width: 900px) {
-  .galeria-tira { height: clamp(16rem, 42vh, 24rem); padding-top: 1rem; scroll-snap-type: x mandatory; }
+  .galeria-tira {
+    height: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+  /* Gana al flex que anima framer-motion, que en táctil no se dispara. */
+  .galeria-tira__item {
+    flex: 0 0 82% !important;
+    scroll-snap-align: center;
+    aspect-ratio: var(--proporcion);
+  }
   .galeria-visor__control { width: 44px; height: 44px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .galeria-visor__control, .galeria-tira__item { transition: none; }
-  .galeria-tira__item[data-elegida="si"] { transform: none; }
+  .galeria-visor__control, .galeria-tira__boton img { transition: none; }
 }
