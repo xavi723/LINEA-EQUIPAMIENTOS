@@ -10,6 +10,12 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
  *
  * Diferencias con la versión de referencia, y el motivo de cada una:
  *
+ * - **La foto elegida se ve completa.** En el original todas las
+ *   columnas reparten el ancho por igual y la foto se encaja con
+ *   object-fit: cover: al agrandarse seguía recortada. Acá la columna
+ *   elegida toma el ancho que pide la proporción de su foto, así que la
+ *   foto la llena justo y se ve al 100%. Las chicas siguen recortadas,
+ *   que a ese ancho es inevitable.
  * - **Cada foto trae su texto alternativo.** El original las numera
  *   («Gallery image 3»), que para un lector de pantalla no dice nada.
  * - **La lupa se ve en un sitio claro.** El original pinta el fondo de
@@ -44,8 +50,22 @@ export function ExpandableGallery({ fotos, className }: ExpandableGalleryProps) 
   const [abierta, setAbierta] = useState<number | null>(null);
   const reduce = useReducedMotion();
 
+  const tiraRef = useRef<HTMLUListElement | null>(null);
+  const [altoTira, setAltoTira] = useState(0);
   const visorRef = useRef<HTMLDivElement | null>(null);
   const disparador = useRef<HTMLButtonElement | null>(null);
+
+  // El ancho que necesita la foto elegida sale de su alto, y el alto lo
+  // fija el CSS con un clamp: hay que medirlo, no se puede suponer.
+  useEffect(() => {
+    const el = tiraRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const medir = () => setAltoTira(el.clientHeight);
+    medir();
+    const ro = new ResizeObserver(medir);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const cerrar = useCallback(() => {
     setAbierta(null);
@@ -72,24 +92,37 @@ export function ExpandableGallery({ fotos, className }: ExpandableGalleryProps) 
     return () => document.removeEventListener("keydown", onKey);
   }, [abierta, cerrar, mover]);
 
-  const ancho = (i: number) => {
-    if (reduce || hovered === null) return 1;
-    return hovered === i ? 2.4 : 0.6;
+  /**
+   * Al agrandarse, la columna toma el ancho exacto que pide la
+   * proporción de su foto: así la foto se ve al 100%, sin recorte y sin
+   * franjas vacías. Las demás se reparten lo que sobra, y ahí sí la
+   * foto se recorta, que a ese tamaño es inevitable.
+   */
+  const medidas = (i: number) => {
+    const f = fotos[i];
+    const proporcion = f.ancho && f.alto ? f.ancho / f.alto : 4 / 3;
+    if (reduce || hovered === null || hovered !== i || !altoTira) {
+      return { flexGrow: 1, flexBasis: "0px" };
+    }
+    // En px y como texto: un número suelto no lleva unidad y la columna
+    // se queda en cero.
+    return { flexGrow: 0, flexBasis: `${Math.round(altoTira * proporcion)}px` };
   };
 
   return (
     <div className={className}>
-      <ul className="galeria-tira">
+      <ul className="galeria-tira" ref={tiraRef}>
         {fotos.map((f, i) => (
           <motion.li
             key={f.src}
             className="galeria-tira__item"
             style={{
-              flex: 1,
+              flexGrow: 1,
+              flexBasis: "0px",
               ["--proporcion" as string]:
                 f.ancho && f.alto ? `${f.ancho} / ${f.alto}` : "4 / 3",
             }}
-            animate={{ flex: ancho(i) }}
+            animate={medidas(i)}
             transition={{ duration: reduce ? 0 : 0.45, ease: [0.23, 1, 0.32, 1] }}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
