@@ -10,10 +10,6 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
  *
  * Diferencias con la versión de referencia, y el motivo de cada una:
  *
- * - **Ninguna foto se recorta.** El original la encaja con object-fit:
- *   cover, que al cambiar el ancho de la columna se come los bordes,
- *   justo donde suele estar el mueble. Acá entra entera y lo que sobra
- *   queda en papel.
  * - **Cada foto trae su texto alternativo.** El original las numera
  *   («Gallery image 3»), que para un lector de pantalla no dice nada.
  * - **La lupa se ve en un sitio claro.** El original pinta el fondo de
@@ -83,12 +79,11 @@ export function ExpandableGallery({ fotos, className }: ExpandableGalleryProps) 
 
   return (
     <div className={className}>
-      <ul className="galeria-tira" data-eligiendo={hovered === null ? "no" : "si"}>
+      <ul className="galeria-tira">
         {fotos.map((f, i) => (
           <motion.li
             key={f.src}
             className="galeria-tira__item"
-            data-elegida={hovered === i ? "si" : "no"}
             style={{
               flex: 1,
               ["--proporcion" as string]:
@@ -112,11 +107,14 @@ export function ExpandableGallery({ fotos, className }: ExpandableGalleryProps) 
             >
               {/* Fotos ya optimizadas y servidas desde el propio dominio. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              {/* La que no está elegida se oscurece con un filtro sobre la
-                  foto, no con un velo sobre la columna: la foto entra
-                  entera y el velo teñiría también el papel de los
-                  costados, que quedaría gris en vez de papel. */}
               <img src={f.src} alt={f.alt} loading={i < 3 ? "eager" : "lazy"} />
+              <motion.span
+                aria-hidden="true"
+                className="galeria-tira__velo"
+                initial={false}
+                animate={{ opacity: hovered === i ? 0 : 0.28 }}
+                transition={{ duration: reduce ? 0 : 0.28 }}
+              />
             </button>
           </motion.li>
         ))}

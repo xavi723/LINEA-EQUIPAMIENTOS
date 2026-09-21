@@ -1294,28 +1294,17 @@ div.pendiente {
   width: 100%; height: 100%;
   padding: 0;
   border: 0;
-  background: var(--papel-puro);
+  background: var(--arena);
   cursor: pointer;
   overflow: hidden;
   border-radius: 2px;
 }
-/* contain y no cover: la columna cambia de ancho al pasar el mouse, y
-   con cover la foto se recortaría para llenarla —se perdería
-   justamente el borde, que es donde suele estar el mueble—. Con
-   contain la foto entra entera siempre y lo que sobra queda en papel,
-   que se lee como margen y no como banda. */
-.galeria-tira__boton img {
-  width: 100%; height: 100%;
-  object-fit: contain;
-  display: block;
-}
+.galeria-tira__boton img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .galeria-tira__boton:focus-visible { outline: 2px solid var(--naranja); outline-offset: 3px; }
-/* Mientras el mouse elige una, las demás se oscurecen. Es un filtro
-   sobre la foto y no un velo sobre la columna, porque el velo teñiría
-   también el papel que queda al costado de la foto. */
-.galeria-tira__boton img { transition: filter var(--d-menu) var(--curva-hover); }
-.galeria-tira[data-eligiendo="si"] .galeria-tira__item[data-elegida="no"] img {
-  filter: brightness(0.82);
+.galeria-tira__velo {
+  position: absolute; inset: 0;
+  background: var(--tinta);
+  pointer-events: none;
 }
 
 /* El visor. Fondo tinta y controles en papel: la versión de referencia
@@ -1382,5 +1371,5 @@ div.pendiente {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .galeria-visor__control, .galeria-tira__boton img { transition: none; }
+  .galeria-visor__control { transition: none; }
 }
