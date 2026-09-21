@@ -1213,13 +1213,6 @@ div.pendiente {
   color: var(--humo);
 }
 
-/* Columnas y no grilla: con fotos de alturas distintas, la grilla deja
-   huecos al emparejar filas. Cada foto conserva su proporción. */
-.proy-det__galeria { columns: 2; column-gap: var(--e-3); }
-.proy-det__item { break-inside: avoid; margin-bottom: var(--e-3); }
-/* Todas verticales: a dos columnas cada foto mide casi 800 px de alto. */
-.proy-det__galeria--verticales { columns: 3; }
-
 .proy-det__cierre {
   display: flex;
   flex-wrap: wrap;
@@ -1246,7 +1239,6 @@ div.pendiente {
 
 @media (max-width: 900px) {
   .proy-det__enc { grid-template-columns: 1fr; gap: var(--e-3); }
-  .proy-det__galeria, .proy-det__galeria--verticales { columns: 1; }
 }
 
 /* ---------- 31. Showroom ----------
@@ -1282,4 +1274,102 @@ div.pendiente {
   .showroom { grid-template-columns: 1fr; }
   .showroom__foto--alta { min-height: 0; aspect-ratio: 4 / 3; }
   .showroom__datos { grid-template-columns: 1fr; gap: var(--e-2); }
+}
+
+/* ---------- 32. Galería del proyecto ----------
+   Una tira donde la foto bajo el mouse se ensancha y las demás ceden
+   lugar. En pantalla táctil no hay mouse que lo dispare, así que abajo
+   de 900 px pasa a ser un carrusel que se desliza. */
+.galeria-tira {
+  display: flex;
+  gap: var(--e-1);
+  height: clamp(22rem, 46vh, 32rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.galeria-tira__item { position: relative; min-width: 0; }
+.galeria-tira__boton {
+  display: block;
+  width: 100%; height: 100%;
+  padding: 0;
+  border: 0;
+  background: var(--arena);
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.galeria-tira__boton img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.galeria-tira__boton:focus-visible { outline: 2px solid var(--naranja); outline-offset: 3px; }
+.galeria-tira__velo {
+  position: absolute; inset: 0;
+  background: var(--tinta);
+  pointer-events: none;
+}
+
+/* El visor. Fondo tinta y controles en papel: la versión de referencia
+   iba blanco sobre blanco y los botones desaparecían. */
+.galeria-visor {
+  position: fixed; inset: 0; z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: color-mix(in srgb, var(--tinta) 95%, transparent);
+  color: var(--papel-puro);
+}
+.galeria-visor__foto {
+  max-width: min(72rem, 100%);
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 2px;
+  cursor: default;
+}
+.galeria-visor__control {
+  position: absolute;
+  display: grid; place-items: center;
+  width: 48px; height: 48px;
+  border: 0;
+  border-radius: 100%;
+  background: color-mix(in srgb, var(--papel-puro) 12%, transparent);
+  color: var(--papel-puro);
+  cursor: pointer;
+  transition: background var(--d-hover) var(--curva-hover);
+}
+.galeria-visor__control:focus-visible { outline: 2px solid var(--papel-puro); outline-offset: 2px; }
+.galeria-visor__cerrar { top: clamp(1rem, 3vw, 2rem); right: clamp(1rem, 3vw, 2rem); }
+.galeria-visor__anterior { left: clamp(0.5rem, 3vw, 2rem); }
+.galeria-visor__siguiente { right: clamp(0.5rem, 3vw, 2rem); }
+.galeria-visor__pie {
+  position: absolute;
+  bottom: clamp(1rem, 3vw, 2rem);
+  display: flex; align-items: baseline; gap: 0.9rem;
+  max-width: min(46rem, 88vw);
+  font-size: var(--t-sm);
+  color: rgba(244,243,239,0.82);
+}
+.galeria-visor__pie .dato { color: var(--papel-puro); }
+
+@media (hover: hover) and (pointer: fine) {
+  .galeria-visor__control:hover { background: color-mix(in srgb, var(--papel-puro) 22%, transparent); }
+}
+
+@media (max-width: 900px) {
+  .galeria-tira {
+    height: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+  /* Gana al flex que anima framer-motion, que en táctil no se dispara. */
+  .galeria-tira__item {
+    flex: 0 0 82% !important;
+    scroll-snap-align: center;
+    aspect-ratio: var(--proporcion);
+  }
+  .galeria-visor__control { width: 44px; height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galeria-visor__control { transition: none; }
 }

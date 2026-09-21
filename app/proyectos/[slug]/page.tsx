@@ -3,11 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PROYECTOS } from "@/lib/datos";
+import { img } from "@/lib/rutas";
+import { ExpandableGallery } from "@/components/ui/gallery-animation";
 import { Flecha } from "@/components/flecha";
-import { Foto } from "@/components/foto";
 import { Pendiente } from "@/components/pendiente";
-import { Revelar } from "@/components/revelar";
-import { cn } from "@/lib/utils";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -36,7 +35,6 @@ export default async function ProyectoDetalle({ params }: Params) {
 
   // Sin galería cargada, la foto de la tarjeta a 3:2.
   const fotos = p.fotos?.length ? p.fotos : [{ src: p.img, ancho: 3, alto: 2 }];
-  const verticales = fotos.every((f) => f.alto > f.ancho);
 
   return (
     <>
@@ -88,23 +86,20 @@ export default async function ProyectoDetalle({ params }: Params) {
       </section>
 
       {/*
-        Cada foto va entera, a su proporción: hay proyectos con fotos
-        apaisadas y otros con verticales. Las originales miden unos 1000 px
-        de ancho: a dos columnas se ven nítidas; a todo el ancho quedarían
-        blandas. En pantallas chicas pasan a una por fila.
+        La galería es una tira: la foto bajo el mouse se ensancha y al
+        hacer clic se abre a pantalla completa. En pantallas chicas pasa
+        a ser un carrusel que se desliza, porque el ensanchado necesita
+        un mouse que ahí no existe.
       */}
       <section className="env" style={{ paddingBottom: "var(--e-6)" }}>
-        <div className={cn("proy-det__galeria", verticales && "proy-det__galeria--verticales")}>
-          {fotos.map((f, i) => (
-            <Revelar key={f.src} orden={i} className="proy-det__item">
-              <Foto
-                src={f.src}
-                alt={`${p.nombre}, foto ${i + 1} de ${fotos.length}`}
-                style={{ aspectRatio: `${f.ancho} / ${f.alto}` }}
-              />
-            </Revelar>
-          ))}
-        </div>
+        <ExpandableGallery
+          fotos={fotos.map((f, i) => ({
+            src: img(f.src),
+            alt: `${p.nombre}, foto ${i + 1} de ${fotos.length}`,
+            ancho: f.ancho,
+            alto: f.alto,
+          }))}
+        />
       </section>
 
       <section className="seccion env proy-det__cierre">
