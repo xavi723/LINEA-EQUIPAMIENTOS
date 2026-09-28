@@ -9,7 +9,7 @@ import { Revelar } from "@/components/revelar";
 
 export const metadata: Metadata = {
   title: "Proyectos",
-  description: "Oficinas y locales equipados por Altobello Victorio.",
+  description: "Espacios equipados por Línea Equipamiento.",
 };
 
 export default function Proyectos() {
@@ -28,44 +28,24 @@ export default function Proyectos() {
           <div>
             <div className="etiqueta">Proyectos</div>
             <h1 style={{ fontSize: "var(--t-2xl)" }}>
-              Oficinas donde<br />ya se está trabajando
+              Espacios que<br />equipamos
             </h1>
           </div>
           <p>
-            Apostamos por las soluciones prácticas, para tomar decisiones basadas en
-            la realidad. Estas son algunas de las oficinas que equipamos.
+            Proyectos de mobiliario integral, de la idea a la instalación final. Los
+            marcados como ejemplo muestran cómo se ve un proyecto terminado.
           </p>
         </div>
       </section>
 
-      {/*
-        Las tarjetas van con la foto real y el nombre pendiente. La
-        empresa tiene proyectos publicados, pero no sabemos cuál de ellos
-        muestra cada foto: ponerle un nombre sería atribuirle a una obra
-        una imagen que puede ser de otra.
-      */}
       <section className="seccion--ajustada env">
         <h2 className="solo-lector">Proyectos entregados</h2>
         <div className="rejilla-proy">
           {PROYECTOS.map((p, i) => (
-            <Revelar as="article" className="proy" key={p.img} orden={i}>
+            <Revelar as="article" className="proy" key={p.slug} orden={i}>
               <TarjetaProyecto p={p} />
             </Revelar>
           ))}
-        </div>
-      </section>
-
-      <section className="banda banda--oscura">
-        <Foto className="banda__foto" src="proy-bcrlabs-4.webp" alt="Despacho vidriado de BCRlabs" />
-        <div className="banda__texto">
-          <div className="etiqueta">Un caso</div>
-          <h2>BCRlabs,<br />Bolsa de Comercio</h2>
-          <p>
-            Un espacio de innovación y trabajo colaborativo, equipado de punta a
-            punta: salas de reunión, despachos vidriados, islas de puestos y
-            guardado. Todo el mobiliario, diseñado a medida.
-          </p>
-          <Link className="btn btn--claro" href="/proyectos/bcrlabs">Ver el proyecto <Flecha /></Link>
         </div>
       </section>
 
@@ -74,9 +54,8 @@ export default function Proyectos() {
           <div className="etiqueta" style={{ justifyContent: "center" }}>Tu turno</div>
           <h2>¿Arrancamos con el tuyo?</h2>
           <p style={{ margin: "1.25rem auto 0", color: "var(--humo)" }}>
-            Empezamos como empezaron estos: escuchando qué necesitás. Nuestro equipo de
-            arquitectura diseña la oficina con vos y nosotros la fabricamos, la
-            llevamos y la instalamos.
+            Empezamos escuchando qué necesitás. Diseñamos el espacio con vos, lo
+            fabricamos y te acompañamos hasta la instalación final.
           </p>
           <Link className="btn btn--acento" href="/contacto" style={{ marginTop: "2rem" }}>
             Pedir presupuesto <Flecha />
@@ -88,21 +67,27 @@ export default function Proyectos() {
 }
 
 /**
- * Los proyectos con página propia son un enlace entero; los de nombre
- * pendiente quedan como tarjeta suelta, porque no hay nada que mostrar
- * más allá de la foto.
+ * Cada proyecto es un enlace entero a su página. Sin foto (el de
+ * Baigorria, que por ahora es solo video), la tarjeta va en el verde de
+ * la marca.
  */
 function TarjetaProyecto({ p }: { p: Proyecto }) {
   const cantidad = p.fotos?.length ?? 0;
   const contenido = (
     <>
-      <Foto
-        className="proy__foto"
-        src={p.img}
-        alt={p.nombre || "Oficina equipada"}
-        pie={cantidad > 1 ? `${cantidad} fotos` : undefined}
-        style={p.encuadre ? { backgroundPosition: p.encuadre } : undefined}
-      />
+      {p.img ? (
+        <Foto
+          className="proy__foto"
+          src={p.img}
+          alt={p.nombre}
+          pie={p.ejemplo ? "Ejemplo de cómo quedaría" : cantidad > 1 ? `${cantidad} fotos` : undefined}
+          style={p.encuadre ? { backgroundPosition: p.encuadre } : undefined}
+        />
+      ) : (
+        <div className="foto proy__foto proy__foto--sin-foto">
+          {p.instagram ? "▶ Ver el video" : "Fotos a cargar"}
+        </div>
+      )}
       <div className="proy__meta">
         <div>
           <h3 className="proy__nombre">
@@ -119,11 +104,9 @@ function TarjetaProyecto({ p }: { p: Proyecto }) {
     </>
   );
 
-  return p.slug ? (
+  return (
     <Link className="proy__enlace" href={`/proyectos/${p.slug}`}>
       {contenido}
     </Link>
-  ) : (
-    contenido
   );
 }

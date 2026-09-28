@@ -1,53 +1,63 @@
 /**
- * Datos del sitio de Altobello Victorio.
+ * Datos del sitio de Línea Equipamiento.
  *
- * REGLA: acá solo entra información que se pudo verificar contra
- * fuentes de la propia empresa (su web, su ficha de LinkedIn, los
- * directorios donde ella misma se publica). Lo que no se pudo
- * verificar no se completa con algo verosímil: se deja marcado como
- * pendiente para que lo confirmen ellos.
+ * REGLA: acá solo entra información que salió de la propia empresa (su
+ * Instagram, su Facebook y el formulario que se completó para el sitio).
+ * Lo que no se sabe no se completa con algo verosímil.
  *
- * Los nombres de producto salen de los archivos de foto que mandó el
- * cliente, así que son reales. Las medidas no las tenemos y por eso
- * las fichas dicen "a consultar" en vez de inventar milímetros.
+ * Las fotos de producto son genéricas, de referencia: los nombres
+ * describen la pieza y no son líneas propias de la empresa. Las medidas
+ * no las tenemos, por eso las fichas dicen "a consultar".
  */
 
 export const EMPRESA = {
-  nombre: "Altobello Victorio",
+  nombre: "Línea Equipamiento",
 
-  // Verificado: la empresa se presenta como "equipamiento para
-  // empresas" y como fabricante de muebles para oficina.
-  bajada: "Equipamiento para empresas",
+  // La frase con la que se presenta en Instagram.
+  lema: "Equipamos ambientes · Impulsamos proyectos · Construimos confianza",
 
-  // Verificado: "desde sus inicios en 1959".
-  desde: 1959,
+  // Cómo se describe en su afiche de servicios.
+  bajada: "Mobiliario integral",
+
+  // "Más de 50 años" es lo que dice la empresa; no publica año de fundación.
+  trayectoria: "Más de 50 años",
+  anios: 50,
+
+  // Posteo de Instagram del 3 de septiembre de 2025.
+  fundador: "Abel Baroni",
+
   ciudad: "Rosario, Santa Fe",
 
   showroom: {
-    calle: "Bv. Rondeau 3042",
-    horario: "Lunes a viernes de 9 a 17 h",
-    mail: "presupuestos@altobellovictorio.com.ar",
+    calle: "Córdoba 1080",
+    horario: "Lunes a viernes de 9:30 a 12:30 h",
   },
 
-  fabrica: {
-    calle: "Pedro Goyena 1023",
-    horario: "Lunes a jueves de 9 a 17 h · Viernes hasta las 16 h",
-    mail: "administracion@altobellovictorio.com.ar",
-  },
+  instagram: "https://www.instagram.com/lineaequipamiento/",
+  instagramUsuario: "@lineaequipamiento",
+  facebook: "https://www.facebook.com/linea.equipamiento",
 } as const;
 
 /**
- * Teléfono y WhatsApp. Sale de la página de contacto de la propia
- * empresa (altobellovictorio.com.ar): publica un solo número para las
- * dos cosas, así que el enlace tel: y el botón de WhatsApp van ahí.
- *
- * Es el dato que más caro sale equivocado, así que si la empresa usa
- * números distintos para showroom y fábrica, este es el lugar donde
- * corregirlo.
+ * Los espacios que equipa, tal como los enumera la empresa en su afiche
+ * "Diseñamos proyectos de mobiliario integral para…".
  */
-export const TELEFONO = "+54 341 532 1776" as const;
+export const RUBROS = [
+  "Espacios de trabajo",
+  "Comercios",
+  "Centros de salud",
+  "Locales gastronómicos",
+  "Hogares",
+] as const;
+
+/**
+ * WhatsApp. La empresa no publica teléfono fijo ni mail, así que todos
+ * los contactos del sitio (enlace tel:, botón de WhatsApp y formulario
+ * de presupuesto) van a este número.
+ */
+export const TELEFONO = "+54 341 505-1461" as const;
 /** El mismo número, sin formato, para tel: y wa.me. */
-export const TELEFONO_CRUDO = "5493415321776" as const;
+export const TELEFONO_CRUDO = "5493415051461" as const;
 
 export type ClaveCategoria = "escritorios" | "sillas" | "reunion" | "accesorios";
 
@@ -58,11 +68,6 @@ export interface Categoria {
   portada: string;
 }
 
-/**
- * Las descripciones quedan pendientes salvo la de escritorios, que sale
- * de las propias secciones del catálogo de la empresa (escritorios
- * ejecutivos y escritorios operativos).
- */
 export const CATEGORIAS: Categoria[] = [
   {
     clave: "escritorios",
@@ -99,27 +104,25 @@ export interface Producto {
 }
 
 /**
- * Los nombres son los reales. La "línea" solo se completa cuando la
- * empresa la publica: Prisma, Strada, Tetra, Cool y Equis están
- * verificadas. El resto queda vacío hasta que nos lo confirmen; la
- * ficha muestra un hueco en lugar de una familia inventada.
+ * Piezas de referencia con nombres genéricos. Cuando la empresa pase su
+ * catálogo real, se reemplazan acá (nombre, línea y foto).
  */
 export const PRODUCTOS: Producto[] = [
-  { codigo: "escritorio-prisma", nombre: "Escritorio Prisma", linea: "Línea Prisma", categoria: "escritorios", img: "escritorio-prisma.webp" },
-  { codigo: "escritorio-strada", nombre: "Escritorio Strada", linea: "Línea Strada", categoria: "escritorios", img: "escritorio-strada.webp" },
-  { codigo: "escritorio-tetra", nombre: "Escritorio Tetra", linea: "Línea Tetra", categoria: "escritorios", img: "escritorio-tetra.webp" },
-  { codigo: "escritorio-ergonomico", nombre: "Escritorio Ergonómico", linea: "Escritorios", categoria: "escritorios", img: "escritorio-ergonomico.webp" },
-  { codigo: "escritorio-recto", nombre: "Escritorio Recto", linea: "Escritorios", categoria: "escritorios", img: "escritorio-recto.webp" },
+  { codigo: "escritorio-ejecutivo", nombre: "Escritorio ejecutivo con retorno", linea: "Escritorios ejecutivos", categoria: "escritorios", img: "escritorio-prisma.webp" },
+  { codigo: "escritorio-rack-blanco", nombre: "Escritorio con cajonera, patas blancas", linea: "Escritorios operativos", categoria: "escritorios", img: "escritorio-strada.webp" },
+  { codigo: "escritorio-rack-negro", nombre: "Escritorio con cajonera, patas negras", linea: "Escritorios operativos", categoria: "escritorios", img: "escritorio-tetra.webp" },
+  { codigo: "escritorio-l", nombre: "Escritorio en L", linea: "Escritorios operativos", categoria: "escritorios", img: "escritorio-ergonomico.webp" },
+  { codigo: "escritorio-recto", nombre: "Escritorio recto con cajones", linea: "Escritorios operativos", categoria: "escritorios", img: "escritorio-recto.webp" },
 
-  { codigo: "silla-cool", nombre: "Silla Cool", linea: "Línea Cool", categoria: "sillas", img: "silla-cool.webp" },
-  { codigo: "silla-cool-jazz", nombre: "Silla Cool Jazz", linea: "Línea Cool", categoria: "sillas", img: "silla-cool-jazz.webp" },
-  { codigo: "silla-equis", nombre: "Silla Equis", linea: "Línea Equis", categoria: "sillas", img: "silla-equis.webp" },
-  { codigo: "butaca-paulin", nombre: "Butaca Paulín", linea: "Asientos", categoria: "sillas", img: "butaca-paulin.webp" },
+  { codigo: "silla-ergonomica", nombre: "Silla ergonómica con cabezal", linea: "Sillas ergonómicas", categoria: "sillas", img: "silla-cool.webp" },
+  { codigo: "silla-gerencial", nombre: "Silla gerencial", linea: "Sillas ejecutivas", categoria: "sillas", img: "silla-cool-jazz.webp" },
+  { codigo: "silla-operativa", nombre: "Silla operativa de red", linea: "Sillas operativas", categoria: "sillas", img: "silla-equis.webp" },
+  { codigo: "butaca-recepcion", nombre: "Butaca de recepción", linea: "Recepción", categoria: "sillas", img: "butaca-paulin.webp" },
 
-  { codigo: "mesa-bote", nombre: "Mesa Bote", linea: "Mesas de reunión", categoria: "reunion", img: "mesa-bote.webp" },
-  { codigo: "mesa-redonda", nombre: "Mesa Redonda", linea: "Mesas de reunión", categoria: "reunion", img: "mesa-redonda.webp" },
+  { codigo: "mesa-bote", nombre: "Mesa de reunión bote", linea: "Mesas de reunión", categoria: "reunion", img: "mesa-bote.webp" },
+  { codigo: "mesa-redonda", nombre: "Mesa de reunión redonda", linea: "Mesas de reunión", categoria: "reunion", img: "mesa-redonda.webp" },
 
-  { codigo: "perchero", nombre: "Perchero", linea: "Accesorios", categoria: "accesorios", img: "perchero.webp" },
+  { codigo: "perchero", nombre: "Perchero de pie", linea: "Accesorios", categoria: "accesorios", img: "perchero.webp" },
 ];
 
 /** Foto de galería. El tamaño da la proporción: se muestra entera, sin recorte. */
@@ -133,103 +136,56 @@ export interface Proyecto {
   nombre: string;
   lugar: string;
   descripcion: string;
-  /** Foto de la tarjeta en el listado. */
-  img: string;
+  /** Foto de la tarjeta en el listado. Sin foto, la tarjeta muestra el color de la marca. */
+  img?: string;
   /**
    * Qué parte de la foto se ve en la tarjeta apaisada (background-position).
    * Hace falta con fotos verticales: por defecto solo queda la franja del medio.
    */
   encuadre?: string;
-  /**
-   * Solo los proyectos identificados tienen página propia, en
-   * /proyectos/<slug>. Los de nombre pendiente quedan como tarjeta.
-   */
-  slug?: string;
+  /** Página propia, en /proyectos/<slug>. */
+  slug: string;
   bajada?: string;
   texto?: string;
-  linea?: string;
   /** Galería de la página del proyecto, en orden. */
   fotos?: FotoProyecto[];
+  /** Publicación de Instagram (reel o posteo) que se muestra incrustada. */
+  instagram?: string;
+  /**
+   * Proyecto que no es de la empresa: está para mostrar cómo queda una
+   * página de proyecto. Se marca como ejemplo en la tarjeta y en la página.
+   */
+  ejemplo?: boolean;
 }
 
 /**
- * La empresa sí publica proyectos entregados (COFCO International en la
- * Bolsa de Comercio, Núcleo Servicios, la Asociación Rosarina de
- * Fútbol, Óptica Contini, la Cooperativa de Trabajo Paraná y la
- * Municipalidad de Puerto San Martín), pero no sabemos cuál de esas
- * obras muestra cada una de las fotos de ambiente que tenemos. Poner un
- * nombre real debajo de una foto que quizá sea de otra obra es una
- * atribución falsa.
+ * El único proyecto propio publicado es el de Baigorria, y por ahora
+ * solo está en video. Cuando lleguen las fotos se cargan en `fotos` y el
+ * video puede quedar o salir.
  *
- * Mientras el listado eran solo esas fotos, iban como tarjetas con el
- * nombre pendiente. Ahora que hay cuatro obras identificadas, dos
- * tarjetas anónimas al lado se leen como un error y no como un hueco,
- * así que salieron. Sus fotos siguen en uso en la portada y en
- * servicios.
- *
- * Las que sí tienen nombre salen de posteos de Instagram donde la obra
- * está identificada junto a sus fotos.
+ * Los dos siguientes son ejemplos, con fotos de otra empresa: muestran
+ * cómo se ve una página de proyecto con galería. Hay que sacarlos cuando
+ * haya obras propias con fotos.
  */
 export const PROYECTOS: Proyecto[] = [
   {
-    slug: "coworking-banco-municipal",
-    nombre: "Coworking Banco Municipal",
-    lugar: "La Favorita",
-    descripcion: "Línea Strada: base metálica y tapas de melamina",
-    bajada: "Soluciones para coworking con diseño liviano y estructura sólida.",
-    texto:
-      "Base metálica y tapas de melamina, pensadas para optimizar espacios de trabajo.",
-    linea: "Línea Strada",
-    img: "proy-banco-municipal-2.webp",
-    fotos: [
-      { src: "proy-banco-municipal-1.webp", ancho: 1067, alto: 712 },
-      { src: "proy-banco-municipal-2.webp", ancho: 1070, alto: 716 },
-    ],
-  },
-  {
-    slug: "don-palacios-construcciones",
-    nombre: "Don Palacios Construcciones",
+    slug: "centro-investigaciones-clinicas-baigorria",
+    nombre: "Centro de Investigaciones Clínicas Baigorria",
     lugar: "Rosario",
-    descripcion: "Equipamiento para Don Palacios Construcciones.",
-    texto: "Equipamiento para Don Palacios Construcciones.",
-    img: "proy-don-palacios-3.webp",
-    encuadre: "center 30%",
-    fotos: [
-      { src: "proy-don-palacios-1.webp", ancho: 720, alto: 960 },
-      { src: "proy-don-palacios-2.webp", ancho: 900, alto: 1200 },
-      { src: "proy-don-palacios-3.webp", ancho: 900, alto: 1200 },
-      { src: "proy-don-palacios-4.webp", ancho: 900, alto: 1200 },
-      { src: "proy-don-palacios-5.webp", ancho: 720, alto: 960 },
-    ],
-  },
-  {
-    slug: "banco-municipal",
-    nombre: "Banco Municipal",
-    lugar: "Rosario",
-    descripcion: "Mostradores, tabiques, mesas de reunión y puestos de trabajo",
-    bajada: "Proyecto realizado para el Banco Municipal.",
-    texto:
-      "Mostradores, tabiques especiales, mesas de reunión y puestos de trabajo, desarrollados como una solución completa y funcional.",
-    img: "proy-banco-municipal-suc-2.webp",
-    fotos: [
-      { src: "proy-banco-municipal-suc-1.webp", ancho: 1100, alto: 969 },
-      { src: "proy-banco-municipal-suc-2.webp", ancho: 1100, alto: 969 },
-      { src: "proy-banco-municipal-suc-3.webp", ancho: 1100, alto: 968 },
-      { src: "proy-banco-municipal-suc-4.webp", ancho: 1100, alto: 969 },
-      { src: "proy-banco-municipal-suc-5.webp", ancho: 1100, alto: 969 },
-      { src: "proy-banco-municipal-suc-6.webp", ancho: 1100, alto: 968 },
-      { src: "proy-banco-municipal-suc-7.webp", ancho: 1100, alto: 968 },
-      { src: "proy-banco-municipal-suc-8.webp", ancho: 1100, alto: 969 },
-      { src: "proy-banco-municipal-suc-9.webp", ancho: 1100, alto: 968 },
-    ],
-  },
-  {
-    slug: "bcrlabs",
-    nombre: "BCRlabs",
-    lugar: "Bolsa de Comercio de Rosario",
-    descripcion: "Mobiliario a medida para un espacio de innovación",
+    descripcion: "Interiorismo y equipamiento, junto a Andrés Haugh Arquitecto",
     bajada:
-      "Un proyecto integral de mobiliario diseñado a medida para acompañar un espacio de innovación y trabajo colaborativo.",
+      "Línea participó en la toma de decisiones de interiorismo y equipamiento.",
+    texto: "Proyecto de arquitectura: Andrés Haugh Arquitecto.",
+    instagram: "https://www.instagram.com/reel/DVUF9NgEeXO/",
+  },
+  {
+    slug: "ejemplo-oficinas-corporativas",
+    ejemplo: true,
+    nombre: "Oficinas corporativas",
+    lugar: "Proyecto de ejemplo",
+    descripcion: "Salas de reunión, despachos, puestos de trabajo y guardado",
+    bajada:
+      "Así se vería una obra terminada: una galería de fotos con todo el mobiliario del proyecto.",
     img: "proy-bcrlabs-1.webp",
     fotos: [
       { src: "proy-bcrlabs-1.webp", ancho: 1100, alto: 1100 },
@@ -241,6 +197,27 @@ export const PROYECTOS: Proyecto[] = [
       { src: "proy-bcrlabs-7.webp", ancho: 1100, alto: 1100 },
       { src: "proy-bcrlabs-8.webp", ancho: 1100, alto: 1100 },
       { src: "proy-bcrlabs-9.webp", ancho: 1100, alto: 1100 },
+    ],
+  },
+  {
+    slug: "ejemplo-atencion-al-publico",
+    ejemplo: true,
+    nombre: "Espacio de atención al público",
+    lugar: "Proyecto de ejemplo",
+    descripcion: "Mostradores, tabiques, mesas de reunión y puestos de trabajo",
+    bajada:
+      "Así se vería una obra terminada: una galería de fotos con todo el mobiliario del proyecto.",
+    img: "proy-banco-municipal-suc-2.webp",
+    fotos: [
+      { src: "proy-banco-municipal-suc-1.webp", ancho: 1100, alto: 969 },
+      { src: "proy-banco-municipal-suc-2.webp", ancho: 1100, alto: 969 },
+      { src: "proy-banco-municipal-suc-3.webp", ancho: 1100, alto: 968 },
+      { src: "proy-banco-municipal-suc-4.webp", ancho: 1100, alto: 969 },
+      { src: "proy-banco-municipal-suc-5.webp", ancho: 1100, alto: 969 },
+      { src: "proy-banco-municipal-suc-6.webp", ancho: 1100, alto: 968 },
+      { src: "proy-banco-municipal-suc-7.webp", ancho: 1100, alto: 968 },
+      { src: "proy-banco-municipal-suc-8.webp", ancho: 1100, alto: 969 },
+      { src: "proy-banco-municipal-suc-9.webp", ancho: 1100, alto: 968 },
     ],
   },
 ];

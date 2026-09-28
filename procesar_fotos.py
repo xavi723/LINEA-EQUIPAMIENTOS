@@ -170,35 +170,32 @@ if __name__ == "__main__":
 
 
 # --------------------------------------------------------------------
-# Logo
+# Marca de Línea Equipamiento
 # --------------------------------------------------------------------
-# El original es el lockup completo (isotipo + nombre + bajada) en un
-# solo color sobre transparencia. De ahí salen las dos versiones que usa
-# el sitio: la oscura para la cabecera y la clara para el pie, que va
-# sobre el verde de la marca. Recolorear conserva el alfa, así que los
-# bordes suavizados siguen limpios sobre cualquier fondo.
-LOGO = "logo-altobello-victorio.webp"
+# El único logo que hay es el isotipo "Le" a 150 px. Va tal cual a la
+# cabecera y al pie (el nombre se escribe en texto al lado, ver
+# components/marca.tsx) y, achicado, como ícono de la pestaña. Las dos
+# fotos de la empresa salen de sus redes.
+LINEA = [
+    # (origen, salida)
+    ("Logo Linea Equipamientos.jpg", "linea-isotipo.webp"),
+    ("Linea fundador Abel Baroni.jpg", "linea-fundador.webp"),
+    ("Linea render oficina.jpg", "linea-render.webp"),
+]
 
 
-def recolorear_logo(origen, salida, color, alto=120):
-    im = Image.open(os.path.join(SRC, origen)).convert("RGBA")
-
-    caja = im.getbbox()          # recorta el aire alrededor del lockup
-    if caja:
-        im = im.crop(caja)
-
-    ancho = max(int(im.width * alto / im.height), 1)
-    im = im.resize((ancho, alto), Image.LANCZOS)
-
-    tenido = Image.new("RGBA", im.size, color + (255,))
-    tenido.putalpha(im.getchannel("A"))
-    tenido.save(os.path.join(DST, salida), "WEBP", quality=92, method=6, lossless=True)
+def copiar_linea(origen, salida):
+    im = Image.open(os.path.join(SRC, origen)).convert("RGB")
+    im.save(os.path.join(DST, salida), "WEBP", quality=90, method=6)
     return salida
 
 
 if __name__ == "__main__":
-    print("logo     ", recolorear_logo(LOGO, "logo.webp", TINTA))
-    print("logo     ", recolorear_logo(LOGO, "logo-blanco.webp", PAPEL))
+    for origen, salida in LINEA:
+        print("línea    ", copiar_linea(origen, salida))
+    Image.open(os.path.join(SRC, "Logo Linea Equipamientos.jpg")).convert("RGB") \
+        .resize((64, 64), Image.LANCZOS).save("app/icon.png")
+    print("ícono     app/icon.png")
 
 
 # --------------------------------------------------------------------
@@ -394,3 +391,13 @@ if __name__ == "__main__":
         nombre, an, al, bandas = foto_de_proyecto(origen, salida)
         recorte = "  bordes negros (arriba, abajo, izq, der): %s" % (bandas,) if any(bandas) else ""
         print(f"proyecto  {nombre:28s} {an}x{al}{recorte}")
+
+
+# --------------------------------------------------------------------
+# Marca de agua de Altobello
+# --------------------------------------------------------------------
+# Último paso, siempre: las fichas y portadas regeneradas arriba vuelven
+# a traer el chevron de Altobello. Ver quitar_marca.py.
+if __name__ == "__main__":
+    import quitar_marca
+    quitar_marca.limpiar_todas()

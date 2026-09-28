@@ -2,7 +2,7 @@
 
 import { useRef, useState, type FormEvent } from "react";
 
-import { CATEGORIAS } from "@/lib/datos";
+import { CATEGORIAS, TELEFONO_CRUDO } from "@/lib/datos";
 import { usePresupuesto } from "@/components/presupuesto";
 import { Flecha } from "@/components/flecha";
 
@@ -17,8 +17,35 @@ export function FormularioPresupuesto() {
       : `${lista.length} pieza${lista.length === 1 ? "" : "s"} en tu lista: ` +
         lista.map((p) => p.nombre).join(", ") + ".";
 
+  /**
+   * La empresa no publica mail, así que el pedido sale por WhatsApp: se
+   * arma el mensaje con lo que cargó el visitante y se abre el chat. El
+   * visitante lo ve antes de mandarlo.
+   */
   function enviar(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const datos = new FormData(e.currentTarget);
+    const campo = (clave: string) => String(datos.get(clave) ?? "").trim();
+    const familia = CATEGORIAS.find((c) => c.clave === campo("familia"))?.nombre
+      ?? (campo("familia") === "proyecto" ? "Un espacio completo" : "");
+
+    const lineas = [
+      "Hola, quiero pedir un presupuesto.",
+      campo("nombre") && `Nombre: ${campo("nombre")}`,
+      campo("empresa") && `Empresa: ${campo("empresa")}`,
+      campo("email") && `Email: ${campo("email")}`,
+      campo("telefono") && `Teléfono: ${campo("telefono")}`,
+      familia && `Qué necesito: ${familia}`,
+      campo("puestos") && `Puestos: ${campo("puestos")}`,
+      lista.length > 0 && `Piezas de la lista: ${lista.map((p) => p.nombre).join(", ")}`,
+      campo("mensaje") && `\n${campo("mensaje")}`,
+    ].filter(Boolean);
+
+    window.open(
+      `https://wa.me/${TELEFONO_CRUDO}?text=${encodeURIComponent(lineas.join("\n"))}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
     setEnviado(true);
     requestAnimationFrame(() => estado.current?.focus());
   }
@@ -32,7 +59,7 @@ export function FormularioPresupuesto() {
       </p>
 
       <div className="contacto__resumen">
-        <div className="etiqueta" style={{ marginBottom: "0.4rem", color: "var(--naranja)" }}>
+        <div className="etiqueta" style={{ marginBottom: "0.4rem", color: "var(--acento)" }}>
           Tu lista
         </div>
         <p className="dato" style={{ fontSize: "var(--t-sm)", color: "var(--tinta)" }}>
@@ -65,7 +92,7 @@ export function FormularioPresupuesto() {
               {CATEGORIAS.map((c) => (
                 <option key={c.clave} value={c.clave}>{c.nombre}</option>
               ))}
-              <option value="proyecto">Una oficina completa</option>
+              <option value="proyecto">Un espacio completo</option>
             </select>
           </div>
           <div className="campo">
@@ -80,19 +107,19 @@ export function FormularioPresupuesto() {
               placeholder="Metros del espacio, plazos, si ya tenés muebles que querés conservar…"
             />
             <span className="campo__ayuda">
-              Si tenés el plano del espacio, mencionalo y te lo pedimos por mail.
+              Si tenés el plano o fotos del espacio, mandalos después por el mismo chat.
             </span>
           </div>
         </div>
 
         <button className="btn btn--acento" type="submit" style={{ marginTop: "2rem" }}>
-          Enviar el pedido <Flecha />
+          Enviar por WhatsApp <Flecha />
         </button>
 
         {enviado ? (
           <p ref={estado} tabIndex={-1} className="form__estado" data-visible="si">
-            Listo. Es una maqueta de demostración, así que no se envió nada — en
-            la web real esto llega a presupuestos@altobellovictorio.com.ar.
+            Se abrió WhatsApp con tu pedido ya escrito. Revisalo y tocá enviar
+            para que nos llegue.
           </p>
         ) : null}
       </form>

@@ -33,13 +33,13 @@ const plex = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://altobellovictorio.vercel.app"),
+  metadataBase: new URL("https://xavi723.github.io/LINEA-EQUIPAMIENTOS/"),
   title: {
     default: `${EMPRESA.nombre} · ${EMPRESA.bajada} en Rosario`,
     template: `%s · ${EMPRESA.nombre}`,
   },
   description:
-    "Equipamiento para empresas en Rosario desde 1959. Asesoramiento y diseño, garantía y servicio, transporte e instalación.",
+    "Mobiliario integral en Rosario desde hace más de 50 años. Diseñamos, fabricamos y acompañamos cada etapa, desde la idea hasta la instalación final.",
   openGraph: {
     type: "website",
     locale: "es_AR",

@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Altobello Victorio — sistema de diseño
-   Muebles para oficina · Rosario · desde 1959
+   Línea Equipamiento — sistema de diseño
+   Mobiliario integral · Rosario · más de 50 años
    ============================================================ */
 
 /* ---------- 1. Tokens ---------- */
 :root {
-  /* Color. Diseño comprometido con un solo mundo visual (luz de día,
-     madera clara, verde del logo). Todo se pinta explícito. */
-  --tinta:      #0C1F1A;  /* verde-negro del isotipo */
-  --tinta-80:   #33463F;
-  --humo:       #636C68;  /* neutro sesgado al verde; 4.9:1 sobre papel, AA */
-  --humo-claro: #9AA29D;
+  /* Color. Los tres de la marca: el verde oscuro y el verde claro del
+     isotipo, y el marrón de fondo de sus piezas gráficas. */
+  --tinta:      #2A211D;  /* marrón de las piezas de la marca, oscurecido */
+  --tinta-80:   #4A3D37;
+  --humo:       #676059;  /* neutro cálido; 5.6:1 sobre papel, AA */
+  --humo-claro: #A39B94;
   --papel:      #F4F3EF;  /* blanco de plano técnico */
   --papel-puro: #FCFBF8;
   --arena:      #E4E0D6;
   --arena-osc:  #CFC9BB;
   --roble:      #C9A57A;  /* madera clara de las fotos */
-  --verde:      #143A2E;
-  --naranja:    #D2571C;  /* tapizado real de la línea de sillas */
-  --naranja-cl: #F0E2D6;
-  --menta:      #8FBFAC;  /* segundo tapizado real */
+  --verde:      #2B5240;  /* verde oscuro del isotipo */
+  --acento:     #2B5240;  /* botones y enlaces: 8.4:1 con texto blanco */
+  --acento-cl:  #DDE9DF;
+  --menta:      #8EBB94;  /* verde claro del isotipo; el acento sobre fondo oscuro */
 
   /* Tipografía */
   /* Las sirve next/font desde el propio dominio; las de reserva cubren
@@ -108,12 +108,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 button, input, select, textarea { font: inherit; color: inherit; }
 
 :focus-visible {
-  outline: 2px solid var(--naranja);
+  outline: 2px solid var(--acento);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-::selection { background: var(--naranja); color: var(--papel-puro); }
+::selection { background: var(--acento); color: var(--papel-puro); }
 
 /* ---------- 3. Utilidades de composición ---------- */
 .env {
@@ -141,9 +141,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .etiqueta::before {
   content: "";
-  width: 12px; height: 14px;
+  width: 9px; height: 9px;
+  border-radius: 2px;
   background: currentColor;
-  clip-path: polygon(0 0, 100% 0, 0 50%, 100% 100%, 0 100%);
   flex: none;
 }
 
@@ -169,23 +169,23 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (max-width: 900px) { .marca__logo { height: 34px; } }
 @media (max-width: 620px) { .marca__logo { height: 30px; } }
 @media (max-width: 380px) { .marca__logo { height: 26px; } }
-.marca__iso { flex: none; display: block; }
+.marca__iso { flex: none; display: block; width: 42px; height: 42px; border-radius: 6px; }
 .marca__texto { display: flex; flex-direction: column; line-height: 1; }
 .marca__nombre {
   font-family: var(--display);
-  font-weight: 600;
-  font-size: 1.28rem;
+  font-weight: 700;
+  font-size: 1.4rem;
   letter-spacing: -0.02em;
   white-space: nowrap;
+  color: var(--verde);
 }
 .marca__bajada {
   font-family: var(--texto);
   font-weight: 500;
-  font-size: 0.585rem;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
-  color: var(--humo);
-  margin-top: 0.28rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--verde);
+  margin-top: 0.12rem;
 }
 
 /* ---------- 5. Botones ---------- */
@@ -213,7 +213,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn__flecha { transition: transform var(--d-menu) var(--curva); }
 
 .btn--solido { background: var(--tinta); color: var(--papel-puro); }
-.btn--solido:hover { background: var(--naranja); }
+.btn--solido:hover { background: var(--acento); }
 
 .btn--linea { border-color: var(--tinta); color: var(--tinta); }
 .btn--linea:hover { background: var(--tinta); color: var(--papel-puro); }
@@ -221,7 +221,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn--claro { border-color: rgba(252,251,248,0.45); color: var(--papel-puro); }
 .btn--claro:hover { background: var(--papel-puro); color: var(--tinta); border-color: var(--papel-puro); }
 
-.btn--acento { background: var(--naranja); color: var(--papel-puro); }
+.btn--acento { background: var(--acento); color: var(--papel-puro); }
 .btn--acento:hover { background: var(--tinta); }
 
 .enlace-flecha {
@@ -236,7 +236,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-bottom: 1px solid var(--arena-osc);
   transition: border-color var(--d-hover) var(--curva-hover), color var(--d-hover) var(--curva-hover);
 }
-.enlace-flecha:hover { border-color: var(--naranja); color: var(--naranja); }
+.enlace-flecha:hover { border-color: var(--acento); color: var(--acento); }
 .enlace-flecha svg { transition: transform var(--d-menu) var(--curva); }
 
 /* ---------- 6. Slots de imagen ----------
@@ -265,7 +265,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--papel-puro);
-  background: linear-gradient(to top, rgba(12,31,26,0.72), rgba(12,31,26,0));
+  background: linear-gradient(to top, rgba(42,33,29,0.72), rgba(42,33,29,0));
   padding-top: 3rem;
 }
 .foto__marca-agua {
@@ -277,7 +277,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-size: var(--t-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(12,31,26,0.28);
+  color: rgba(42,33,29,0.28);
   text-align: center;
   padding: var(--e-2);
   pointer-events: none;
@@ -298,7 +298,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-bottom: var(--borde);
   transition: box-shadow var(--d-menu) var(--curva-hover);
 }
-.cabecera--flotando { box-shadow: 0 1px 24px rgba(12,31,26,0.09); }
+.cabecera--flotando { box-shadow: 0 1px 24px rgba(42,33,29,0.09); }
 
 .cabecera__barra {
   display: flex;
@@ -322,7 +322,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: absolute;
   left: 0; bottom: 0;
   width: 100%; height: 2px;
-  background: var(--naranja);
+  background: var(--acento);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--d-menu) var(--curva);
@@ -342,7 +342,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   color: var(--humo);
   transition: color var(--d-hover) var(--curva-hover);
 }
-.tel:hover { color: var(--naranja); }
+.tel:hover { color: var(--acento); }
 
 /* Contador de la lista de presupuesto */
 .contador {
@@ -352,7 +352,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   height: 1.35rem;
   padding-inline: 0.35rem;
   border-radius: 999px;
-  background: var(--naranja);
+  background: var(--acento);
   color: var(--papel-puro);
   font-family: var(--dato);
   font-size: 0.7rem;
@@ -432,10 +432,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   inset: 0;
   background:
     linear-gradient(100deg,
-      rgba(12,31,26,0.95) 0%,
-      rgba(12,31,26,0.88) 34%,
-      rgba(12,31,26,0.62) 62%,
-      rgba(12,31,26,0.38) 100%);
+      rgba(42,33,29,0.95) 0%,
+      rgba(42,33,29,0.88) 34%,
+      rgba(42,33,29,0.62) 62%,
+      rgba(42,33,29,0.38) 100%);
 }
 /* El bloque conserva el ancho de .env para alinearse al canal
    izquierdo; el límite de lectura se aplica a los hijos. Si se le baja
@@ -507,13 +507,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .cat__foto::after {
   content: "";
   position: absolute; inset: 0;
-  background: rgba(12,31,26,0);
+  background: rgba(42,33,29,0);
   transition: background var(--d-hover) var(--curva-hover);
 }
 .cat__meta { display: flex; align-items: baseline; justify-content: space-between; gap: var(--e-2); }
 .cat__nombre { font-family: var(--display); font-size: 1.18rem; font-weight: 600; line-height: 1.15; }
 .cat__n { font-family: var(--dato); font-size: var(--t-xs); color: var(--humo); white-space: nowrap; flex: none; }
-.cat:hover .cat__nombre { color: var(--naranja); }
+.cat:hover .cat__nombre { color: var(--acento); }
 
 /* ---------- 10. Ficha de producto en rejilla ---------- */
 .rejilla-prod {
@@ -532,7 +532,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .prod__foto::after {
   content: "";
   position: absolute; inset: 0;
-  background: rgba(12,31,26,0);
+  background: rgba(42,33,29,0);
   transition: background var(--d-hover) var(--curva-hover);
 }
 /* El aro aparece y se va con el hover (sección 20). Se ve decenas de
@@ -577,7 +577,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .muestra {
   width: 15px; height: 15px;
   border-radius: 50%;
-  border: 1px solid rgba(12,31,26,0.16);
+  border: 1px solid rgba(42,33,29,0.16);
 }
 
 .btn-sumar {
@@ -599,7 +599,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
               border-color var(--d-hover) var(--curva-hover), transform var(--d-pulso) var(--curva);
 }
 .btn-sumar:active { transform: scale(0.96); }
-.btn-sumar[data-agregado="si"] { background: var(--naranja); border-color: var(--naranja); color: var(--papel-puro); }
+.btn-sumar[data-agregado="si"] { background: var(--acento); border-color: var(--acento); color: var(--papel-puro); }
 
 /* Consulta por WhatsApp de una pieza concreta. Usa el verde de la marca
    de WhatsApp: acá el color no es decoración, es la señal de a dónde
@@ -611,7 +611,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   flex: 0 0 auto;
   width: 36px;
   min-height: 36px;
-  border: 1px solid rgba(12,31,26,0.16);
+  border: 1px solid rgba(42,33,29,0.16);
   border-radius: 2px;
   color: #1FA855;
   background: none;
@@ -628,7 +628,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .btn-wsp:focus-visible {
-  outline: 2px solid var(--naranja);
+  outline: 2px solid var(--acento);
   outline-offset: 2px;
 }
 
@@ -669,7 +669,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .fila-serv__n {
   font-family: var(--dato);
   font-size: var(--t-xs);
-  color: var(--naranja);
+  color: var(--acento);
   letter-spacing: 0.1em;
   padding-top: 0.5rem;
 }
@@ -685,7 +685,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .proy__foto::after {
   content: "";
   position: absolute; inset: 0;
-  background: rgba(12,31,26,0);
+  background: rgba(42,33,29,0);
   transition: background var(--d-hover) var(--curva-hover);
 }
 .proy__meta { display: flex; justify-content: space-between; gap: var(--e-2); margin-top: 0.85rem; }
@@ -716,7 +716,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ---------- 15. Pie ---------- */
 .pie { background: var(--tinta); color: rgba(244,243,239,0.72); padding-block: var(--e-6) var(--e-3); }
 .pie a { color: rgba(244,243,239,0.72); transition: color var(--d-hover) var(--curva-hover); }
-.pie a:hover { color: var(--naranja); }
+.pie a:hover { color: var(--menta); }
 .pie__cols { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: var(--e-4); }
 .pie__titulo {
   font-family: var(--dato);
@@ -727,8 +727,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
   margin-bottom: var(--e-2);
 }
 .pie__cols li + li { margin-top: 0.55rem; }
-.pie .marca__nombre { color: var(--papel-puro); }
-.pie .marca__bajada { color: rgba(244,243,239,0.55); }
+.pie .marca__nombre { color: var(--menta); }
+.pie .marca__bajada { color: var(--menta); }
 .pie__legal {
   display: flex;
   flex-wrap: wrap;
@@ -749,7 +749,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: fixed;
   inset: 0;
   z-index: 60;
-  background: rgba(12,31,26,0.42);
+  background: rgba(42,33,29,0.42);
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--d-panel) var(--curva-panel), visibility var(--d-panel);
@@ -801,7 +801,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-radius: 2px;
   transition: color var(--d-hover) var(--curva-hover), background var(--d-hover) var(--curva-hover);
 }
-.item__quitar:hover { color: var(--naranja); background: var(--arena); }
+.item__quitar:hover { color: var(--acento); background: var(--arena); }
 
 .cerrar {
   width: 44px; height: 44px;
@@ -824,7 +824,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   color: var(--papel-puro);
   border-radius: 2px;
   font-size: var(--t-sm);
-  box-shadow: 0 8px 32px rgba(12,31,26,0.28);
+  box-shadow: 0 8px 32px rgba(42,33,29,0.28);
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--d-aviso) var(--curva),
@@ -843,7 +843,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   color: var(--humo);
   padding-block: var(--e-3);
 }
-.migas a:hover { color: var(--naranja); }
+.migas a:hover { color: var(--acento); }
 .migas span[aria-hidden] { color: var(--arena-osc); }
 
 /* ---------- 19. Movimiento de entrada ----------
@@ -872,24 +872,24 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .btn:hover .btn__flecha { transform: translateX(4px); }
   .enlace-flecha:hover svg { transform: translateX(4px); }
 
-  .cat:hover .cat__foto::after { background: rgba(12,31,26,0.14); }
-  .cat:hover .cat__nombre { color: var(--naranja); }
+  .cat:hover .cat__foto::after { background: rgba(42,33,29,0.14); }
+  .cat:hover .cat__nombre { color: var(--acento); }
 
-  .prod:hover .prod__foto::after { background: rgba(12,31,26,0.10); }
-  .prod:hover .prod__nombre { color: var(--naranja); }
+  .prod:hover .prod__foto::after { background: rgba(42,33,29,0.10); }
+  .prod:hover .prod__nombre { color: var(--acento); }
 
   /* El aro de marca: dice "esto responde" con el naranja del tapizado,
      sin mover nada de lugar. Va por dentro para no empujar la grilla. */
   .prod:hover .prod__foto,
   .cat:hover .cat__foto,
-  .proy:hover .proy__foto { box-shadow: inset 0 0 0 2px var(--naranja); }
-  .prod:hover .prod__foto { border-color: var(--naranja); }
+  .proy:hover .proy__foto { box-shadow: inset 0 0 0 2px var(--acento); }
+  .prod:hover .prod__foto { border-color: var(--acento); }
 
   .btn-sumar:hover { background: var(--tinta); color: var(--papel-puro); border-color: var(--tinta); }
 
   .fila-serv:hover { background: var(--papel-puro); }
-  .proy:hover .proy__foto::after { background: rgba(12,31,26,0.16); }
-  .enlace-volver:hover { color: var(--naranja); }
+  .proy:hover .proy__foto::after { background: rgba(42,33,29,0.16); }
+  .enlace-volver:hover { color: var(--acento); }
   .enlace-volver:hover::before { transform: translateX(-4px); }
 }
 
@@ -948,9 +948,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (max-width: 620px) {
   .cabecera__barra { min-height: 64px; gap: 0.6rem; }
   .marca { gap: 0.5rem; }
-  .marca__iso { width: 24px; height: 24px; }
-  .marca__nombre { font-size: 1.02rem; }
-  .marca__bajada { display: none; }
+  .marca__iso { width: 32px; height: 32px; border-radius: 5px; }
+  .marca__nombre { font-size: 1.1rem; }
+  .marca__bajada { font-size: 0.68rem; }
 
   .btn--presupuesto { padding-inline: 0.75rem; gap: 0.45rem; }
   .btn--presupuesto .btn__palabra { display: none; }
@@ -1053,7 +1053,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   padding: 0.5rem 0;
   transition: color var(--d-hover) var(--curva-hover);
 }
-.filtros__limpiar:hover { color: var(--naranja); }
+.filtros__limpiar:hover { color: var(--acento); }
 
 .filtro__fila {
   display: flex;
@@ -1062,7 +1062,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   min-height: 44px;
   cursor: pointer;
 }
-.filtro__fila input { width: 17px; height: 17px; accent-color: var(--naranja); }
+.filtro__fila input { width: 17px; height: 17px; accent-color: var(--acento); }
 
 .catalogo__barra {
   display: flex;
@@ -1097,8 +1097,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .contacto__resumen {
   margin: 2rem 0;
   padding: 1rem 1.25rem;
-  background: var(--naranja-cl);
-  border-left: 3px solid var(--naranja);
+  background: var(--acento-cl);
+  border-left: 3px solid var(--acento);
 }
 
 .form__estado {
@@ -1182,7 +1182,7 @@ div.pendiente {
    click, a diferencia de los botones. Menos escala que un botón: la
    superficie es mucho más grande y el mismo factor se ve exagerado. */
 .proy__enlace:active { transform: scale(0.99); }
-.proy__enlace:focus-visible { outline: 2px solid var(--naranja); outline-offset: 4px; }
+.proy__enlace:focus-visible { outline: 2px solid var(--acento); outline-offset: 4px; }
 
 .proy-det__enc {
   display: grid;
@@ -1300,7 +1300,7 @@ div.pendiente {
   border-radius: 2px;
 }
 .galeria-tira__boton img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.galeria-tira__boton:focus-visible { outline: 2px solid var(--naranja); outline-offset: 3px; }
+.galeria-tira__boton:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
 .galeria-tira__velo {
   position: absolute; inset: 0;
   background: var(--tinta);
@@ -1373,3 +1373,68 @@ div.pendiente {
 @media (prefers-reduced-motion: reduce) {
   .galeria-visor__control { transition: none; }
 }
+
+/* ---------- 30. Rubros ----------
+   Los cinco espacios que equipa la empresa, con el cuadrado de la
+   etiqueta como viñeta. */
+.rubros { list-style: none; margin: var(--e-3) 0 var(--e-4); padding: 0; }
+.rubros li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-block: 0.7rem;
+  border-top: var(--borde);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: var(--t-md);
+}
+.rubros li:last-child { border-bottom: var(--borde); }
+.rubros li::before {
+  content: "";
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  background: var(--acento);
+  flex: none;
+}
+.banda--oscura .rubros li { border-color: rgba(244,243,239,0.18); }
+.banda--oscura .rubros li::before { background: var(--menta); }
+
+/* Aviso de proyecto de ejemplo, en la tarjeta y en la página. */
+.aviso-ejemplo {
+  display: inline-block;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--acento-cl);
+  color: var(--verde);
+  padding: 0.3rem 0.6rem;
+  border-radius: 3px;
+}
+
+/* Proyecto sin foto: la tarjeta toma el verde de la marca. */
+.proy__foto--sin-foto {
+  background: var(--verde);
+  display: grid;
+  place-items: center;
+  color: var(--menta);
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Publicación de Instagram incrustada. */
+.embed-instagram {
+  display: flex;
+  justify-content: center;
+}
+.embed-instagram iframe {
+  width: 100%;
+  max-width: 540px;
+  height: 860px;
+  border: var(--borde);
+  border-radius: 8px;
+  background: var(--papel-puro);
+}
+@media (max-width: 620px) { .embed-instagram iframe { height: 720px; } }

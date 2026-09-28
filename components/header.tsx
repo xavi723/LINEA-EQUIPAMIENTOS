@@ -35,7 +35,7 @@ export function Header() {
 
       <header className={`cabecera${flotando ? " cabecera--flotando" : ""}`}>
         <div className="env cabecera__barra">
-          <Link href="/" aria-label="Altobello Victorio, inicio">
+          <Link href="/" aria-label="Línea Equipamiento, inicio">
             <Marca />
           </Link>
 

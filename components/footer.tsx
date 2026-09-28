@@ -4,7 +4,7 @@ import { EMPRESA, TELEFONO, TELEFONO_CRUDO } from "@/lib/datos";
 import { Marca } from "@/components/marca";
 
 export function Footer() {
-  const { showroom, fabrica } = EMPRESA;
+  const { showroom } = EMPRESA;
 
   return (
     <footer className="pie">
@@ -12,10 +12,8 @@ export function Footer() {
         <div className="pie__cols">
           <div>
             <Marca variante="claro" />
-            {/* "Empresa familiar" y "desde 1959" están verificados. */}
             <p style={{ marginTop: "1rem", fontSize: "var(--t-sm)" }}>
-              Empresa familiar de Rosario. Equipamiento para empresas desde{" "}
-              {EMPRESA.desde}.
+              {EMPRESA.bajada} en Rosario. {EMPRESA.trayectoria} equipando espacios.
             </p>
           </div>
 
@@ -42,21 +40,23 @@ export function Footer() {
             <div className="pie__titulo">Showroom</div>
             <ul>
               <li>{showroom.calle}, {EMPRESA.ciudad}</li>
-              <li><a href={`tel:+${TELEFONO_CRUDO}`}>Tel. {TELEFONO}</a></li>
-              <li><a href={`mailto:${showroom.mail}`}>{showroom.mail}</a></li>
+              <li>
+                <a href={`https://wa.me/${TELEFONO_CRUDO}`} target="_blank" rel="noopener noreferrer">
+                  WhatsApp {TELEFONO}
+                </a>
+              </li>
             </ul>
 
-            <div className="pie__titulo" style={{ marginTop: "1.75rem" }}>Fábrica</div>
+            <div className="pie__titulo" style={{ marginTop: "1.75rem" }}>Redes</div>
             <ul>
-              <li>{fabrica.calle}, {EMPRESA.ciudad}</li>
-              <li><a href={`tel:+${TELEFONO_CRUDO}`}>Tel. {TELEFONO}</a></li>
-              <li><a href={`mailto:${fabrica.mail}`}>{fabrica.mail}</a></li>
+              <li><a href={EMPRESA.instagram} target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href={EMPRESA.facebook} target="_blank" rel="noopener noreferrer">Facebook</a></li>
             </ul>
           </div>
         </div>
 
         <div className="pie__legal">
-          <span>© 2026 {EMPRESA.nombre} · Desde {EMPRESA.desde}</span>
+          <span>© 2026 {EMPRESA.nombre} · {EMPRESA.trayectoria}</span>
           <span>Showroom: {showroom.horario}</span>
         </div>
       </div>

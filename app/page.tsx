@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { CATEGORIAS, PRODUCTOS, contarPiezas, EMPRESA } from "@/lib/datos";
+import { CATEGORIAS, PRODUCTOS, RUBROS, TELEFONO_CRUDO, contarPiezas, EMPRESA } from "@/lib/datos";
 import { Cifras } from "@/components/cifras";
 import { FichaProducto } from "@/components/ficha-producto";
 import { Flecha } from "@/components/flecha";
@@ -8,7 +8,7 @@ import { Foto } from "@/components/foto";
 import { Pendiente } from "@/components/pendiente";
 import { Revelar } from "@/components/revelar";
 
-const DESTACADOS = ["silla-cool", "escritorio-prisma", "mesa-bote", "silla-cool-jazz"];
+const DESTACADOS = ["silla-ergonomica", "escritorio-ejecutivo", "mesa-bote", "silla-gerencial"];
 
 export default function Inicio() {
   const destacados = PRODUCTOS.filter((p) => DESTACADOS.includes(p.codigo));
@@ -19,24 +19,23 @@ export default function Inicio() {
         <Foto
           className="portada__foto"
           src="proy-banco-municipal-1.webp"
-          alt="Coworking del Banco Municipal equipado por Altobello Victorio"
+          alt="Espacio de trabajo equipado con escritorios y sillas"
         />
         <div className="portada__velo" />
 
         <div className="env portada__contenido">
-          <div className="etiqueta entra">Rosario · desde {EMPRESA.desde}</div>
+          <div className="etiqueta entra">Rosario · {EMPRESA.trayectoria.toLowerCase()}</div>
 
-          {/* Frase de la propia empresa: "una empresa familiar en
-              crecimiento que desde sus inicios en 1959 busca soluciones
-              para mejorar tu jornada laboral y experimentar el placer de
-              trabajar". */}
+          {/* Frases de la propia empresa: su afiche ("Diseñamos proyectos
+              de mobiliario integral") y su Instagram ("Diseñamos,
+              fabricamos y acompañamos cada etapa…"). */}
           <h1 className="entra" style={{ ["--paso" as string]: "70ms" }}>
-            Soluciones para mejorar tu jornada laboral.
+            Diseñamos proyectos de mobiliario integral.
           </h1>
 
           <p className="portada__bajada entra" style={{ ["--paso" as string]: "140ms" }}>
-            Empresa familiar desde {EMPRESA.desde}. Queremos ayudarte a aprovechar al
-            máximo tu oficina, acompañar tu pasión y hacer realidad tu sueño.
+            Diseñamos, fabricamos y acompañamos cada etapa, desde la idea hasta la
+            instalación final.
           </p>
 
           <div className="portada__acciones entra" style={{ ["--paso" as string]: "210ms" }}>
@@ -52,12 +51,11 @@ export default function Inicio() {
         <Revelar className="enc-seccion">
           <div>
             <div className="etiqueta">El catálogo</div>
-            <h2>Todo lo que entra en una oficina</h2>
+            <h2>Todo lo que entra en un espacio de trabajo</h2>
           </div>
           <p>
-            Escritorios, asientos, guardado y accesorios. Fabricamos nuestras propias
-            líneas —Strada, Tetra y Ejecutiva— y también resolvemos los pedidos a
-            medida, cuando el espacio pide otra cosa.
+            Escritorios, sillas, mesas de reunión y accesorios. Estas son piezas de
+            referencia: cada proyecto se arma según el espacio y cómo se va a usar.
           </p>
         </Revelar>
 
@@ -81,18 +79,26 @@ export default function Inicio() {
         </div>
       </section>
 
+      {/* Texto armado con los posteos de Instagram de la empresa: el de su
+          fundador y el de la renovación de imagen. */}
       <section className="banda banda--oscura">
-        <Foto className="banda__foto" src="amb-lounge.webp" alt="Oficina equipada" />
+        <Foto
+          className="banda__foto"
+          src="linea-fundador.webp"
+          alt={`${EMPRESA.fundador}, fundador de ${EMPRESA.nombre}`}
+          style={{ backgroundPosition: "center 30%" }}
+        />
         <div className="banda__texto">
           <div className="etiqueta">La empresa</div>
-          {/* "Empresa familiar" y "desde 1959" están verificados. */}
-          <h2>Una empresa familiar,<br />desde {EMPRESA.desde}.</h2>
+          <h2>{EMPRESA.trayectoria}<br />equipando espacios.</h2>
           <p>
-            Somos una empresa familiar en crecimiento que, desde sus inicios en{" "}
-            {EMPRESA.desde}, busca soluciones para que puedas mejorar tu jornada laboral
-            y experimentar el placer de trabajar. Trabajamos con un equipo de personas
-            llenas de valores humanos y profesionales, que aportan sus habilidades en
-            cada proyecto.
+            {EMPRESA.fundador} fundó {EMPRESA.nombre} y hace más de 50 años que está
+            al frente de esta propuesta integral y diferenciada: muebles de diseño,
+            hechos con pasión, calidad y cumplimiento.
+          </p>
+          <p style={{ marginTop: "1rem" }}>
+            Hoy renovamos nuestra imagen con el mismo profesionalismo y una nueva
+            mirada, para acompañarte en cada proyecto.
           </p>
           <Link className="btn btn--claro" href="/proyectos">
             Ver proyectos <Flecha />
@@ -104,7 +110,7 @@ export default function Inicio() {
         <Revelar className="enc-seccion">
           <div>
             <div className="etiqueta">Piezas de referencia</div>
-            <h2>Algunas de nuestras<br />piezas</h2>
+            <h2>Algunas<br />piezas</h2>
           </div>
           <Link className="enlace-flecha" href="/catalogo">
             Ver las {PRODUCTOS.length} piezas <Flecha className="" />
@@ -124,78 +130,73 @@ export default function Inicio() {
         <div className="env">
           <Revelar className="enc-seccion">
             <div>
-              <div className="etiqueta">Servicios</div>
-              <h2>Tres servicios<br />alrededor del mueble</h2>
+              <div className="etiqueta">Cómo trabajamos</div>
+              <h2>De la idea<br />a la instalación final</h2>
             </div>
             <p>
-              Juntos creamos el diseño ideal para cada oficina, con soluciones
-              simples, eficaces y accesibles que te permitan optimizar tus recursos y
-              maximizar tu rentabilidad.
+              Te acompañamos todo el camino. Un solo equipo se ocupa del proyecto de
+              punta a punta, así nada queda entre dos proveedores.
             </p>
           </Revelar>
 
-          {/* Los tres servicios que presta la empresa, con su texto. */}
           <Revelar className="fila-serv">
             <div className="fila-serv__n">01</div>
-            <h3>Asesoramiento y diseño</h3>
+            <h3>Diseño</h3>
             <p>
-              Te acompañamos en el diseño de tu oficina con un equipo de
-              Arquitectura.
+              Pensamos el mobiliario con vos, a partir del espacio que tenés y de cómo
+              se va a usar.
             </p>
             <Link className="enlace-flecha" href="/servicios">Ver cómo es <Flecha className="" /></Link>
           </Revelar>
 
           <Revelar className="fila-serv">
             <div className="fila-serv__n">02</div>
-            <h3>Garantía y servicio</h3>
+            <h3>Fabricación</h3>
             <p>
-              Nuestros productos están pensados para durar. Ofrecemos garantía,
-              repuestos y servicio de reparación.
+              Fabricamos cada pieza del proyecto, con la calidad y el cumplimiento que
+              nos acompañan hace más de 50 años.
             </p>
             <Link className="enlace-flecha" href="/servicios">Ver más <Flecha className="" /></Link>
           </Revelar>
 
           <Revelar className="fila-serv">
             <div className="fila-serv__n">03</div>
-            <h3>Transporte e instalación</h3>
+            <h3>Instalación</h3>
             <p>
-              Llevamos las piezas hasta tu oficina y las dejamos armadas y en su
-              lugar. Coordinamos el día y la hora para que el movimiento no te
-              frene el trabajo.
+              Seguimos cada etapa hasta la instalación final, para que el espacio
+              quede listo para usar.
             </p>
             <Link className="enlace-flecha" href="/contacto">Coordinar una visita <Flecha className="" /></Link>
           </Revelar>
         </div>
       </section>
 
+      {/* Los cinco rubros del afiche de la empresa. */}
       <section className="banda banda--invertida">
-        <Foto className="banda__foto" src="amb-sillas-color.webp" alt="Sillas de oficina" />
+        <Foto className="banda__foto" src="amb-lounge.webp" alt="Espacio equipado" />
         <div className="banda__texto">
-          <div className="etiqueta">Sillas</div>
-          <h2>Nuestras<br />sillas</h2>
-          <p>
-            Ergonómicas, operativas, de recepción y ejecutivas: más de veinte modelos,
-            entre ellos Cool, Cool Jazz, Equis, Trieste, Tokio y Citiz. Cada uno se
-            arma en la versión que necesitás —rodante con gas, cuatro patas apilable,
-            trineo, tándem o cajera— tapizada o en plástico.
-          </p>
-          <p style={{ marginTop: "1rem" }}>
-            Podés probarlas en el showroom de {EMPRESA.showroom.calle} antes de comprar.
-          </p>
-          <Link className="btn btn--linea" href="/catalogo">Ver todas las sillas <Flecha /></Link>
+          <div className="etiqueta">Para quién</div>
+          <h2>Mobiliario integral<br />para cada espacio</h2>
+          <ul className="rubros">
+            {RUBROS.map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ul>
+          <Link className="btn btn--linea" href="/servicios">Ver servicios <Flecha /></Link>
         </div>
       </section>
 
-      {/* Showroom. Las fotos son del local de Bv. Rondeau. */}
+      {/* Showroom. Las fotos son de ejemplo: todavía no hay fotos del
+          local de Córdoba 1080. */}
       <section className="seccion env" id="showroom">
         <Revelar className="enc-seccion">
           <div>
             <div className="etiqueta">Showroom</div>
-            <h2>Vení a probarlas<br />en {EMPRESA.showroom.calle}</h2>
+            <h2>Visitanos<br />en {EMPRESA.showroom.calle}</h2>
           </div>
           <p>
-            Sentarte en las sillas, medir los escritorios y ver las terminaciones de
-            cerca es la mejor forma de elegir. Te esperamos.
+            Ver las terminaciones de cerca y contarnos tu proyecto en persona es la
+            mejor forma de empezar. Te esperamos.
           </p>
         </Revelar>
 
@@ -203,8 +204,9 @@ export default function Inicio() {
           <Revelar>
             <Foto
               className="showroom__foto showroom__foto--alta"
-              src="showroom-frente.webp"
-              alt={`Frente del showroom en ${EMPRESA.showroom.calle}`}
+              src="showroom-salon.webp"
+              alt="Salón con escritorios y sillas (foto de ejemplo)"
+              pie="Foto de ejemplo"
             />
           </Revelar>
           <div className="showroom__col">
@@ -212,14 +214,16 @@ export default function Inicio() {
               <Foto
                 className="showroom__foto"
                 src="showroom-sillas.webp"
-                alt="Sector de sillas del showroom, contra el patio"
+                alt="Sector de sillas (foto de ejemplo)"
+                pie="Foto de ejemplo"
               />
             </Revelar>
             <Revelar orden={2}>
               <Foto
                 className="showroom__foto"
                 src="showroom-escritorio.webp"
-                alt="Escritorio ejecutivo junto al ventanal del showroom"
+                alt="Escritorio ejecutivo junto a un ventanal (foto de ejemplo)"
+                pie="Foto de ejemplo"
               />
             </Revelar>
           </div>
@@ -238,7 +242,9 @@ export default function Inicio() {
             <div>
               <dt>Consultas</dt>
               <dd>
-                <a href={`mailto:${EMPRESA.showroom.mail}`}>{EMPRESA.showroom.mail}</a>
+                <a href={`https://wa.me/${TELEFONO_CRUDO}`} target="_blank" rel="noopener noreferrer">
+                  Por WhatsApp
+                </a>
               </dd>
             </div>
           </dl>
@@ -253,9 +259,9 @@ export default function Inicio() {
           <div className="etiqueta" style={{ justifyContent: "center" }}>Siguiente paso</div>
           <h2>Contanos qué espacio<br />tenés que equipar</h2>
           <p style={{ margin: "1.25rem auto 0", color: "var(--humo)" }}>
-            Contanos cuántos puestos tenés que equipar y cómo es el lugar. Nuestro
-            equipo de arquitectura diseña la oficina con vos, y después la fabricamos,
-            la llevamos y la instalamos.
+            Oficina, comercio, consultorio, local gastronómico o tu casa: contanos cómo
+            es el lugar y qué necesitás. Lo diseñamos con vos, lo fabricamos y lo
+            dejamos instalado.
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", marginTop: "2rem" }}>
             <Link className="btn btn--acento" href="/contacto">Pedir presupuesto <Flecha /></Link>

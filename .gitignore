@@ -6,3 +6,8 @@ out/
 __pycache__/
 *.tsbuildinfo
 next-env.d.ts
+
+# Material de trabajo local
+fotos-linea/
+FORMULARIO-LINEA-EQUIPAMIENTOS.md
+.claude/

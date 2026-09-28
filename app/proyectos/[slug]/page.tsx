@@ -16,7 +16,7 @@ type Params = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return PROYECTOS.flatMap((p) => (p.slug ? [{ slug: p.slug }] : []));
+  return PROYECTOS.map((p) => ({ slug: p.slug }));
 }
 
 function buscar(slug: string) {
@@ -33,8 +33,9 @@ export default async function ProyectoDetalle({ params }: Params) {
   const p = buscar((await params).slug);
   if (!p) notFound();
 
-  // Sin galería cargada, la foto de la tarjeta a 3:2.
-  const fotos = p.fotos?.length ? p.fotos : [{ src: p.img, ancho: 3, alto: 2 }];
+  // Sin galería cargada, la foto de la tarjeta a 3:2; sin ninguna foto
+  // (solo video), no hay galería.
+  const fotos = p.fotos?.length ? p.fotos : p.img ? [{ src: p.img, ancho: 3, alto: 2 }] : [];
 
   return (
     <>
@@ -58,6 +59,11 @@ export default async function ProyectoDetalle({ params }: Params) {
         <div className="proy-det__enc">
           <div>
             <div className="etiqueta entra">Proyecto</div>
+            {p.ejemplo ? (
+              <p className="aviso-ejemplo entra" style={{ marginBottom: "1rem" }}>
+                Ejemplo de cómo quedaría · No es una obra de Línea
+              </p>
+            ) : null}
             <h1 className="entra" style={{ fontSize: "var(--t-2xl)", ["--paso" as string]: "70ms" }}>
               {p.nombre}
             </h1>
@@ -74,12 +80,7 @@ export default async function ProyectoDetalle({ params }: Params) {
                 <dt>Lugar</dt>
                 <dd>{p.lugar || <Pendiente>A confirmar</Pendiente>}</dd>
               </div>
-              {p.linea ? (
-                <div>
-                  <dt>Línea</dt>
-                  <dd>{p.linea}</dd>
-                </div>
-              ) : null}
+
             </dl>
           </div>
         </div>
@@ -91,6 +92,22 @@ export default async function ProyectoDetalle({ params }: Params) {
         a ser un carrusel que se desliza, porque el ensanchado necesita
         un mouse que ahí no existe.
       */}
+      {p.instagram ? (
+        <section className="env" style={{ paddingBottom: "var(--e-6)" }}>
+          {/* El reel de Instagram, incrustado con el visor oficial. Queda
+              hasta que lleguen las fotos de la obra. */}
+          <div className="embed-instagram">
+            <iframe
+              src={`${p.instagram.replace(/\/$/, "")}/embed/`}
+              title={`Video del proyecto ${p.nombre} en Instagram`}
+              loading="lazy"
+              allowFullScreen
+            />
+          </div>
+        </section>
+      ) : null}
+
+      {fotos.length > 0 ? (
       <section className="env" style={{ paddingBottom: "var(--e-6)" }}>
         <ExpandableGallery
           fotos={fotos.map((f, i) => ({
@@ -101,6 +118,7 @@ export default async function ProyectoDetalle({ params }: Params) {
           }))}
         />
       </section>
+      ) : null}
 
       <section className="seccion env proy-det__cierre">
         <Link className="enlace-volver" href="/proyectos">

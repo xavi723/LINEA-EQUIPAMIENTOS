@@ -6,7 +6,7 @@ name: Publicar en GitHub Pages
 
 on:
   push:
-    branches: [claude/altobello-figma-sketch-6lsq3f]
+    branches: [main]
   workflow_dispatch:
 
 permissions:

@@ -7,12 +7,14 @@ import { Foto } from "@/components/foto";
 
 export const metadata: Metadata = {
   title: "Contacto",
-  description:
-    "Showroom en Bv. Rondeau 3042 y fábrica en Pedro Goyena 1023, Rosario.",
+  description: "Showroom en Córdoba 1080, Rosario. Consultas por WhatsApp.",
 };
 
 export default function Contacto() {
-  const { showroom, fabrica } = EMPRESA;
+  const { showroom } = EMPRESA;
+  const mapa = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${showroom.calle}, Rosario, Santa Fe`,
+  )}`;
 
   return (
     <>
@@ -28,44 +30,40 @@ export default function Contacto() {
         <div className="contacto-layout">
           <FormularioPresupuesto />
 
-          {/* Todos los datos de este bloque salen de la página de
-              contacto de la empresa. */}
           <aside className="contacto__datos">
             <div className="etiqueta">Dónde estamos</div>
-            <h2 style={{ fontSize: "var(--t-lg)" }}>Dos direcciones<br />en Rosario</h2>
+            <h2 style={{ fontSize: "var(--t-lg)" }}>Showroom<br />en Rosario</h2>
 
             <div style={{ marginTop: "2rem", paddingTop: "1.5rem", borderTop: "var(--borde)" }}>
-              <div className="etiqueta" style={{ color: "var(--naranja)" }}>Showroom</div>
-              <p style={{ fontWeight: 500 }}>{showroom.calle}</p>
+              <div className="etiqueta" style={{ color: "var(--acento)" }}>Showroom</div>
+              <p style={{ fontWeight: 500 }}>{showroom.calle}, {EMPRESA.ciudad}</p>
               <p className="dato" style={{ fontSize: "var(--t-sm)", color: "var(--humo)", marginTop: "0.35rem" }}>
                 {showroom.horario}
               </p>
               <p style={{ marginTop: "0.75rem", fontSize: "var(--t-sm)" }}>
-                <a href={`tel:+${TELEFONO_CRUDO}`}>Tel. {TELEFONO}</a><br />
-                <a href={`mailto:${showroom.mail}`}>{showroom.mail}</a>
-              </p>
-            </div>
-
-            <div style={{ marginTop: "1.75rem", paddingTop: "1.5rem", borderTop: "var(--borde)" }}>
-              <div className="etiqueta">Fábrica y administración</div>
-              <p style={{ fontWeight: 500 }}>{fabrica.calle}</p>
-              <p className="dato" style={{ fontSize: "var(--t-sm)", color: "var(--humo)", marginTop: "0.35rem" }}>
-                {fabrica.horario}
-              </p>
-              <p style={{ marginTop: "0.75rem", fontSize: "var(--t-sm)" }}>
-                <a href={`tel:+${TELEFONO_CRUDO}`}>Tel. {TELEFONO}</a><br />
-                <a href={`mailto:${fabrica.mail}`}>{fabrica.mail}</a>
+                <a href={mapa} target="_blank" rel="noopener noreferrer">Ver en el mapa</a>
               </p>
             </div>
 
             <div style={{ marginTop: "1.75rem", paddingTop: "1.5rem", borderTop: "var(--borde)" }}>
               <div className="etiqueta">WhatsApp</div>
               <p style={{ marginTop: "0.35rem", fontSize: "var(--t-sm)" }}>
-                <a href={`https://wa.me/${TELEFONO_CRUDO}`} target="_blank" rel="noopener">{TELEFONO}</a>
+                <a href={`https://wa.me/${TELEFONO_CRUDO}`} target="_blank" rel="noopener noreferrer">{TELEFONO}</a>
               </p>
             </div>
 
-            <Foto src="amb-sala-reunion.webp" alt="Oficina equipada"
+            <div style={{ marginTop: "1.75rem", paddingTop: "1.5rem", borderTop: "var(--borde)" }}>
+              <div className="etiqueta">Redes</div>
+              <p style={{ marginTop: "0.35rem", fontSize: "var(--t-sm)" }}>
+                <a href={EMPRESA.instagram} target="_blank" rel="noopener noreferrer">
+                  Instagram {EMPRESA.instagramUsuario}
+                </a>
+                <br />
+                <a href={EMPRESA.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+              </p>
+            </div>
+
+            <Foto src="amb-sala-reunion.webp" alt="Sala de reunión equipada"
                   style={{ aspectRatio: "4 / 3", marginTop: "1.5rem" }} />
           </aside>
         </div>

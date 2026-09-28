@@ -30,9 +30,9 @@ export default function Catalogo() {
             <h1 style={{ fontSize: "var(--t-2xl)" }}>Catálogo</h1>
           </div>
           <p>
-            Escritorios, asientos, mesas de reunión y accesorios de nuestras líneas
-            Strada, Tetra y Ejecutiva. Estas son las piezas con foto; el catálogo
-            completo es más grande y lo recorremos juntos en el showroom.
+            Escritorios, sillas, mesas de reunión y accesorios. Son piezas de
+            referencia: cada proyecto se arma a la medida del espacio, y el resto lo
+            vemos juntos en el showroom.
           </p>
         </div>
       </section>
