@@ -18,8 +18,8 @@ export default function Inicio() {
       <section className="portada">
         <Foto
           className="portada__foto"
-          src="proy-banco-municipal-1.webp"
-          alt="Espacio de trabajo equipado con escritorios y sillas"
+          src="amb-portada.webp"
+          alt="Oficina equipada con escritorios, sillas y guardado en madera"
         />
         <div className="portada__velo" />
 
@@ -81,12 +81,12 @@ export default function Inicio() {
 
       {/* Texto armado con los posteos de Instagram de la empresa: el de su
           fundador y el de la renovación de imagen. */}
-      <section className="banda banda--oscura">
+      <section className="banda banda--oscura banda--retrato">
         <Foto
           className="banda__foto"
           src="linea-fundador.webp"
           alt={`${EMPRESA.fundador}, fundador de ${EMPRESA.nombre}`}
-          style={{ backgroundPosition: "center 30%" }}
+          style={{ backgroundPosition: "center 12%" }}
         />
         <div className="banda__texto">
           <div className="etiqueta">La empresa</div>

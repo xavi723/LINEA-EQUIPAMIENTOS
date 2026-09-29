@@ -636,6 +636,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .banda { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
 .banda--invertida .banda__foto { order: 2; }
 .banda__foto { min-height: 32rem; }
+/* La foto de Abel mide 443 px: en una columna de la mitad de la pantalla
+   se estiraba al doble. Angosta, se ve a su tamaño real. */
+.banda--retrato { grid-template-columns: minmax(0, 28rem) 1fr; }
 .banda__texto {
   display: flex;
   flex-direction: column;

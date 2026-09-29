@@ -211,28 +211,19 @@ AMBIENTE = [
     # La foto de Línea Strada solo sirve por su derecha: el titular
     # quemado cruza el centro y bajar el recorte para esquivarlo cortaba
     # los escritorios, que son lo que había que mostrar.
-    # La portada usa la foto entera, no una mitad: recortada a la mitad
-    # quedaban 955 px estirados a todo el ancho de la pantalla y se veía
-    # blanda. Completa son 1920 y es la única sin texto quemado.
-    ("doble foto.webp", "amb-portada.webp",
-     (0.0, 0.0, 1.0, 1.0), 1920,
-     "Portada. Foto completa, sin recorte, a resolución original."),
+    # Portada: franja 16:9 de una foto de 1440 px, el ancho de una
+    # pantalla de escritorio, para que no se estire y se vea blanda.
+    ("BCRlabs 4.jpg", "amb-portada.webp",
+     (0.0, 0.2403, 1.0, 0.8028), 1440,
+     "Portada. Oficina con escritorios en L y armarios de madera."),
 
     ("Linea strada.webp", "amb-lounge.webp",
      (0.63, 0.0, 1.0, 0.88), 900,
      "Zona de estar de la misma oficina, a la derecha del titular."),
 
-    ("doble foto.webp", "amb-sillas-color.webp",
-     (0.0, 0.0, 0.497, 1.0), 1100,
-     "Tres sillas ergonómicas en blanco, naranja y verde. Sin texto."),
-
     ("doble foto.webp", "amb-sala-reunion.webp",
      (0.503, 0.0, 1.0, 1.0), 1100,
      "Sala de reunión con ventanal. Sin texto."),
-
-    ("Muebles que ordenan y potencian tu espacio.webp", "amb-biblioteca.webp",
-     (0.0, 0.0, 0.497, 0.66), 1100,
-     "Biblioteca del Colegio de Arquitectos. Corta por encima del titular."),
 
     ("Muebles que ordenan y potencian tu espacio.webp", "amb-atrio.webp",
      (0.503, 0.0, 1.0, 1.0), 1100,
@@ -280,22 +271,6 @@ if __name__ == "__main__":
 # que no la alteran.
 PROYECTOS = [
     # (origen, salida, qué muestra)
-    ("Coworking Banco Municipal 1.jpg", "proy-banco-municipal-1.webp",
-     "Coworking de Banco Municipal en La Favorita, vista general con ventanal."),
-    ("Coworking Banco Municipal 2.jpg", "proy-banco-municipal-2.webp",
-     "Mismo coworking: mesa larga y barra con taburetes."),
-
-    ("Don Palacios 1.jpg", "proy-don-palacios-1.webp",
-     "Mesa de reunión frente al revestimiento de listones con TV."),
-    ("Don Palacios 2.jpg", "proy-don-palacios-2.webp",
-     "Escritorio de atención con dos sillas azules y lámpara colgante."),
-    ("Don Palacios 3.jpg", "proy-don-palacios-3.webp",
-     "Recepción: pared de madera con el logo y puerta enrasada. Portada."),
-    ("Don Palacios 4.jpg", "proy-don-palacios-4.webp",
-     "Biblioteca de madera con TV sobre bajo mesada blanco."),
-    ("Don Palacios 5.jpg", "proy-don-palacios-5.webp",
-     "Despacho con mesa de madera y mueble en L blanco."),
-
     # Orden de la galería: primero lo terminado, después el montaje.
     ("Banco Municipal 1.jpg", "proy-banco-municipal-suc-1.webp",
      "Frente de la sucursal con el cartel de Banco Municipal."),
@@ -336,13 +311,10 @@ PROYECTOS = [
     ("BCRlabs 9.jpg", "proy-bcrlabs-9.webp",
      "Detalle de la pata del escritorio y el divisor."),
 
-    # Showroom de Bv. Rondeau. La 1 es la de la portada; las otras tres
-    # arman el apartado. Los originales miden 960 px de ancho: alcanzan
-    # para la grilla, y en la portada se estiran (ver nota en el README).
+    # Showroom, fotos de ejemplo (no son del local de Línea). El frente
+    # del edificio salió: mostraba el cartel de la otra empresa.
     ("Showroom 1.jpg", "showroom-salon.webp",
      "Salón principal del showroom. Va en la portada."),
-    ("Showroom 2.jpg", "showroom-frente.webp",
-     "Frente del edificio de Bv. Rondeau 3042, con el cartel."),
     ("Showroom 3.jpg", "showroom-sillas.webp",
      "Sector de sillas de colores contra el patio."),
     ("Showroom 4.jpg", "showroom-escritorio.webp",
